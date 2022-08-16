@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Coflnet.Sky.Base.Models
+namespace Coflnet.Sky.PlayerState.Models
 {
     /// <summary>
     /// <see cref="DbContext"/> For flip tracking
     /// </summary>
-    public class BaseDbContext : DbContext
+    public class PlayerStateDbContext : DbContext
     {
         public DbSet<Flip> Flips { get; set; }
 
         /// <summary>
-        /// Creates a new instance of <see cref="BaseDbContext"/>
+        /// Creates a new instance of <see cref="PlayerStateDbContext"/>
         /// </summary>
         /// <param name="options"></param>
-        public BaseDbContext(DbContextOptions<BaseDbContext> options)
+        public PlayerStateDbContext(DbContextOptions<PlayerStateDbContext> options)
         : base(options)
         {
         }

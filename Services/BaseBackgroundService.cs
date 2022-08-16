@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Coflnet.Sky.Base.Models;
+using Coflnet.Sky.PlayerState.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,21 +8,21 @@ using Confluent.Kafka;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 using Microsoft.Extensions.Logging;
-using Coflnet.Sky.Base.Controllers;
+using Coflnet.Sky.PlayerState.Controllers;
 using Coflnet.Sky.Core;
 
-namespace Coflnet.Sky.Base.Services
+namespace Coflnet.Sky.PlayerState.Services
 {
 
-    public class BaseBackgroundService : BackgroundService
+    public class PlayerStateBackgroundService : BackgroundService
     {
         private IServiceScopeFactory scopeFactory;
         private IConfiguration config;
-        private ILogger<BaseBackgroundService> logger;
+        private ILogger<PlayerStateBackgroundService> logger;
         private Prometheus.Counter consumeCount = Prometheus.Metrics.CreateCounter("sky_base_conume", "How many messages were consumed");
 
-        public BaseBackgroundService(
-            IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<BaseBackgroundService> logger)
+        public PlayerStateBackgroundService(
+            IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<PlayerStateBackgroundService> logger)
         {
             this.scopeFactory = scopeFactory;
             this.config = config;
@@ -35,8 +35,9 @@ namespace Coflnet.Sky.Base.Services
         /// <returns></returns>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            return;
             using var scope = scopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<BaseDbContext>();
+            var context = scope.ServiceProvider.GetRequiredService<PlayerStateDbContext>();
             // make sure all migrations are applied
             await context.Database.MigrateAsync();
 
@@ -53,9 +54,9 @@ namespace Coflnet.Sky.Base.Services
             await Task.WhenAll(flipCons);
         }
 
-        private BaseService GetService()
+        private PlayerStateService GetService()
         {
-            return scopeFactory.CreateScope().ServiceProvider.GetRequiredService<BaseService>();
+            return scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PlayerStateService>();
         }
     }
 }
