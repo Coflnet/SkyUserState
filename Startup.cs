@@ -18,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using OpenTracing;
 using OpenTracing.Util;
 using Prometheus;
+using MongoDB.Driver;
 
 namespace Coflnet.Sky.PlayerState
 {
@@ -50,12 +51,15 @@ namespace Coflnet.Sky.PlayerState
             var serverVersion = new MariaDbServerVersion(new Version(Configuration["MARIADB_VERSION"]));
 
             // Replace 'YourDbContext' with the name of your own DbContext derived class.
-            services.AddDbContext<PlayerStateDbContext>(
+            /*services.AddDbContext<PlayerStateDbContext>(
                 dbContextOptions => dbContextOptions
                     .UseMySql(Configuration["DB_CONNECTION"], serverVersion)
                     .EnableSensitiveDataLogging() // <-- These two calls are optional but help
                     .EnableDetailedErrors()       // <-- with debugging (remove for production).
-            );
+            );*/
+            services.AddSingleton(a => new MongoClient(
+                Configuration["Mongo:ConnectionString"]
+            ));
             services.AddHostedService<PlayerStateBackgroundService>();
             services.AddJaeger();
             services.AddTransient<PlayerStateService>();

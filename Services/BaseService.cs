@@ -11,21 +11,11 @@ namespace Coflnet.Sky.PlayerState.Services
 {
     public class PlayerStateService
     {
-        private PlayerStateDbContext db;
-
-        public PlayerStateService(PlayerStateDbContext db)
-        {
-            this.db = db;
-        }
+        
 
         public async Task<Flip> AddFlip(Flip flip)
         {
-            if (flip.Timestamp == default)
-            {
-                flip.Timestamp = DateTime.Now;
-            }
-            db.Flips.Add(flip);
-            await db.SaveChangesAsync();
+            
             return flip;
         }
     }
@@ -36,11 +26,8 @@ namespace Coflnet.Sky.PlayerState.Services
         private readonly IMongoCollection<Item> _booksCollection;
 
         public ItemsService(
-            IOptions<MongoSettings> bookStoreDatabaseSettings)
+            IOptions<MongoSettings> bookStoreDatabaseSettings, MongoClient mongoClient)
         {
-            var mongoClient = new MongoClient(
-                bookStoreDatabaseSettings.Value.ConnectionString);
-
             var mongoDatabase = mongoClient.GetDatabase(
                 bookStoreDatabaseSettings.Value.DatabaseName);
 

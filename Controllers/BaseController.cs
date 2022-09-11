@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using Coflnet.Sky.PlayerState.Services;
+using MongoDB.Bson;
+using Newtonsoft.Json;
+using System.Dynamic;
 
 namespace Coflnet.Sky.PlayerState.Controllers
 {
@@ -52,6 +55,28 @@ namespace Coflnet.Sky.PlayerState.Controllers
 
         public ItemsController(ItemsService booksService) =>
             _booksService = booksService;
+
+        [HttpPost]
+        [Route("mock")]
+        public async Task<IActionResult> Create()
+        {
+            var sourceData = "{\"rarity_upgrades\":1,\"gems\":{\"unlocked_slots\":[\"AMBER_0\",\"AMBER_1\",\"JADE_0\",\"JADE_1\",\"TOPAZ_0\"]},\"uid\":\"d8196ed3fcfa\"}";
+            var data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sourceData);
+            Item newItem = new Item()
+            {
+                Enchantments = new Dictionary<string, byte>() { { "sharpness", 1 } },
+                ExtraAttributes = BsonDocument.Parse(sourceData) //new() { { "exp", 5 }, { "attr", new List<string>() { "kk", "bb" }.ToArray() } }
+            };
+            
+            Console.WriteLine(data.ToBsonDocument().ToJson());
+            Console.WriteLine(JsonConvert.SerializeObject(newItem.ExtraAttributes));
+            await _booksService.CreateAsync(newItem);
+
+            return CreatedAtAction(nameof(Get), new
+            {
+                id = newItem.Id
+            });
+        }
 
         [HttpGet]
         public async Task<List<Item>> Get() =>

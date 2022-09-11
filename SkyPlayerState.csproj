@@ -17,6 +17,7 @@
     <Compile Remove="**\*.Tests.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <PackageReference Include="EFCore.Cassandra" Version="2.0.5" />
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
     <PackageReference Include="nunit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
