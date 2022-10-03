@@ -65,11 +65,14 @@ namespace Coflnet.Sky.PlayerState.Controllers
             Item newItem = new Item()
             {
                 Enchantments = new Dictionary<string, byte>() { { "sharpness", 1 } },
-                ExtraAttributes = BsonDocument.Parse(sourceData) //new() { { "exp", 5 }, { "attr", new List<string>() { "kk", "bb" }.ToArray() } }
+                ExtraAttributes = data// BsonDocument.Parse(sourceData) //new() { { "exp", 5 }, { "attr", new List<string>() { "kk", "bb" }.ToArray() } }
             };
             
             Console.WriteLine(data.ToBsonDocument().ToJson());
             Console.WriteLine(JsonConvert.SerializeObject(newItem.ExtraAttributes));
+            await _booksService.CreateAsync(newItem);
+            await _booksService.CreateAsync(newItem);
+            await _booksService.CreateAsync(newItem);
             await _booksService.CreateAsync(newItem);
 
             return CreatedAtAction(nameof(Get), new
@@ -83,7 +86,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
             await _booksService.GetAsync();
 
         [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Item>> Get(string id)
+        public async Task<ActionResult<Item>> Get(long id)
         {
             var book = await _booksService.GetAsync(id);
 
@@ -104,7 +107,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(string id, Item updatedItem)
+        public async Task<IActionResult> Update(long id, Item updatedItem)
         {
             var book = await _booksService.GetAsync(id);
 
@@ -121,7 +124,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(long id)
         {
             var book = await _booksService.GetAsync(id);
 

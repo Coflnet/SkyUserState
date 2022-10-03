@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
-using Coflnet.Sky.Core;
 using Jaeger.Samplers;
 using Jaeger.Senders;
 using Jaeger.Senders.Thrift;
@@ -19,6 +18,7 @@ using OpenTracing;
 using OpenTracing.Util;
 using Prometheus;
 using MongoDB.Driver;
+using Coflnet.Sky.EventBroker.Client.Api;
 
 namespace Coflnet.Sky.PlayerState
 {
@@ -48,7 +48,7 @@ namespace Coflnet.Sky.PlayerState
             // Use 'MariaDbServerVersion' for MariaDB.
             // Alternatively, use 'ServerVersion.AutoDetect(connectionString)'.
             // For common usages, see pull request #1233.
-            var serverVersion = new MariaDbServerVersion(new Version(Configuration["MARIADB_VERSION"]));
+            //var serverVersion = new MariaDbServerVersion(new Version(Configuration["MARIADB_VERSION"]));
 
             // Replace 'YourDbContext' with the name of your own DbContext derived class.
             /*services.AddDbContext<PlayerStateDbContext>(
@@ -61,13 +61,14 @@ namespace Coflnet.Sky.PlayerState
                 Configuration["Mongo:ConnectionString"]
             ));
             services.AddHostedService<PlayerStateBackgroundService>();
-            services.AddJaeger();
+            //services.AddJaeger();
             services.AddTransient<PlayerStateService>();
             services.AddResponseCaching();
             services.AddResponseCompression();
 
             services.Configure<MongoSettings>(Configuration.GetSection("Mongo"));
             services.AddSingleton<ItemsService>();
+            services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

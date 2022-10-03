@@ -1,78 +1,62 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Cassandra;
 using Cassandra.Data.Linq;
 using Cassandra.Mapping;
+using MessagePack;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Coflnet.Sky.PlayerState.Models;
 #nullable enable
+/// <summary>
+/// Transfer Object for item data
+/// </summary>
+[MessagePackObject]
 public class Item
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    [Key(0)]
+    public long? Id { get; set; }
+    /// <summary>
+    /// The item name for display
+    /// </summary>
+    [Key(1)]
     [BsonElement("Name")]
     public string ItemName { get; set; } = null!;
     /// <summary>
     /// Hypixel item tag for this item
     /// </summary>
-    [BsonElement("Tag")]
+    [Key(2)]
     public string Tag { get; set; } = null!;
-
     /// <summary>
-    /// Extra attributes object
+    /// Other aditional attributes
     /// </summary>
-    [JsonIgnore]
-    public BsonDocument ExtraAttributes { get; set; } = new();
-    [MongoDB.Bson.Serialization.Attributes.BsonIgnore]
-    public Dictionary<string, object> ExtraAttrib => ExtraAttributes.ToDictionary();
+    [Key(3)]
+    public Dictionary<string, object>? ExtraAttributes { get; set; }
 
     /// <summary>
     /// Enchantments if any
     /// </summary>
+    [Key(4)]
     public Dictionary<string, byte>? Enchantments { get; set; }  = new();
     /// <summary>
     /// Color element
     /// </summary>
+    [Key(5)]
     public int? Color { get; set; } 
+    /// <summary>
+    /// Item Description aka Lore displayed in game, is a written form of <see cref="ExtraAttributes"/>
+    /// </summary>
+    [Key(6)]
+    public string? Description { get; set; }
 
-}
-
-public class Transaction
-{
-    [Cassandra.Mapping.Attributes.PartitionKey]
-    public Guid PlayerUuid;
-    public Guid ProfileUuid;
-    public TransactionType Type;
-    public long ItemId;
-    public long Amount;
-    [Cassandra.Mapping.Attributes.ClusteringKey]
-    public DateTime TimeStamp;
-
-
-    public enum TransactionType
-    {
-        UNKOWN,
-        RECEIVE = 1,
-        REMOVE = 2,
-        BAZAAR = 4,
-        AH = 8,
-        NPC = 16,
-        TRADE = 32,
-        /// <summary>
-        /// Picking up or dropping
-        /// </summary>
-        WORLD = 64,
-        BAZAAR_SELL = BAZAAR | REMOVE,
-    }
 }
 
 public class TransactionService
