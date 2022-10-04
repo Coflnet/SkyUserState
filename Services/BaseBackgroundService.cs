@@ -21,7 +21,7 @@ public class PlayerStateBackgroundService : BackgroundService
     private IServiceScopeFactory scopeFactory;
     private IConfiguration config;
     private ILogger<PlayerStateBackgroundService> logger;
-    private Prometheus.Counter consumeCount = Prometheus.Metrics.CreateCounter("sky_base_conume", "How many messages were consumed");
+    private Prometheus.Counter consumeCount = Prometheus.Metrics.CreateCounter("sky_playerstate_conume", "How many messages were consumed");
 
     public ConcurrentDictionary<string, StateObject> States = new();
 
