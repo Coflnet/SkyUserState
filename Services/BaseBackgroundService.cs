@@ -80,6 +80,7 @@ public class PlayerStateBackgroundService : BackgroundService
             await Task.WhenAll(batch.Select(async update =>
             {
                 await Update(update);
+                consumeCount.Inc();
             }));
         }, stoppingToken, 5);
         var retrieved = new UpdateMessage();

@@ -26,6 +26,8 @@ namespace Coflnet.Sky.PlayerState.Services
     {
         private readonly IMongoCollection<StoredItem> _booksCollection;
         private static StoredCompare compare = new();
+        private Prometheus.Counter insertCount = Prometheus.Metrics.CreateCounter("sky_playerstate_mongo_insert", "How many items were inserted");
+        private Prometheus.Counter selectCount = Prometheus.Metrics.CreateCounter("sky_playerstate_mongo_select", "How many items were selected");
 
         public ItemsService(
             IOptions<MongoSettings> bookStoreDatabaseSettings, MongoClient mongoClient)
@@ -75,6 +77,7 @@ namespace Coflnet.Sky.PlayerState.Services
                 if (match != null)
                 {
                     found.Add(match);
+                    selectCount.Inc();
                 }
             }
 
@@ -99,6 +102,7 @@ namespace Coflnet.Sky.PlayerState.Services
                         item.Id = ThreadSaveIdGenerator.NextId;
                     }
                     await _booksCollection.InsertManyAsync(toCreate);
+                    insertCount.Inc(toCreate.Count);
                     return;
                 }
                 catch (System.Exception e)
