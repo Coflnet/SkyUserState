@@ -4,14 +4,12 @@ namespace Coflnet.Sky.PlayerState.Models;
 
 public class Transaction
 {
-    [Cassandra.Mapping.Attributes.PartitionKey]
-    public Guid PlayerUuid;
-    public Guid ProfileUuid;
-    public TransactionType Type;
-    public long ItemId;
-    public long Amount;
-    [Cassandra.Mapping.Attributes.ClusteringKey]
-    public DateTime TimeStamp;
+    public Guid PlayerUuid { get; set; }
+    public Guid ProfileUuid { get; set; }
+    public TransactionType Type { get; set; }
+    public long ItemId { get; set; }
+    public long Amount { get; set; }
+    public DateTime TimeStamp { get; set; }
 
 
     public enum TransactionType
@@ -27,7 +25,51 @@ public class Transaction
         /// Picking up or dropping
         /// </summary>
         WORLD = 64,
+        CRAFT = 128,
         BAZAAR_SELL = BAZAAR | REMOVE,
     }
+
+    public Transaction(Transaction t)
+    {
+        PlayerUuid = t.PlayerUuid;
+        ProfileUuid = t.ProfileUuid;
+        Type = t.Type;
+        ItemId = t.ItemId;
+        Amount = t.Amount;
+        TimeStamp = t.TimeStamp;
+    }
+
+    public Transaction()
+    {
+    }
+}
+
+/// <summary>
+/// Maps movements of items 
+/// </summary>
+public class ItemTransaction : Transaction
+{
+    public ItemTransaction()
+    {
+    }
+
+    public ItemTransaction(Transaction t) : base(t)
+    {
+    }
+}
+
+/// <summary>
+/// Maps transactions of a player
+/// </summary>
+public class PlayerTransaction : Transaction
+{
+    public PlayerTransaction()
+    {
+    }
+
+    public PlayerTransaction(Transaction t) : base(t)
+    {
+    }
+
 }
 #nullable restore

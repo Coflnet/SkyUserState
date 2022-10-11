@@ -40,6 +40,8 @@ public class PlayerStateBackgroundService : BackgroundService
         AddHandler<ItemIdAssignUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<InventoryChangeUpdate>(UpdateMessage.UpdateKind.INVENTORY);
+
+        AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
     }
 
     private void AddHandler<T>(UpdateMessage.UpdateKind kinds = UpdateMessage.UpdateKind.UNKOWN) where T : UpdateListener
@@ -134,106 +136,5 @@ public class PlayerStateBackgroundService : BackgroundService
                 logger.LogError(e, "failed to execute in scope");
             }
         });
-    }
-}
-
-public class InventoryChangeUpdate : UpdateListener
-{
-    /// <inheritdoc/>
-    public override async Task Process(UpdateArgs args)
-    {
-        Console.WriteLine("updated now there is " + args.msg.Chest.Items.Where(i => i != null && string.IsNullOrWhiteSpace(i.ItemName)).FirstOrDefault()?.ItemName);
-        //Console.WriteLine(args.msg.Chest.Name + "\n" + JsonConvert.SerializeObject(args.msg.Chest.Items));
-        args.currentState.Inventory = args.msg.Chest.Items.Reverse<Item>().Take(36).Reverse().ToList();
-    }
-}
-
-public class ItemIdAssignUpdate : UpdateListener
-{
-    private ItemCompare comparer = new();
-    public override async Task Process(UpdateArgs args)
-    {
-
-        await args.stateService.ExecuteInScope(async sp =>
-        {
-            var service = sp.GetRequiredService<ItemsService>();
-            var collection = args.msg.Chest.Items;
-            var toSearchFor = collection.Where(HasToBeStoredInMongo).ToHashSet();
-            var localPresent = args.currentState.RecentViews.SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer);
-            var foundLocal = toSearchFor.Select(s => localPresent.Values.Where(b => comparer.Equals(b, s)).FirstOrDefault()).Where(s => s != null).ToList();
-            var itemsWithIds = await service.FindOrCreate(toSearchFor.Except(foundLocal, comparer));
-
-            Console.WriteLine("to search: " + toSearchFor.Count + " found local: " + foundLocal.Count + " from db: " + itemsWithIds.Count + " present: " + localPresent.Count);
-            args.msg.Chest.Items = Join(collection, itemsWithIds.Concat(foundLocal)).ToList();
-        });
-    }
-
-    private static bool HasToBeStoredInMongo(Item i)
-    {
-        return i.ExtraAttributes != null && i.ExtraAttributes.Count != 0 && i.Enchantments?.Count != 0 && !IsNpcSell(i);
-    }
-
-    private static bool IsNpcSell(Item i)
-    {
-        // Another valid indicator would be "Click to trade!"
-        return i.Description?.Contains("§7Cost\n") ?? false;
-    }
-
-    private IEnumerable<Item> Join(IEnumerable<Item> original, IEnumerable<Item> mongo)
-    {
-        var mcount = 0;
-        foreach (var item in original)
-        {
-            var inMogo = mongo.Where(m => comparer.Equals(item, m)).FirstOrDefault();
-            if (inMogo != null)
-            {
-                yield return inMogo;
-                mcount++;
-            }
-            else
-                yield return item;
-        }
-        Console.WriteLine("replaced count: " + mcount);
-    }
-}
-
-public class UpdateArgs
-{
-    public UpdateMessage msg;
-    public StateObject currentState;
-    public PlayerStateBackgroundService stateService;
-
-    /// <summary>
-    /// Send message to user
-    /// </summary>
-    /// <param name="text"></param>
-    public void SendMessage(string text)
-    {
-        stateService.TryExecuteInScope(async provider =>
-        {
-            var messageService = provider.GetRequiredService<EventBroker.Client.Api.IMessageApi>();
-            await messageService.MessageSendUserIdPostAsync(currentState.McInfo.Uuid, new()
-            {
-                Message = text,
-                Data = msg
-            });
-        });
-    }
-}
-
-public abstract class UpdateListener
-{
-    /// <summary>
-    /// Process an update
-    /// </summary>
-    /// <param name="args"></param>
-    /// <returns></returns>
-    public abstract Task Process(UpdateArgs args);
-    /// <summary>
-    /// Called when registering to do async loading stuff
-    /// </summary>
-    public virtual Task Load(CancellationToken stoppingToken)
-    {
-        return Task.CompletedTask;
     }
 }
