@@ -61,9 +61,9 @@ public class TradeDetect : UpdateListener
             Console.WriteLine("got " + item.ItemName);
         }
         var timestamp = DateTime.UtcNow;
-        spent.Select(s =>
+        var transactions = new List<Transaction>();
+        transactions.AddRange(spent.Select(s =>
         {
-
             return new Transaction()
             {
                 // TODO Amount = s.
@@ -72,18 +72,29 @@ public class TradeDetect : UpdateListener
                 ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
                 TimeStamp = timestamp
             };
-        });
+        }));
+        transactions.AddRange(received.Select(s =>
+        {
+            return new Transaction()
+            {
+                // TODO Amount = s.
+                PlayerUuid = Guid.Parse(args.currentState.McInfo.Uuid),
+                Type = Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE,
+                ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
+                TimeStamp = timestamp
+            };
+        }));
 
         await args.stateService.ExecuteInScope(async sp =>
         {
             var service = sp.GetRequiredService<ITransactionService>();
 
-            await service.AddTransactions();
+            await service.AddTransactions(transactions.Where(t=>t.ItemId > 0));
         });
     }
 
     private int GetIdForTag(string tag)
     {
-        return 1;
+        return -1;
     }
 }
