@@ -64,25 +64,11 @@ public class TradeDetect : UpdateListener
         var transactions = new List<Transaction>();
         transactions.AddRange(spent.Select(s =>
         {
-            return new Transaction()
-            {
-                // TODO Amount = s.
-                PlayerUuid = Guid.Parse(args.currentState.McInfo.Uuid),
-                Type = Transaction.TransactionType.TRADE | Transaction.TransactionType.REMOVE,
-                ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
-                TimeStamp = timestamp
-            };
+            return CreateTransaction(args, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.REMOVE);
         }));
         transactions.AddRange(received.Select(s =>
         {
-            return new Transaction()
-            {
-                // TODO Amount = s.
-                PlayerUuid = Guid.Parse(args.currentState.McInfo.Uuid),
-                Type = Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE,
-                ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
-                TimeStamp = timestamp
-            };
+            return CreateTransaction(args, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
         }));
 
         await args.stateService.ExecuteInScope(async sp =>
@@ -91,6 +77,18 @@ public class TradeDetect : UpdateListener
 
             await service.AddTransactions(transactions.Where(t=>t.ItemId > 0));
         });
+    }
+
+    private Transaction CreateTransaction(UpdateArgs args, Item s, DateTime timestamp, Transaction.TransactionType type)
+    {
+        return new Transaction()
+        {
+            PlayerUuid = args.currentState.McInfo.Uuid,
+            Type = type,
+            ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
+            TimeStamp = timestamp,
+            Amount = s.Count
+        };
     }
 
     private int GetIdForTag(string tag)

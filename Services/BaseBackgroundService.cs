@@ -18,7 +18,7 @@ namespace Coflnet.Sky.PlayerState.Services;
 
 public class PlayerStateBackgroundService : BackgroundService
 {
-    private IServiceScopeFactory scopeFactory;
+    public IServiceScopeFactory scopeFactory { private set; get; }
     private IConfiguration config;
     private ILogger<PlayerStateBackgroundService> logger;
     private Prometheus.Counter consumeCount = Prometheus.Metrics.CreateCounter("sky_playerstate_conume", "How many messages were consumed");
@@ -35,11 +35,13 @@ public class PlayerStateBackgroundService : BackgroundService
         this.logger = logger;
 
         AddHandler<ChatHistoryUpdate>(UpdateMessage.UpdateKind.CHAT);
+        AddHandler<ProfileAndNameUpdate>(UpdateMessage.UpdateKind.CHAT);
 
 
         AddHandler<ItemIdAssignUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<InventoryChangeUpdate>(UpdateMessage.UpdateKind.INVENTORY);
+        AddHandler<AhBrowserListener>(UpdateMessage.UpdateKind.INVENTORY);
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
     }

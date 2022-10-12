@@ -40,6 +40,11 @@ public class StateObject
     public McInfo McInfo = new();
     [Key(6)]
     public string PlayerId;
+    /// <summary>
+    /// List of profiles the one at index 0 is used as active profile
+    /// </summary>
+    [Key(7)]
+    public List<Profile> Profiles;
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
 }
@@ -48,7 +53,15 @@ public class StateObject
 public class McInfo
 {
     [Key(0)]
-    public string Uuid;
+    public Guid Uuid;
+    [Key(1)]
+    public string Name;
+}
+[MessagePackObject]
+public class Profile
+{
+    [Key(0)]
+    public Guid Uuid;
     [Key(1)]
     public string Name;
 }

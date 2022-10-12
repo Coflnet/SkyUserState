@@ -49,6 +49,11 @@ public class Item
     /// </summary>
     [Key(6)]
     public string? Description { get; set; }
+    /// <summary>
+    /// Stacksize
+    /// </summary>
+    [Key(7)]
+    public byte Count { get; set; }
 
 }
 #nullable restore
