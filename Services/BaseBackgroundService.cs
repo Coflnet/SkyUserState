@@ -76,6 +76,7 @@ public class PlayerStateBackgroundService : BackgroundService
             AutoOffsetReset = AutoOffsetReset.Latest,
             GroupId = config["KAFKA_GROUP_ID"]
         };
+        await TestCassandraConnection();
 
         await Kafka.KafkaConsumer.ConsumeBatch<UpdateMessage>(consumerConfig, new string[] { config["TOPICS:STATE_UPDATE"] }, async batch =>
         {
@@ -88,6 +89,17 @@ public class PlayerStateBackgroundService : BackgroundService
             }));
         }, stoppingToken, 5);
         var retrieved = new UpdateMessage();
+    }
+
+    private async Task TestCassandraConnection()
+    {
+        await ExecuteInScope(async sp =>
+        {
+            var transactionService = sp.GetRequiredService<ITransactionService>();
+            logger.LogInformation("testing cassandra connection");
+            await transactionService.GetItemTransactions(0, 1);
+            logger.LogInformation("Cassandra connection works");
+        });
     }
 
     private async Task Update(UpdateMessage msg)

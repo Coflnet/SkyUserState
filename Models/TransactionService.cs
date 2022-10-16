@@ -9,6 +9,8 @@ using Cassandra.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Cassandra.Mapping.TypeConversion;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Coflnet.Sky.PlayerState.Models;
 
@@ -107,7 +109,7 @@ public class TransactionService : ITransactionService
     }
 
 
-    private async Task<ISession> GetSession()
+    public async Task<ISession> GetSession()
     {
         if (_session != null)
             return _session;
@@ -120,8 +122,19 @@ public class TransactionService : ITransactionService
                                 .WithCredentials(config["CASSANDRA:USER"], config["CASSANDRA:PASSWORD"])
                                 .AddContactPoints(config["CASSANDRA:HOSTS"].Split(","))
                                 .WithDefaultKeyspace(config["CASSANDRA:KEYSPACE"]);
-            if (config["CASSANDRA:SSL_ENABLED"] == "true")
+            var certificatePath = config["CASSANDRA:X509Certificate_PATH"];
+            if (!string.IsNullOrEmpty(certificatePath))
+            {
+                var sslOptions = new SSLOptions(
+                    // TLSv1.2 is required as of October 9, 2019.
+                    // See: https://www.instaclustr.com/removing-support-for-outdated-encryption-mechanisms/
+                    SslProtocols.Tls12,
+                    false,
+                    // Custom validator avoids need to trust the CA system-wide.
+                    (sender, certificate, chain, errors) => true
+                ).SetCertificateCollection(new(new[]{new X509Certificate2(certificatePath)}));
                 builder.WithSSL();
+            }
             var cluster = builder.Build();
             cluster.ConnectAndCreateDefaultKeyspaceIfNotExists(new Dictionary<string, string>()
             {
