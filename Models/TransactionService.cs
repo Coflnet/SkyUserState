@@ -122,8 +122,8 @@ public class TransactionService : ITransactionService
                                 .WithCredentials(config["CASSANDRA:USER"], config["CASSANDRA:PASSWORD"])
                                 .AddContactPoints(config["CASSANDRA:HOSTS"].Split(","))
                                 .WithDefaultKeyspace(config["CASSANDRA:KEYSPACE"]);
-            var certificatePath = config["CASSANDRA:X509Certificate_PATH"];
-            if (!string.IsNullOrEmpty(certificatePath))
+            var certificatePaths = config["CASSANDRA:X509Certificate_PATHS"];
+            if (!string.IsNullOrEmpty(certificatePaths))
             {
                 var sslOptions = new SSLOptions(
                     // TLSv1.2 is required as of October 9, 2019.
@@ -132,7 +132,7 @@ public class TransactionService : ITransactionService
                     false,
                     // Custom validator avoids need to trust the CA system-wide.
                     (sender, certificate, chain, errors) => true
-                ).SetCertificateCollection(new(new[]{new X509Certificate2(certificatePath)}));
+                ).SetCertificateCollection(new(certificatePaths.Split(',').Select(p => new X509Certificate2(p)).ToArray()));
                 builder.WithSSL();
             }
             var cluster = builder.Build();
