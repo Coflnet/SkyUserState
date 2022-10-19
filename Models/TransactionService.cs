@@ -18,7 +18,7 @@ public interface ITransactionService
 {
     Task AddTransactions(params Transaction[] transactions);
     Task AddTransactions(IEnumerable<Transaction> transactions);
-    Task<IEnumerable<Transaction>> GetTransactions(Guid guid, TimeSpan timeSpan);
+    Task<IEnumerable<Transaction>> GetTransactions(Guid guid, TimeSpan timeSpan, DateTime end);
     Task<IEnumerable<Transaction>> GetItemTransactions(long itemId, int max);
 }
 
@@ -164,10 +164,9 @@ public class TransactionService : ITransactionService
         return _table;
     }
 
-    public async Task<IEnumerable<Transaction>> GetTransactions(Guid guid, TimeSpan timeSpan)
+    public async Task<IEnumerable<Transaction>> GetTransactions(Guid guid, TimeSpan timeSpan, DateTime end)
     {
         var table = await GetPlayerTable();
-        var end = DateTime.UtcNow;
         var start = end - timeSpan;
         return await table.Where(t => t.PlayerUuid == guid && t.TimeStamp > start && t.TimeStamp < end).ExecuteAsync();
     }

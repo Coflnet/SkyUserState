@@ -22,7 +22,7 @@ public class Item
     /// </summary>
     [Key(1)]
     [BsonElement("Name")]
-    public string ItemName { get; set; } = null!;
+    public string? ItemName { get; set; } = null!;
     /// <summary>
     /// Hypixel item tag for this item
     /// </summary>
@@ -53,7 +53,7 @@ public class Item
     /// Stacksize
     /// </summary>
     [Key(7)]
-    public byte Count { get; set; }
+    public byte? Count { get; set; }
 
 }
 #nullable restore

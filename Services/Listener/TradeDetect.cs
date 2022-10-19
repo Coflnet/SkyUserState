@@ -135,7 +135,7 @@ public class TradeDetect : UpdateListener
             Type = type,
             ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
             TimeStamp = timestamp,
-            Amount = s.Count
+            Amount = s.Count.Value
         };
     }
 

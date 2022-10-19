@@ -1,52 +1,14 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Coflnet.Sky.PlayerState.Models;
 using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.Collections;
 using System.Collections.Generic;
 using Coflnet.Sky.PlayerState.Services;
 using MongoDB.Bson;
 using Newtonsoft.Json;
-using System.Dynamic;
 
 namespace Coflnet.Sky.PlayerState.Controllers
 {
-    /// <summary>
-    /// Main Controller handling tracking
-    /// </summary>
-    [ApiController]
-    [Route("[controller]")]
-    public class PlayerStateController : ControllerBase
-    {
-        private readonly PlayerStateService service;
-
-        /// <summary>
-        /// Creates a new instance of <see cref="PlayerStateController"/>
-        /// </summary>
-        /// <param name="service"></param>
-        public PlayerStateController(PlayerStateService service)
-        {
-            this.service = service;
-        }
-
-        /// <summary>
-        /// Tracks a flip
-        /// </summary>
-        /// <param name="flip"></param>
-        /// <param name="AuctionId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("flip/{AuctionId}")]
-        public async Task<Flip> TrackFlip([FromBody] Flip flip, string AuctionId)
-        {
-            await service.AddFlip(flip);
-            return flip;
-        }
-    }
-
     [ApiController]
     [Route("api/items")]
     public class ItemsController : ControllerBase
@@ -82,8 +44,15 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Item>> Get() =>
-            await _booksService.GetAsync();
+        public async Task<List<Item>> Get([FromQuery] Item item) =>
+            await _booksService.GetAsync(new Item[]{item});
+
+        [HttpPost]
+        [Route("find")]
+        public async Task<List<Item>> Find(Item item)
+        {
+            return await _booksService.Find(item);
+        }
 
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Item>> Get(long id)
