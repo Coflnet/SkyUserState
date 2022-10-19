@@ -48,7 +48,16 @@ public class PlayerStateBackgroundService : BackgroundService
 
     private void AddHandler<T>(UpdateMessage.UpdateKind kinds = UpdateMessage.UpdateKind.UNKOWN) where T : UpdateListener
     {
-        var handler = Activator.CreateInstance<T>();
+        T handler;
+        try
+        {
+            handler = Activator.CreateInstance<T>();
+        }
+        catch (System.Exception)
+        {
+            var scope = scopeFactory.CreateAsyncScope();
+            handler = (T)Activator.CreateInstance(typeof(T),scope.ServiceProvider.GetRequiredService<ILogger<T>>());
+        }
         foreach (var item in Enum.GetValues<UpdateMessage.UpdateKind>())
         {
             if (kinds != UpdateMessage.UpdateKind.UNKOWN && (item == UpdateMessage.UpdateKind.UNKOWN || !kinds.HasFlag(item)))

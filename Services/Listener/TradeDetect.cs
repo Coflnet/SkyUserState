@@ -4,18 +4,27 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using Microsoft.Extensions.Logging;
+using Coflnet.Sky.PlayerName.Client.Api;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
 public class TradeDetect : UpdateListener
 {
+    public ILogger<TradeDetect> logger;
+
+    public TradeDetect(ILogger<TradeDetect> logger)
+    {
+        this.logger = logger;
+    }
+
     /// <inheritdoc/>
     public override async Task Process(UpdateArgs args)
     {
         if (args.msg.Kind == UpdateMessage.UpdateKind.CHAT)
         {
             Console.WriteLine("chat msg");
-            
+
             var lastMessage = args.currentState.ChatHistory.Last().Content;
             if (!lastMessage.StartsWith(" + ") && !lastMessage.StartsWith(" - "))
                 return;
@@ -37,7 +46,13 @@ public class TradeDetect : UpdateListener
         var spent = new List<Item>();
         var received = new List<Item>();
         var index = 0;
-        foreach (var item in args.currentState.RecentViews.Where(t => t.Name.StartsWith("You    ")).Last().Items)
+        var tradeView = args.currentState.RecentViews.Where(t => t.Name.StartsWith("You    ")).LastOrDefault();
+        if (tradeView == null)
+        {
+            logger.LogError("no trade view was found");
+            return;
+        }
+        foreach (var item in tradeView.Items)
         {
             var i = index++;
             if (i >= 36)
@@ -71,19 +86,52 @@ public class TradeDetect : UpdateListener
             return CreateTransaction(args, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
         }));
 
+        // other player
+        try
+        {
+            await AddOtherSideOfTrade(args, spent, received, timestamp, transactions, tradeView);
+        }
+        catch (System.Exception e)
+        {
+            logger.LogError(e, "Trying to add other side of trade " + tradeView.Name);
+        }
+
         await args.stateService.ExecuteInScope(async sp =>
         {
             var service = sp.GetRequiredService<ITransactionService>();
 
-            await service.AddTransactions(transactions.Where(t=>t.ItemId > 0));
+            await service.AddTransactions(transactions.Where(t => t.ItemId > 0));
+        });
+    }
+
+    private async Task AddOtherSideOfTrade(UpdateArgs args, List<Item> spent, List<Item> received, DateTime timestamp, List<Transaction> transactions, ChestView chest)
+    {
+        await args.stateService.ExecuteInScope(async sp =>
+        {
+            var nameService = args.GetService<IPlayerNameApi>();
+            var uuid = Guid.Parse(await nameService.PlayerNameUuidNameGetAsync(chest.Name.Substring(21)));
+            transactions.AddRange(spent.Select(s =>
+            {
+                return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
+            }));
+            transactions.AddRange(received.Select(s =>
+            {
+                return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.REMOVE);
+            }));
         });
     }
 
     private Transaction CreateTransaction(UpdateArgs args, Item s, DateTime timestamp, Transaction.TransactionType type)
     {
+        var playerUuid = args.currentState.McInfo.Uuid;
+        return CreateTransaction(playerUuid, s, timestamp, type);
+    }
+
+    private Transaction CreateTransaction(Guid playerUuid, Item s, DateTime timestamp, Transaction.TransactionType type)
+    {
         return new Transaction()
         {
-            PlayerUuid = args.currentState.McInfo.Uuid,
+            PlayerUuid = playerUuid,
             Type = type,
             ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
             TimeStamp = timestamp,
