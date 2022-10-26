@@ -8,7 +8,6 @@ using System.Linq;
 using Cassandra.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Cassandra.Mapping.TypeConversion;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
@@ -49,7 +48,23 @@ public class TransactionService : ITransactionService
         var session = await GetSession();
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
-        await Task.WhenAll(transactions.Select(async transaction =>
+        Console.WriteLine("adding transactions " + transactions.Count());
+        await Task.WhenAll(transactions.GroupBy(t => new { t.PlayerUuid, t.ItemId, t.TimeStamp }).Select(g =>
+        {
+            if (g.Count() > 1)
+            {
+                return new Transaction()
+                {
+                    Amount = g.Sum(t => t.Amount),
+                    ItemId = g.Key.ItemId,
+                    PlayerUuid = g.Key.PlayerUuid,
+                    ProfileUuid = g.First().ProfileUuid,
+                    TimeStamp = g.Key.TimeStamp,
+                    Type = g.First().Type
+                };
+            }
+            return g.First();
+        }).Select(async transaction =>
         {
             var maxTries = 5;
             for (int i = 0; i < maxTries; i++)

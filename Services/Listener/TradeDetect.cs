@@ -11,7 +11,9 @@ namespace Coflnet.Sky.PlayerState.Services;
 
 public class TradeDetect : UpdateListener
 {
+    private const int IdForCoins = 1_000_001;
     public ILogger<TradeDetect> logger;
+    private CoinParser parser = new();
 
     public TradeDetect(ILogger<TradeDetect> logger)
     {
@@ -46,7 +48,7 @@ public class TradeDetect : UpdateListener
         var spent = new List<Item>();
         var received = new List<Item>();
         var index = 0;
-        var tradeView = args.currentState.RecentViews.Where(t => t.Name.StartsWith("You    ")).LastOrDefault();
+        var tradeView = args.currentState.RecentViews.Where(t => t.Name?.StartsWith("You    ") ?? false).LastOrDefault();
         if (tradeView == null)
         {
             logger.LogError("no trade view was found");
@@ -64,9 +66,7 @@ public class TradeDetect : UpdateListener
                 spent.Add(item);
             else if (column > 4)
                 received.Add(item);
-
         }
-
         foreach (var item in spent)
         {
             Console.WriteLine("sent " + item.ItemName);
@@ -129,18 +129,30 @@ public class TradeDetect : UpdateListener
 
     private Transaction CreateTransaction(Guid playerUuid, Item s, DateTime timestamp, Transaction.TransactionType type)
     {
-        return new Transaction()
+        var transaction = new Transaction()
         {
             PlayerUuid = playerUuid,
             Type = type,
-            ItemId = s.Id.HasValue ? s.Id.Value : GetIdForTag(s.Tag),
+            ItemId = s.Id ?? GetIdForItem(s),
             TimeStamp = timestamp,
-            Amount = s.Count.Value
+            Amount = s.Count ?? -1
         };
+        if (transaction.ItemId >= 1_000_000 && transaction.ItemId < 1_999_999) // special property id
+        {
+            transaction.Amount = transaction.ItemId switch
+            {
+                IdForCoins => parser.GetCoinAmount(s),
+                _ => 0
+            };
+        }
+
+        return transaction;
     }
 
-    private int GetIdForTag(string tag)
+    private int GetIdForItem(Item item)
     {
+        if (parser.IsCoins(item))
+            return IdForCoins;
         return -1;
     }
 }
