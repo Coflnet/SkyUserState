@@ -35,7 +35,7 @@ public class AhBrowserListener : UpdateListener
         {
             if(item?.Description == null)
                 continue;
-            if(item.Description.Contains("05h 59m"))
+            if(item.Description.Contains("05h 59m") || item.Description.Contains("Can buy in:"))
             {
                 Console.WriteLine("found new listing \n" + item.Description);
             }
