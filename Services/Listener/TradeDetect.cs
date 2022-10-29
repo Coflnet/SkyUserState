@@ -25,13 +25,11 @@ public class TradeDetect : UpdateListener
     {
         if (args.msg.Kind == UpdateMessage.UpdateKind.CHAT)
         {
-            Console.WriteLine("chat msg");
-
             var lastMessage = args.currentState.ChatHistory.Last().Content;
             if (!lastMessage.StartsWith(" + ") && !lastMessage.StartsWith(" - "))
                 return;
 
-            Console.WriteLine("trade completed");
+            Console.WriteLine("trade completed by " + args.currentState.PlayerId);
             await StoreTrade(args);
 
             return;
@@ -109,7 +107,10 @@ public class TradeDetect : UpdateListener
         await args.stateService.ExecuteInScope(async sp =>
         {
             var nameService = args.GetService<IPlayerNameApi>();
-            var uuid = Guid.Parse(await nameService.PlayerNameUuidNameGetAsync(chest.Name.Substring(21)));
+            var playerName = chest.Name.Substring(21);
+            var uuidString = await nameService.PlayerNameUuidNameGetAsync(playerName);
+            logger.LogInformation($"other side of trade is {playerName} {uuidString}");
+            var uuid = Guid.Parse(uuidString);
             transactions.AddRange(spent.Select(s =>
             {
                 return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
