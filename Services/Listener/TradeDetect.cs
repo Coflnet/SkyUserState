@@ -110,7 +110,7 @@ public class TradeDetect : UpdateListener
             var playerName = chest.Name.Substring(21);
             var uuidString = await nameService.PlayerNameUuidNameGetAsync(playerName);
             logger.LogInformation($"other side of trade is {playerName} {uuidString}");
-            var uuid = Guid.Parse(uuidString);
+            var uuid = Guid.Parse(uuidString.Trim('"'));
             transactions.AddRange(spent.Select(s =>
             {
                 return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
