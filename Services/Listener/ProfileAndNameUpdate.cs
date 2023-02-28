@@ -13,7 +13,7 @@ public class ProfileAndNameUpdate : UpdateListener
     {
         var state = args.currentState;
         var nameService = args.GetService<IPlayerNameApi>();
-        if(state.McInfo.Uuid == default)
+        if (state.McInfo.Uuid == default)
         {
             var uuid = await nameService.PlayerNameUuidNameGetAsync(args.msg.PlayerId);
             state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
@@ -29,13 +29,13 @@ public class AhBrowserListener : UpdateListener
 {
     public override async Task Process(UpdateArgs args)
     {
-        if(args.msg.Chest.Name != "Auctions Browser")
-            return;
+        //if (args.msg.Chest.Name != "Auctions Browser")
+        //    return;
         foreach (var item in args.msg.Chest.Items)
         {
-            if(item?.Description == null)
+            if (item?.Description == null)
                 continue;
-            if(item.Description.Contains("05h 59m") || item.Description.Contains("Can buy in:"))
+            if (item.Description.Contains("05h 59m 5") || item.Description.Contains("Can buy in"))
             {
                 Console.WriteLine("found new listing \n" + item.Description);
             }
