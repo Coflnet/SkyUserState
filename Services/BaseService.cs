@@ -140,7 +140,7 @@ namespace Coflnet.Sky.PlayerState.Services
             var builder = Builders<StoredItem>.Filter;
             var filter = builder.And(
                 builder.In(e => e.ExtraAttributes, batch.Select(e => e.ExtraAttributes)),
-                builder.In(e => e.Enchantments, batch.Select(e => e.Enchantments)),
+                //builder.In(e => e.Enchantments, batch.Select(e => e.Enchantments)),
                 builder.In(e => e.Tag, batch.Select(e => e.Tag))
                 //builder.In(e => e.ItemName, batch.Select(e => e.ItemName)) the name sometimes changes depending on the inventory, we ignore this
                 );
