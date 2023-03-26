@@ -13,6 +13,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
+using Confluent.Kafka.Admin;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -108,7 +109,17 @@ public class PlayerStateBackgroundService : BackgroundService
             logger.LogInformation("testing cassandra connection");
             await transactionService.GetItemTransactions(0, 1);
             logger.LogInformation("Cassandra connection works");
+            var bootstrapServers = config["KAFKA_HOST"];
+            using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = bootstrapServers }).Build())
+            {
+                // increase the number of partitions for the topic "my-topic"
+                adminClient.CreatePartitionsAsync(new PartitionsSpecification[] { new PartitionsSpecification(){
+                    Topic = config["TOPICS:STATE_UPDATE"],
+                    IncreaseTo = 10
+                } }).Wait();
+            }
         });
+
     }
 
     private async Task Update(UpdateMessage msg)
