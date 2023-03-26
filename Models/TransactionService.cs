@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel.DataAnnotations;
 
 namespace Coflnet.Sky.PlayerState.Models;
 
@@ -21,7 +22,13 @@ public interface ITransactionService
     Task<IEnumerable<Transaction>> GetItemTransactions(long itemId, int max);
 }
 
-public class TransactionService : ITransactionService
+public interface ICassandraService
+{
+    Task<ISession> GetSession();
+    Table<CassandraItem> GetItemsTable(ISession session);
+}
+
+public class TransactionService : ITransactionService, ICassandraService
 {
     ISession _session;
     private SemaphoreSlim sessionOpenLock = new SemaphoreSlim(1);
@@ -94,8 +101,12 @@ public class TransactionService : ITransactionService
     {
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
+        var rawitemTable = GetItemsTable(session);
+        // drop table
+        //session.Execute("DROP TABLE IF EXISTS items");
         await table.CreateIfNotExistsAsync();
         await itemTable.CreateIfNotExistsAsync();
+        await rawitemTable.CreateIfNotExistsAsync();
         return table;
     }
 
@@ -109,6 +120,16 @@ public class TransactionService : ITransactionService
         var table = new Table<PlayerTransaction>(session, mapping, "transactions");
         table.SetConsistencyLevel(ConsistencyLevel.Quorum);
         return table;
+    }
+
+    public Table<CassandraItem> GetItemsTable(ISession session)
+    {
+        return new Table<CassandraItem>(session, new MappingConfiguration()
+            .Define(new Map<CassandraItem>()
+            .PartitionKey(t => t.Tag)
+            .Column(o => o.Id, c=>c.WithSecondaryIndex())
+            .Column(o => o.Enchantments, c=>c.WithDbType<Dictionary<string,int>>())
+            .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending))), "items");
     }
 
     private static Table<ItemTransaction> GetItemTable(ISession session)

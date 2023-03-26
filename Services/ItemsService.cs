@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Threading;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
+using Cassandra.Data.Linq;
 using Newtonsoft.Json.Linq;
 
 namespace Coflnet.Sky.PlayerState.Services
@@ -29,18 +30,22 @@ namespace Coflnet.Sky.PlayerState.Services
     public class ItemsService
     {
         private readonly IMongoCollection<StoredItem> collection;
+        private readonly ICassandraService cassandraService;
         private static StoredCompare compare = new();
+        private static CassandraItemCompare cassandraCompare = new();
         private Prometheus.Counter insertCount = Prometheus.Metrics.CreateCounter("sky_playerstate_mongo_insert", "How many items were inserted");
+        private Prometheus.Counter cassandraInsertCount = Prometheus.Metrics.CreateCounter("sky_playerstate_cassandra_insert", "How many items were inserted");
         private Prometheus.Counter selectCount = Prometheus.Metrics.CreateCounter("sky_playerstate_mongo_select", "How many items were selected");
 
         public ItemsService(
-            IOptions<MongoSettings> bookStoreDatabaseSettings, MongoClient mongoClient)
+            IOptions<MongoSettings> bookStoreDatabaseSettings, MongoClient mongoClient, ICassandraService cassandraService)
         {
             var mongoDatabase = mongoClient.GetDatabase(
                 bookStoreDatabaseSettings.Value.DatabaseName);
 
             collection = mongoDatabase.GetCollection<StoredItem>(
                 bookStoreDatabaseSettings.Value.ItemsCollectionName);
+            this.cassandraService = cassandraService;
         }
 
         public async Task<List<Item>> GetAsync(IEnumerable<Item> search)
@@ -102,6 +107,29 @@ namespace Coflnet.Sky.PlayerState.Services
 
         public async Task<List<Item>> FindOrCreate(IEnumerable<Item> original)
         {
+            var cassandraItems = original.Select(i => new CassandraItem(i)).ToList();
+            var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
+            var tags = cassandraItems.Select(i => i.Tag).Distinct().ToList();
+            var uuids = cassandraItems.Select(i => i.ItemId).Distinct().ToList();
+            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
+            var found = res.ToList();
+            var toCreate = cassandraItems.Except(found, cassandraCompare).ToList();
+            await Task.WhenAll(toCreate.Select(i =>
+            {
+                try
+                {
+                    i.Id = ThreadSaveIdGenerator.NextId;
+                    cassandraInsertCount.Inc();
+                    Console.WriteLine("Inserting " + i.ItemName);
+                    return table.Insert(i).ExecuteAsync();
+                } catch(Exception e)
+                {
+                    Console.WriteLine(e + " " + JsonConvert.SerializeObject(i));
+                    return Task.CompletedTask;
+                }
+            }));
+            return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
+/*
             List<StoredItem> batch = ToStored(original);
             List<StoredItem> found = await FindItems(batch);
 
@@ -109,7 +137,7 @@ namespace Coflnet.Sky.PlayerState.Services
             await InsertBatch(toCreate);
 
             return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
-
+*/
         }
 
         private static List<StoredItem> ToStored(IEnumerable<Item> original)

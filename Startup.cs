@@ -64,6 +64,7 @@ namespace Coflnet.Sky.PlayerState
             services.AddSingleton<ItemsService>();
             services.AddSingleton<CoinParser>();
             services.AddSingleton<ITransactionService, TransactionService>();
+            services.AddSingleton<ICassandraService>(di=>di.GetRequiredService<ITransactionService>() as ICassandraService);
             services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));
             services.AddSingleton<IPlayerNameApi>(sp => new PlayerNameApi(Configuration["PLAYERNAME_BASE_URL"]));
         }
