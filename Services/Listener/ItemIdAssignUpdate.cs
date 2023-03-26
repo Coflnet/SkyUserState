@@ -18,7 +18,7 @@ public class ItemIdAssignUpdate : UpdateListener
             var service = sp.GetRequiredService<ItemsService>();
             var collection = args.msg.Chest.Items;
             var toSearchFor = collection.Where(HasToBeStoredInMongo).ToHashSet();
-            var localPresent = args.currentState.RecentViews.Take(1).SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer);
+            var localPresent = args.currentState.RecentViews.SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer);
             var foundLocal = toSearchFor.Select(s => localPresent.Values.Where(b => comparer.Equals(b, s)).FirstOrDefault()).Where(s => s != null).ToList();
             var itemsWithIds = await service.FindOrCreate(toSearchFor.Except(foundLocal, comparer));
 
