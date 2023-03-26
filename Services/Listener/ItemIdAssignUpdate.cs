@@ -52,6 +52,5 @@ public class ItemIdAssignUpdate : UpdateListener
             else
                 yield return item;
         }
-        Console.WriteLine("replaced count: " + mcount);
     }
 }
