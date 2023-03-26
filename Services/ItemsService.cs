@@ -113,7 +113,11 @@ namespace Coflnet.Sky.PlayerState.Services
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t=>t!= null).Distinct().ToList();
             var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
             var found = res.ToList();
-            var toCreate = cassandraItems.Except(found, cassandraCompare).ToList();
+            var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c=>c.Tag != null).ToList();
+            foreach (var item in toCreate.Where(c=>c.Tag == null))
+            {
+                Console.WriteLine("WTF this is null " + JsonConvert.SerializeObject(item, Formatting.Indented));
+            }
             await Task.WhenAll(toCreate.Select(i =>
             {
                 try

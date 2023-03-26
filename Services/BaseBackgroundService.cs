@@ -57,7 +57,7 @@ public class PlayerStateBackgroundService : BackgroundService
         catch (System.Exception)
         {
             var scope = scopeFactory.CreateAsyncScope();
-            handler = (T)Activator.CreateInstance(typeof(T),scope.ServiceProvider.GetRequiredService<ILogger<T>>());
+            handler = (T)Activator.CreateInstance(typeof(T), scope.ServiceProvider.GetRequiredService<ILogger<T>>());
         }
         foreach (var item in Enum.GetValues<UpdateMessage.UpdateKind>())
         {
@@ -110,13 +110,19 @@ public class PlayerStateBackgroundService : BackgroundService
             await transactionService.GetItemTransactions(0, 1);
             logger.LogInformation("Cassandra connection works");
             var bootstrapServers = config["KAFKA_HOST"];
-            using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = bootstrapServers }).Build())
+            using var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = bootstrapServers }).Build();
+            try
             {
                 // increase the number of partitions for the topic "my-topic"
                 adminClient.CreatePartitionsAsync(new PartitionsSpecification[] { new PartitionsSpecification(){
                     Topic = config["TOPICS:STATE_UPDATE"],
                     IncreaseTo = 10
                 } }).Wait();
+            }
+            catch (Exception e)
+            {
+                if (!e.Message.Contains("Partition count must be greater then current number of partitions"))
+                    logger.LogError(e, "failed to increase partitions");
             }
         });
 
