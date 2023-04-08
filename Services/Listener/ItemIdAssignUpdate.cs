@@ -35,7 +35,7 @@ public class ItemIdAssignUpdate : UpdateListener
 
     private static bool IsBazaar(string chestName)
     {
-        return chestName.Contains("➜");
+        return chestName?.Contains("➜") ?? false;
     }
 
     private static bool IsNpcSell(Item i)
