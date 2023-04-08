@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System;
 using Coflnet.Sky.PlayerName.Client.Api;
+using System.Linq;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -16,7 +17,8 @@ public class ProfileAndNameUpdate : UpdateListener
         if (state.McInfo.Uuid == default)
         {
             var uuid = await nameService.PlayerNameUuidNameGetAsync(args.msg.PlayerId);
-            state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
+            if (uuid != null)
+                state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
         }
         // TODO find profile
     }
@@ -37,10 +39,17 @@ public class AhBrowserListener : UpdateListener
                 continue;
             if (item.Description.Contains("05h 59m 5") || item.Description.Contains("Can buy in"))
             {
-                Console.WriteLine("found new listing \n" + item.Description);
+                if (item.Description.Contains("Refreshing"))
+                    Console.WriteLine("found listing with no username: " + item.ItemName);
+                else
+                    Console.WriteLine("found new listing \n" + item.Description);
+            }
+            if (item.Description.Contains("Sold for"))
+            {
+                var parts = item.Description.Split('\n');
+                Console.WriteLine($"Item from {parts.Where(x => x.StartsWith("§7Seller:")).FirstOrDefault()?.Replace("§7Seller: §7", "")} sold to: " + parts.Where(x => x.StartsWith("§7Buyer:")).FirstOrDefault()?.Replace("§7Buyer: §7", ""));
             }
         }
         // TODO find profile
     }
 }
-
