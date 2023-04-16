@@ -29,6 +29,8 @@ public class BazaarListener : UpdateListener
             }
             catch (Exception e)
             {
+                if(args.currentState.PlayerId == null)
+                    throw; // for test
                 args.GetService<ILogger<BazaarListener>>().LogError(e, "Error parsing bazaar offer: {0}", JsonConvert.SerializeObject(item));
             }
         }
@@ -48,7 +50,7 @@ public class BazaarListener : UpdateListener
         {
             IsSell = item.ItemName.StartsWith("§6§lSELL"),
             ItemTag = item.Tag,
-            Amount = int.Parse(amount),
+            Amount = int.Parse(amount, System.Globalization.NumberStyles.AllowThousands, System.Globalization.CultureInfo.InvariantCulture),
             PricePerUnit = double.Parse(pricePerUnit, System.Globalization.CultureInfo.InvariantCulture),
             ItemName = item.ItemName.Substring("§6§lSELL ".Length),
             Created = item.Description.Contains("Expired") ? default : DateTime.Now,

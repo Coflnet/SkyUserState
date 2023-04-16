@@ -22,12 +22,12 @@ public class BazaarListnerTests
                             Description = """
 §Worth 519k coins
 
-§7Offer amount: §a640§7x
+§7Offer amount: §a2,640§7x
 §7Filled: §6640§7/640 §a§l100%!
 
 §8Expired!
 
-§7Price per unit: §6820.9 coins
+§7Price per unit: §61,820.9 coins
 
 §7Customers:
 §8- §a501§7x §b[MVP§2+§b] Terminator602§f §819d ago
@@ -47,8 +47,8 @@ Tag = "ROTTEN_FLESH"
         var listener = new BazaarListener();
         await listener.Process(args);
         Assert.AreEqual(1, args.currentState.BazaarOffers.Count);
-        Assert.AreEqual(640, args.currentState.BazaarOffers[0].Amount);
-        Assert.AreEqual(820.9, args.currentState.BazaarOffers[0].PricePerUnit);
+        Assert.AreEqual(2640, args.currentState.BazaarOffers[0].Amount);
+        Assert.AreEqual(1820.9, args.currentState.BazaarOffers[0].PricePerUnit);
         Assert.AreEqual(2, args.currentState.BazaarOffers[0].Customers.Count);
         Assert.AreEqual(501, args.currentState.BazaarOffers[0].Customers[0].Amount);
         Assert.AreEqual("§b[MVP§2+§b] Terminator602", args.currentState.BazaarOffers[0].Customers[0].PlayerName);
