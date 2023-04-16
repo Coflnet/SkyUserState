@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
 using Confluent.Kafka.Admin;
+using Coflnet.Sky.PlayerState.Bazaar;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -43,6 +44,7 @@ public class PlayerStateBackgroundService : BackgroundService
         AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<InventoryChangeUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<AhBrowserListener>(UpdateMessage.UpdateKind.INVENTORY);
+        AddHandler<BazaarListener>(UpdateMessage.UpdateKind.INVENTORY);
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
     }

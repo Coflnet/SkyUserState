@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Coflnet.Sky.PlayerState.Bazaar;
 using MessagePack;
 
 namespace Coflnet.Sky.PlayerState.Models;
@@ -45,6 +46,8 @@ public class StateObject
     /// </summary>
     [Key(7)]
     public List<Profile> Profiles;
+    [Key(8)]
+    public List<Offer> BazaarOffers = new();
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
 }
