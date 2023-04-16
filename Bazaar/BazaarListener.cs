@@ -43,7 +43,7 @@ public class BazaarListener : UpdateListener
     {
         var parts = item.Description.Split("\n");
 
-        var amount = parts.Where(p => p.StartsWith("§7Offer amount: §a")).First().Split("§7Offer amount: §a").Last().Split("§").First();
+        var amount = parts.Where(p => p.Contains("amount: §a")).First().Split("amount: §a").Last().Split("§").First();
         var pricePerUnit = parts.Where(p => p.StartsWith("§7Price per unit: §6")).First().Split("§7Price per unit: §6").Last().Split(" coins").First();
 
         var offer = new Offer()
