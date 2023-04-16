@@ -50,17 +50,22 @@ public class BazaarListener : UpdateListener
         {
             IsSell = item.ItemName.StartsWith("§6§lSELL"),
             ItemTag = item.Tag,
-            Amount = int.Parse(amount, System.Globalization.NumberStyles.AllowThousands, System.Globalization.CultureInfo.InvariantCulture),
+            Amount = ParseInt(amount),
             PricePerUnit = double.Parse(pricePerUnit, System.Globalization.CultureInfo.InvariantCulture),
             ItemName = item.ItemName.Substring("§6§lSELL ".Length),
             Created = item.Description.Contains("Expired") ? default : DateTime.Now,
             Customers = parts.Where(p => p.StartsWith("§8- §a")).Select(p => new Fill()
             {
-                Amount = int.Parse(p.Split("§8- §a").Last().Split("§7x").First()),
+                Amount = ParseInt(p.Split("§8- §a").Last().Split("§7x").First()),
                 PlayerName = p.Split("§8- §a").Last().Split("§7x").Last().Split("§f §8").First().Trim(),
                 TimeStamp = DateTime.Now
             }).ToList()
         };
         return offer;
+    }
+
+    private static int ParseInt(string amount)
+    {
+        return int.Parse(amount, System.Globalization.NumberStyles.AllowThousands, System.Globalization.CultureInfo.InvariantCulture);
     }
 }
