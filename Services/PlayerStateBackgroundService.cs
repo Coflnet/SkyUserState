@@ -122,7 +122,7 @@ public class PlayerStateBackgroundService : BackgroundService
             }
             catch (Exception e)
             {
-                if (!e.Message.Contains("Partition count must be greater then current number of partitions"))
+                if (!e.Message.Contains("Partition count must be greater then current number of partitions") || !e.Message.Contains("already has"))
                     logger.LogError(e, "failed to increase partitions");
             }
         });
