@@ -63,6 +63,7 @@ namespace Coflnet.Sky.PlayerState
             services.Configure<MongoSettings>(Configuration.GetSection("Mongo"));
             services.AddSingleton<ItemsService>();
             services.AddSingleton<CoinParser>();
+            services.AddSingleton<IPersistenceService, PersistenceService>();
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddSingleton<ICassandraService>(di=>di.GetRequiredService<ITransactionService>() as ICassandraService);
             services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));

@@ -26,11 +26,12 @@ public class PlayerStateBackgroundService : BackgroundService
     private Prometheus.Counter consumeCount = Prometheus.Metrics.CreateCounter("sky_playerstate_conume", "How many messages were consumed");
 
     public ConcurrentDictionary<string, StateObject> States = new();
+    private IPersistenceService persistenceService;
 
     private ConcurrentDictionary<UpdateMessage.UpdateKind, List<UpdateListener>> Handlers = new();
 
     public PlayerStateBackgroundService(
-        IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<PlayerStateBackgroundService> logger)
+        IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<PlayerStateBackgroundService> logger, IPersistenceService persistenceService)
     {
         this.scopeFactory = scopeFactory;
         this.config = config;
@@ -47,6 +48,7 @@ public class PlayerStateBackgroundService : BackgroundService
         AddHandler<BazaarListener>(UpdateMessage.UpdateKind.INVENTORY);
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
+        this.persistenceService = persistenceService;
     }
 
     private void AddHandler<T>(UpdateMessage.UpdateKind kinds = UpdateMessage.UpdateKind.UNKOWN) where T : UpdateListener
@@ -92,7 +94,11 @@ public class PlayerStateBackgroundService : BackgroundService
         await Kafka.KafkaConsumer.ConsumeBatch<UpdateMessage>(consumerConfig, new string[] { config["TOPICS:STATE_UPDATE"] }, async batch =>
         {
             if (batch.Max(b => b.ReceivedAt) < DateTime.Now - TimeSpan.FromHours(3))
+            {
+                logger.LogWarning("Received old batch of {0} messages", batch.Count()); 
                 return;
+            }
+            logger.LogInformation("Consuming batch of {0} messages", batch.Count());
             await Task.WhenAll(batch.Select(async update =>
             {
                 await Update(update);
@@ -122,7 +128,7 @@ public class PlayerStateBackgroundService : BackgroundService
             }
             catch (Exception e)
             {
-                if (!e.Message.Contains("Partition count must be greater then current number of partitions") || !e.Message.Contains("already has"))
+                if (!e.Message.Contains("Partition count must be greater then current number of partitions") && !e.Message.Contains("already has"))
                     logger.LogError(e, "failed to increase partitions");
             }
         });
@@ -133,7 +139,7 @@ public class PlayerStateBackgroundService : BackgroundService
     {
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
-        var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { PlayerId = p });
+        var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { });
         var args = new UpdateArgs()
         {
             currentState = state,
@@ -143,10 +149,20 @@ public class PlayerStateBackgroundService : BackgroundService
         try
         {
             await state.Lock.WaitAsync();
+            if (state.PlayerId == null)
+            {
+                state.PlayerId = msg.PlayerId;
+                var loaded = await persistenceService.GetStateObject(msg.PlayerId);
+                loaded.Lock = state.Lock;
+                loaded.PlayerId = state.PlayerId;
+                state = loaded;
+                States[msg.PlayerId] = state;
+            }
             foreach (var item in Handlers[msg.Kind])
             {
                 await item.Process(args);
             }
+            await persistenceService.SaveStateObject(state);
         }
         catch (Exception e)
         {
