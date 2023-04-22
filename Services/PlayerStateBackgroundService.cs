@@ -81,11 +81,10 @@ public class PlayerStateBackgroundService : BackgroundService
             await item.Load(stoppingToken);
         }
         logger.LogInformation("Initialized handlers, consuming");
-        var consumerConfig = new ConsumerConfig
+        var consumerConfig = new ConsumerConfig(Kafka.KafkaCreator.GetClientConfig(config))
         {
-            BootstrapServers = config["KAFKA_HOST"],
             SessionTimeoutMs = 9_000,
-            AutoOffsetReset = AutoOffsetReset.Latest,
+            AutoOffsetReset = AutoOffsetReset.Earliest,
             GroupId = config["KAFKA_GROUP_ID"]
         };
         await TestCassandraConnection();
