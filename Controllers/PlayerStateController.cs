@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using Coflnet.Sky.PlayerState.Services;
 using System.Dynamic;
+using System.Collections.Generic;
 
 namespace Coflnet.Sky.PlayerState.Controllers
 {
@@ -17,13 +18,13 @@ namespace Coflnet.Sky.PlayerState.Controllers
     [Route("[controller]")]
     public class PlayerStateController : ControllerBase
     {
-        private readonly PlayerStateService service;
+        private readonly IPersistenceService service;
 
         /// <summary>
         /// Creates a new instance of <see cref="PlayerStateController"/>
         /// </summary>
         /// <param name="service"></param>
-        public PlayerStateController(PlayerStateService service)
+        public PlayerStateController(IPersistenceService service)
         {
             this.service = service;
         }
@@ -31,15 +32,14 @@ namespace Coflnet.Sky.PlayerState.Controllers
         /// <summary>
         /// Tracks a flip
         /// </summary>
-        /// <param name="flip"></param>
-        /// <param name="AuctionId"></param>
+        /// <param name="playerId"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("flip/{AuctionId}")]
-        public async Task<Flip> TrackFlip([FromBody] Flip flip, string AuctionId)
+        [HttpGet]
+        [Route("{playerId}/bazaar")]
+        public async Task<List<Bazaar.Offer>> TrackFlip(string playerId)
         {
-            await service.AddFlip(flip);
-            return flip;
+            var data = await service.GetStateObject(playerId);
+            return data.BazaarOffers;
         }
     }
 }
