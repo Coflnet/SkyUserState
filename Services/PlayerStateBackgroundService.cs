@@ -104,7 +104,7 @@ public class PlayerStateBackgroundService : BackgroundService
                 await Update(update);
                 consumeCount.Inc();
             }));
-        }, stoppingToken, 5);
+        }, stoppingToken, 10);
         var retrieved = new UpdateMessage();
     }
 
