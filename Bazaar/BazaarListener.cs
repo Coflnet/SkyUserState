@@ -12,7 +12,7 @@ public class BazaarListener : UpdateListener
 {
     public override Task Process(UpdateArgs args)
     {
-        if (args.msg.Chest?.Name != "Your Bazaar Orders")
+        if (args.msg.Chest?.Name != "Your Bazaar Orders" && args.msg.Chest?.Name != "Co-op Bazaar Orders")
             return Task.CompletedTask;
         var offers = new List<Offer>();
         foreach (var item in args.msg.Chest.Items)
