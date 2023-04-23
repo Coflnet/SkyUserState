@@ -30,7 +30,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         /// <summary>
-        /// Tracks a flip
+        /// Retrieves bazaar order state
         /// </summary>
         /// <param name="playerId"></param>
         /// <returns></returns>
@@ -40,6 +40,14 @@ namespace Coflnet.Sky.PlayerState.Controllers
         {
             var data = await service.GetStateObject(playerId);
             return data.BazaarOffers;
+        }
+
+        [HttpGet]
+        [Route("{playerId}/lastChest")]
+        public async Task<List<Coflnet.Sky.PlayerState.Models.Item>> GetInventory(string playerId)
+        {
+            var data = await service.GetStateObject(playerId);
+            return data.RecentViews.Last().Items;
         }
     }
 }

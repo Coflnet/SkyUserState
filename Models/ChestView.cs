@@ -11,7 +11,10 @@ public class ChestView
     /// </summary>
     [Key(0)]
     public List<Item> Items = new ();
+    /// <summary>
+    /// Name of the chest
+    /// </summary>
     [Key(1)]
-    public string Name;
+    public string Name = string.Empty;
 }
 #nullable restore
