@@ -125,6 +125,7 @@ public class TradeDetect : UpdateListener
     private Transaction CreateTransaction(UpdateArgs args, Item s, DateTime timestamp, Transaction.TransactionType type)
     {
         var playerUuid = args.currentState.McInfo.Uuid;
+        logger.LogInformation($"Creating transaction for {playerUuid} with {s.ItemName} {s.Id} {s.Tag}");
         return CreateTransaction(playerUuid, s, timestamp, type);
     }
 

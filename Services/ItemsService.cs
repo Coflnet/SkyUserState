@@ -56,7 +56,7 @@ namespace Coflnet.Sky.PlayerState.Services
 
         public async Task<Item?> GetAsync(long id) =>
             (await cassandraService.GetItemsTable(await cassandraService.GetSession())
-                .Where(i=>i.Id == id).First().ExecuteAsync())
+                .Where(i=>i.Id == id).FirstOrDefault().ExecuteAsync())
             .ToTransfer();
 
         public async Task CreateAsync(Item newItem) =>

@@ -26,26 +26,25 @@ namespace Coflnet.Sky.PlayerState.Controllers
             var data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sourceData);
             Item newItem = new Item()
             {
+                Tag = "ASPECT_OF_THE_END",
                 Enchantments = new Dictionary<string, byte>() { { "sharpness", 1 } },
                 ExtraAttributes = data// BsonDocument.Parse(sourceData) //new() { { "exp", 5 }, { "attr", new List<string>() { "kk", "bb" }.ToArray() } }
             };
             
             Console.WriteLine(data.ToBsonDocument().ToJson());
             Console.WriteLine(JsonConvert.SerializeObject(newItem.ExtraAttributes));
-            await _booksService.CreateAsync(newItem);
-            await _booksService.CreateAsync(newItem);
-            await _booksService.CreateAsync(newItem);
-            await _booksService.CreateAsync(newItem);
+            var items = await _booksService.FindOrCreate(new Item[] { newItem });
 
             return CreatedAtAction(nameof(Get), new
             {
-                id = newItem.Id
+                id = items[0].Id
             });
         }
 
         [HttpGet]
         public async Task<List<Item>> Get([FromQuery] Item item) =>
             await _booksService.GetAsync(new Item[]{item});
+
 
         [HttpPost]
         [Route("find")]
@@ -54,7 +53,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
             return await _booksService.Find(item);
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Item>> Get(long id)
         {
             var book = await _booksService.GetAsync(id);
