@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using System;
 using Coflnet.Sky.PlayerName.Client.Api;
 using System.Linq;
+using Coflnet.Sky.Proxy.Client.Api;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -43,6 +44,14 @@ public class AhBrowserListener : UpdateListener
                     Console.WriteLine("found listing with no username: " + item.ItemName);
                 else
                     Console.WriteLine("found new listing \n" + item.Description);
+                var sellerName = item.Description.Split('\n')
+                        .Where(x => x.StartsWith("§7Seller:"))
+                        .FirstOrDefault()?.Replace("§7Seller: §7", "")
+                        .Split(' ').Last(); // skip rank prefix
+                var nameService = args.GetService<IPlayerNameApi>();
+                var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
+                Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid);
+                await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid);
             }
             if (item.Description.Contains("Sold for"))
             {
