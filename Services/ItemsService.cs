@@ -55,7 +55,9 @@ namespace Coflnet.Sky.PlayerState.Services
         }
 
         public async Task<Item?> GetAsync(long id) =>
-            (await collection.Find(x => x.Id == id).FirstOrDefaultAsync()).ToTransfer();
+            (await cassandraService.GetItemsTable(await cassandraService.GetSession())
+                .Where(i=>i.Id == id).First().ExecuteAsync())
+            .ToTransfer();
 
         public async Task CreateAsync(Item newItem) =>
             await collection.InsertOneAsync(new StoredItem(newItem));
