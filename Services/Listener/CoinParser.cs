@@ -12,7 +12,7 @@ public class CoinParser
     {
         if (IsCoins(item))
         {
-            var stringAmount = item.ItemName.Substring(2, item.ItemName.Length - 8);
+            var stringAmount = item.ItemName!.Substring(2, item.ItemName.Length - 8);
             Console.WriteLine("found " + stringAmount);
             return ParseCoinAmount(stringAmount);
         }
@@ -36,16 +36,16 @@ public class CoinParser
 
     public long GetInventoryCoinSum(IEnumerable<Item> items)
     {
-        var withSumary = items.Where(i => i.Description.Contains("Total Coins Offered:")).FirstOrDefault();
+        var withSumary = items.Where(i => i.Description?.Contains("Total Coins Offered:") ?? false).FirstOrDefault();
         if (withSumary != null)
         {
-            return ParseCoinAmount(withSumary.Description.Substring(withSumary.Description.IndexOf("Total Coins Offered:") + 2));
+            return ParseCoinAmount(withSumary.Description!.Substring(withSumary.Description.IndexOf("Total Coins Offered:") + 2));
         }
         return items.Sum(GetCoinAmount);
     }
 
     internal bool IsCoins(Item item)
     {
-        return item.ItemName.EndsWith(" coins");
+        return item.ItemName?.EndsWith(" coins") ?? false;
     }
 }

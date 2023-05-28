@@ -18,7 +18,7 @@ public class ItemIdAssignUpdate : UpdateListener
             var service = sp.GetRequiredService<ItemsService>();
             var collection = args.msg.Chest.Items;
             var chestName = args.msg.Chest.Name;
-            var toSearchFor = collection.Where(i=>HasToBeStoredInMongo(i,chestName)).ToHashSet();
+            var toSearchFor = collection.Where(i => CanGetAnIdByStoring(i, chestName)).ToHashSet();
             var localPresent = args.currentState.RecentViews.SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer);
             var foundLocal = toSearchFor.Select(s => localPresent.Values.Where(b => comparer.Equals(b, s)).FirstOrDefault()).Where(s => s != null).ToList();
             var itemsWithIds = await service.FindOrCreate(toSearchFor.Except(foundLocal, comparer));
@@ -28,7 +28,7 @@ public class ItemIdAssignUpdate : UpdateListener
         });
     }
 
-    private static bool HasToBeStoredInMongo(Item i, string chestName)
+    private static bool CanGetAnIdByStoring(Item i, string chestName)
     {
         return i.ExtraAttributes != null && i.ExtraAttributes.Count != 0 && i.Enchantments?.Count != 0 && !IsNpcSell(i) && !IsBazaar(chestName);
     }
@@ -44,19 +44,18 @@ public class ItemIdAssignUpdate : UpdateListener
         return i.Description?.Contains("§7Cost\n") ?? false;
     }
 
-    private IEnumerable<Item> Join(IEnumerable<Item> original, IEnumerable<Item> mongo)
+    private IEnumerable<Item> Join(IEnumerable<Item> original, IEnumerable<Item> stored)
     {
         var mcount = 0;
         foreach (var item in original)
         {
-            var inMogo = mongo.Where(m => comparer.Equals(item, m)).FirstOrDefault();
+            var inMogo = stored.Where(m => comparer.Equals(item, m)).FirstOrDefault();
             if (inMogo != null)
             {
-                yield return inMogo;
+                item.Id = inMogo.Id;
                 mcount++;
             }
-            else
-                yield return item;
+            yield return item;
         }
     }
 }
