@@ -70,6 +70,7 @@ public class BazaarOrderTests
     }
     [TestCase("[Bazaar] Buy Order Setup! 1x Ultimate Wise V for 3,570,083 coins.")]
     [TestCase("[Bazaar] Cancelled! Refunded 3,554,406 coins from cancelling Buy Order!")]
+    [TestCase("[Bazaar] Claimed 187x Melon worth 112.2 coins bought for 0.6 each!")]
     public async Task RunParse(string line)
     {
         await listener.Process(CreateArgs(line));

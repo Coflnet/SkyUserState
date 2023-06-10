@@ -87,11 +87,11 @@ public class BazaarOrderListener : UpdateListener
         }
         if (msg.Contains("Cancelled!"))
         {
-            if(msg.Contains("coins"))
+            if (msg.Contains("coins"))
             {
                 var buyParts = Regex.Match(msg, @"Refunded ([.\d,]+) coins from cancelling").Groups;
                 price = ParseCoins(buyParts[1].Value);
-                var buyOrder = args.currentState.BazaarOffers.Where(o => o.PricePerUnit*o.Amount == price).FirstOrDefault();
+                var buyOrder = args.currentState.BazaarOffers.Where(o => o.PricePerUnit * o.Amount == price).FirstOrDefault();
                 if (buyOrder == null)
                 {
                     Console.WriteLine("No order found for " + price);
@@ -119,29 +119,44 @@ public class BazaarOrderListener : UpdateListener
         }
         if (msg.Contains("Claimed "))
         {
-            var parts = Regex.Match(msg, @"Claimed ([.\d,]+) coins from (.*) ([\d,]+)x (.*) at ").Groups;
-            amount = ParseInt(parts[3].Value);
-            itemName = parts[4].Value;
-            price = ParseCoins(parts[1].Value);
-            if (parts[2].Value == "buying")
+            var isBuy = msg.Contains("bought");
+            if (isBuy)
             {
+                Console.WriteLine("Claimed buy order");
+                var parts = Regex.Match(msg, @"Claimed ([.\d,]+)x (.*) worth ([.\d,]+) coins bought for ([.\d,]+) each").Groups;
+                amount = ParseInt(parts[1].Value);
+                itemName = parts[2].Value;
+                price = ParseCoins(parts[3].Value);
                 side |= Transaction.TransactionType.RECEIVE;
+                var perPrice = ParseCoins(parts[4].Value);
                 await AddItemTransaction(args, side | Transaction.TransactionType.Move, amount, itemName);
+                var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount && o.PricePerUnit == perPrice).FirstOrDefault();
+                if (order == null)
+                {
+                    Console.WriteLine("No order found for " + itemName + " " + amount);
+                    return;
+                }
+                args.currentState.BazaarOffers.Remove(order);
             }
             else
             {
+                var parts = Regex.Match(msg, @"Claimed ([.\d,]+) coins from (.*) ([\d,]+)x (.*) at ").Groups;
+                amount = ParseInt(parts[3].Value);
+                itemName = parts[4].Value;
+                price = ParseCoins(parts[1].Value);
                 side |= Transaction.TransactionType.REMOVE;
                 await AddCoinTransaction(args, Transaction.TransactionType.BazaarBuy | Transaction.TransactionType.Move, price);
+
+                var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount).FirstOrDefault();
+                if (order == null)
+                {
+                    Console.WriteLine("No order found for " + itemName + " " + amount);
+                    return;
+                }
+
+                args.currentState.BazaarOffers.Remove(order);
             }
 
-            var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount).FirstOrDefault();
-            if (order == null)
-            {
-                Console.WriteLine("No order found for " + itemName + " " + amount);
-                return;
-            }
-
-            args.currentState.BazaarOffers.Remove(order);
         }
         if (msg.StartsWith("[Bazaar] Sold ") || msg.StartsWith("[Bazaar] Bought "))
         {
