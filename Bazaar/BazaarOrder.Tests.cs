@@ -69,6 +69,7 @@ public class BazaarOrderTests
         ), Times.Once);
     }
     [TestCase("[Bazaar] Buy Order Setup! 1x Ultimate Wise V for 3,570,083 coins.")]
+    [TestCase("[Bazaar] Cancelled! Refunded 3,554,406 coins from cancelling Buy Order!")]
     public async Task RunParse(string line)
     {
         await listener.Process(CreateArgs(line));

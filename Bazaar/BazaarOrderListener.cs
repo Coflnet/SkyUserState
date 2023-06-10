@@ -87,6 +87,20 @@ public class BazaarOrderListener : UpdateListener
         }
         if (msg.Contains("Cancelled!"))
         {
+            if(msg.Contains("coins"))
+            {
+                var buyParts = Regex.Match(msg, @"Refunded ([.\d,]+) coins from cancelling").Groups;
+                price = ParseCoins(buyParts[1].Value);
+                var buyOrder = args.currentState.BazaarOffers.Where(o => o.PricePerUnit*o.Amount == price).FirstOrDefault();
+                if (buyOrder == null)
+                {
+                    Console.WriteLine("No order found for " + price);
+                    return;
+                }
+                args.currentState.BazaarOffers.Remove(buyOrder);
+                await AddCoinTransaction(args, Transaction.TransactionType.BazaarBuy | Transaction.TransactionType.Move, price);
+                return;
+            }
             var parts = Regex.Match(msg, @"Refunded ([\d,]+)x (.*) from cancelling").Groups;
             amount = ParseInt(parts[1].Value);
             itemName = parts[2].Value;
