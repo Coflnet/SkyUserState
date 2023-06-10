@@ -44,7 +44,7 @@ public class BazaarOrderListener : UpdateListener
         if (msg.Contains("Setup!"))
         {
             side |= Transaction.TransactionType.Move;
-            var parts = Regex.Match(msg, @"([\d,]+)x (.+) for (\d+\.?\d*) coins").Groups;
+            var parts = Regex.Match(msg, @"([\d,]+)x (.+) for ([\d,]+\.?\d*) coins").Groups;
             amount = ParseInt(parts[1].Value);
             itemName = parts[2].Value;
             price = ParseCoins(parts[3].Value);

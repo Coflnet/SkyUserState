@@ -68,7 +68,11 @@ public class BazaarOrderTests
             )
         ), Times.Once);
     }
-
+    [TestCase("[Bazaar] Buy Order Setup! 1x Ultimate Wise V for 3,570,083 coins.")]
+    public async Task RunParse(string line)
+    {
+        await listener.Process(CreateArgs(line));
+    }
     [Test]
     public async Task SellOrderCreateAndFill()
     {
