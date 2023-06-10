@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using Coflnet.Sky.EventBroker.Client.Api;
 using Coflnet.Sky.PlayerName.Client.Api;
 using Coflnet.Sky.Proxy.Client.Api;
+using Coflnet.Sky.Items.Client.Api;
 
 namespace Coflnet.Sky.PlayerState
 {
@@ -70,6 +71,8 @@ namespace Coflnet.Sky.PlayerState
             services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));
             services.AddSingleton<IPlayerNameApi>(sp => new PlayerNameApi(Configuration["PLAYERNAME_BASE_URL"]));
             services.AddSingleton<IBaseApi>(sp => new BaseApi(Configuration["PROXY_BASE_URL"]));
+
+            services.AddSingleton<IItemsApi>(context => new ItemsApi(Configuration["ITEMS_BASE_URL"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

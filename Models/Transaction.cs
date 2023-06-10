@@ -11,11 +11,14 @@ public class Transaction
     public long Amount { get; set; }
     public DateTime TimeStamp { get; set; }
 
-
+    [Flags]
     public enum TransactionType
     {
         UNKOWN,
         RECEIVE = 1,
+        /// <summary>
+        /// Item left inventory, if alone means dropped
+        /// </summary>
         REMOVE = 2,
         BAZAAR = 4,
         AH = 8,
@@ -26,7 +29,28 @@ public class Transaction
         /// </summary>
         WORLD = 64,
         CRAFT = 128,
-        BAZAAR_SELL = BAZAAR | REMOVE,
+        CHEST = 256,
+        STASH = 512,
+        BACKPACK = 1024,
+        ENDERCHEST = 2048,
+        BAG = 4096,
+        /// <summary>
+        /// Item is still in reach for the player
+        /// </summary>
+        Move = 8192,
+        BazaarSell = BAZAAR | REMOVE,
+        BazaarBuy = BAZAAR | RECEIVE,
+        BazaarListSell = BAZAAR | Move | REMOVE,
+        BazaarListBuy = BAZAAR | Move | RECEIVE,
+        AHBuy = AH | RECEIVE,
+        AHSell = AH | REMOVE,
+        NPCBuy = NPC | RECEIVE,
+        NPCSell = NPC | REMOVE,
+        TradeGive = TRADE | REMOVE,
+        TradeReceive = TRADE | RECEIVE,
+        CraftIngredient = CRAFT | REMOVE,
+        CraftResult = CRAFT | RECEIVE,
+
     }
 
     public Transaction(Transaction t)
@@ -41,6 +65,11 @@ public class Transaction
 
     public Transaction()
     {
+    }
+
+    public override string ToString()
+    {
+        return $"{Type}({(int)Type}) {ItemId} {Amount} {TimeStamp} {PlayerUuid} ";
     }
 }
 

@@ -29,7 +29,7 @@ public class UpdateArgs : IDisposable
         });
     }
 
-    public T GetService<T>()
+    public virtual T GetService<T>() where T : notnull
     {
         if (scope == null)
             scope = stateService.scopeFactory.CreateAsyncScope();

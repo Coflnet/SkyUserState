@@ -11,7 +11,7 @@ namespace Coflnet.Sky.PlayerState.Services;
 
 public class TradeDetect : UpdateListener
 {
-    private const int IdForCoins = 1_000_001;
+    public const int IdForCoins = 1_000_001;
     public ILogger<TradeDetect> logger;
     private CoinParser parser = new();
 
