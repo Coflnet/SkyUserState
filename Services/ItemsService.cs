@@ -111,12 +111,9 @@ namespace Coflnet.Sky.PlayerState.Services
         {
             var cassandraItems = original.Select(i => new CassandraItem(i)).ToList();
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
-            var tags = cassandraItems.Select(i => i.Tag).Where(t=>t!= null).Distinct().ToList();
-            var uuids = cassandraItems.Select(i => i.ItemId).Where(t=>t!= null).Distinct().ToList();
-            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
-            var found = res.ToList();
-            var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c=>c.Tag != null).ToList();
-            foreach (var item in toCreate.Where(c=>c.Tag == null))
+            List<CassandraItem> found = await FindItems(cassandraItems, table);
+            var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
+            foreach (var item in toCreate.Where(c => c.Tag == null))
             {
                 Console.WriteLine("WTF this is null " + JsonConvert.SerializeObject(item, Formatting.Indented));
             }
@@ -128,22 +125,40 @@ namespace Coflnet.Sky.PlayerState.Services
                     cassandraInsertCount.Inc();
                     Console.WriteLine("Inserting " + i.ItemName);
                     return table.Insert(i).ExecuteAsync();
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e + " " + JsonConvert.SerializeObject(i));
                     return Task.CompletedTask;
                 }
             }));
             return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
-/*
-            List<StoredItem> batch = ToStored(original);
-            List<StoredItem> found = await FindItems(batch);
+            /*
+                        List<StoredItem> batch = ToStored(original);
+                        List<StoredItem> found = await FindItems(batch);
 
-            var toCreate = batch.Except(found, compare).ToList();
-            await InsertBatch(toCreate);
+                        var toCreate = batch.Except(found, compare).ToList();
+                        await InsertBatch(toCreate);
 
-            return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
-*/
+                        return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
+            */
+        }
+
+        private static async Task<List<CassandraItem>> FindItems(List<CassandraItem> cassandraItems, Table<CassandraItem> table)
+        {
+            var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
+            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();
+            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
+            var found = res.ToList();
+            return found;
+        }
+
+        public async Task<List<Item>> FindItems(IEnumerable<(string,Guid)> ids)
+        {
+            var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
+            var res = await table.Where(i => ids.Select(id => id.Item1).Contains(i.Tag) && ids.Select(id => id.Item2).Contains(i.ItemId)).ExecuteAsync();
+            var found = res.ToList();
+            return found.Select(i => i.ToTransfer()).ToList();
         }
 
         private static List<StoredItem> ToStored(IEnumerable<Item> original)

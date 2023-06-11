@@ -91,12 +91,8 @@ public class BazaarOrderListener : UpdateListener
                 var buyParts = Regex.Match(msg, @"Refunded ([.\d,]+) coins from cancelling").Groups;
                 price = ParseCoins(buyParts[1].Value);
                 var buyOrder = args.currentState.BazaarOffers.Where(o => (long)(o.PricePerUnit * 10 * o.Amount) == price).FirstOrDefault();
-                if (buyOrder == null)
-                {
-                    Console.WriteLine($"No order found for {price} found {string.Join(',',args.currentState.BazaarOffers.Select(o=>(long)(o.PricePerUnit * 10 * o.Amount)))}");
-                    return;
-                }
-                args.currentState.BazaarOffers.Remove(buyOrder);
+                if (buyOrder != null)
+                    args.currentState.BazaarOffers.Remove(buyOrder);
                 await AddCoinTransaction(args, Transaction.TransactionType.BazaarBuy | Transaction.TransactionType.Move, price);
                 return;
             }
@@ -108,13 +104,10 @@ public class BazaarOrderListener : UpdateListener
             side ^= Transaction.TransactionType.RECEIVE ^ Transaction.TransactionType.REMOVE;
 
             var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount).FirstOrDefault();
-            if (order == null)
-            {
-                Console.WriteLine("No order found for " + itemName + " " + amount);
-                return;
-            }
-            args.currentState.BazaarOffers.Remove(order);
-
+            if (order != null)
+                args.currentState.BazaarOffers.Remove(order);
+            await AddItemTransaction(args, side, amount, itemName);
+            return;
         }
         if (msg.Contains("Claimed "))
         {

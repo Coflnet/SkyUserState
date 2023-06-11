@@ -42,6 +42,10 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         [HttpGet]
+        public async Task<List<Item>> Get(List<(string, Guid)> toSearch) =>
+            await _booksService.FindItems(toSearch);
+
+        [HttpGet]
         public async Task<List<Item>> Get([FromQuery] Item item) =>
             await _booksService.GetAsync(new Item[]{item});
 
