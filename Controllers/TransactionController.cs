@@ -22,7 +22,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
         }
 
         /// <summary>
-        /// Tracks a flip
+        /// Returns the transactions of a player
         /// </summary>
         /// <param name="playerUuid"></param>
         /// <param name="end"></param>
@@ -38,6 +38,19 @@ namespace Coflnet.Sky.PlayerState.Controllers
             if(querSize > TimeSpan.FromDays(30))
                 return null;
             return await service.GetTransactions(playerUuid, querSize, end);
+        }
+
+        /// <summary>
+        /// Returns the transactions of an item
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("item/{itemId}")]
+        public async Task<IEnumerable<Transaction>> TrackItem(long itemId, int max = 100)
+        {
+            return await service.GetItemTransactions(itemId, max);
         }
     }
 }
