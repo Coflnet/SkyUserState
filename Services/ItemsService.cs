@@ -26,8 +26,19 @@ namespace Coflnet.Sky.PlayerState.Services
         }
     }
 
+    public interface IItemsService
+    {
+        Task CreateAsync(Item newItem);
+        Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids);
+        Task<List<Item>> FindOrCreate(IEnumerable<Item> original);
+        Task<List<Item>> GetAsync(IEnumerable<Item> search);
+        Task<Item?> GetAsync(long id);
+        Task RemoveAsync(long id);
+        Task UpdateAsync(long id, Item updatedItem);
+    }
+
 #nullable enable
-    public class ItemsService
+    public class ItemsService : IItemsService
     {
         private readonly IMongoCollection<StoredItem> collection;
         private readonly ICassandraService cassandraService;
@@ -56,8 +67,8 @@ namespace Coflnet.Sky.PlayerState.Services
 
         public async Task<Item?> GetAsync(long id) =>
             (await cassandraService.GetItemsTable(await cassandraService.GetSession())
-                .Where(i=>i.Id == id).FirstOrDefault().ExecuteAsync())
-            .ToTransfer();
+                .Where(i => i.Id == id).FirstOrDefault().ExecuteAsync())
+            ?.ToTransfer();
 
         public async Task CreateAsync(Item newItem) =>
             await collection.InsertOneAsync(new StoredItem(newItem));
@@ -111,11 +122,18 @@ namespace Coflnet.Sky.PlayerState.Services
         {
             var cassandraItems = original.Select(i => new CassandraItem(i)).ToList();
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
-            List<CassandraItem> found = await FindItems(cassandraItems, table);
+            var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
+            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();
+            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
+            var found = res.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
-            foreach (var item in toCreate.Where(c => c.Tag == null))
+            foreach (var item in toCreate.Where(c => c.Tag.Contains("LAPIS_ARMOR_H")))
             {
-                Console.WriteLine("WTF this is null " + JsonConvert.SerializeObject(item, Formatting.Indented));
+                Console.WriteLine("yay " + JsonConvert.SerializeObject(item, Formatting.Indented));
+            }
+            foreach (var item in found.Where(c => c.Tag.Contains("LAPIS_ARMOR_He")))
+            {
+                Console.WriteLine("exists " + JsonConvert.SerializeObject(item, Formatting.Indented));
             }
             await Task.WhenAll(toCreate.Select(i =>
             {
@@ -123,7 +141,7 @@ namespace Coflnet.Sky.PlayerState.Services
                 {
                     i.Id = ThreadSaveIdGenerator.NextId;
                     cassandraInsertCount.Inc();
-                    Console.WriteLine("Inserting " + i.ItemName);
+                    Console.WriteLine("Inserting " + i.ItemName + " " + i.Id);
                     return table.Insert(i).ExecuteAsync();
                 }
                 catch (Exception e)
@@ -144,19 +162,11 @@ namespace Coflnet.Sky.PlayerState.Services
             */
         }
 
-        private static async Task<List<CassandraItem>> FindItems(List<CassandraItem> cassandraItems, Table<CassandraItem> table)
-        {
-            var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
-            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();
-            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
-            var found = res.ToList();
-            return found;
-        }
 
-        public async Task<List<Item>> FindItems(IEnumerable<(string,Guid)> ids)
+        public async Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids)
         {
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
-            var res = await table.Where(i => ids.Select(id => id.Item1).Contains(i.Tag) && ids.Select(id => id.Item2).Contains(i.ItemId)).ExecuteAsync();
+            var res = await table.Where(i => ids.Select(id => id.Tag).Contains(i.Tag) && ids.Select(id => id.Uuid).Contains(i.ItemId)).ExecuteAsync();
             var found = res.ToList();
             return found.Select(i => i.ToTransfer()).ToList();
         }

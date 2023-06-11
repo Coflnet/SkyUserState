@@ -4,18 +4,17 @@ using System.Linq;
 
 namespace Coflnet.Sky.PlayerState.Models;
 #nullable enable
+/// <summary>
+/// see <see cref="TransactionService.GetItemsTable"/> for key definition
+/// </summary>
 public class CassandraItem
 {
-    [Cassandra.Mapping.Attributes.ClusteringKey(0)]
     public Guid ItemId { get; set; }
     /// <summary>
     /// Numeric internal id
     /// </summary>
-    [Cassandra.Mapping.Attributes.SecondaryIndex]
-    [Cassandra.Mapping.Attributes.ClusteringKey(1)]
     public long? Id { get; set; }
     public string? ItemName { get; set; }
-    [Cassandra.Mapping.Attributes.PartitionKey]
     public string Tag { get; set; } = null!;
     public string ExtraAttributesJson { get; set; } = null!;
     public Dictionary<string, int>? Enchantments { get; set; }
@@ -26,7 +25,7 @@ public class CassandraItem
         ItemId = item.ExtraAttributes?.TryGetValue("uuid", out var uuid) == true ? Guid.Parse(uuid.ToString()!) : default;
         ItemName = item.ItemName;
         Tag = item.Tag;
-        Enchantments = item.Enchantments?.ToDictionary(x => x.Key, x =>(int) x.Value) ?? new Dictionary<string, int>();
+        Enchantments = item.Enchantments?.OrderBy(k=>k.Key).ToDictionary(x => x.Key, x =>(int) x.Value) ?? new Dictionary<string, int>();
         Color = item.Color;
         Id = item.Id;
         ExtraAttributesJson = Newtonsoft.Json.JsonConvert.SerializeObject(item.ExtraAttributes);

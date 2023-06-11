@@ -129,7 +129,7 @@ public class TransactionService : ITransactionService, ICassandraService
             .PartitionKey(t => t.Tag)
             .Column(o => o.Id, c=>c.WithSecondaryIndex())
             .Column(o => o.Enchantments, c=>c.WithDbType<Dictionary<string,int>>())
-            .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending))), "items");
+            .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending), new Tuple<string, SortOrder>("Id", SortOrder.Descending))), "items");
     }
 
     private static Table<ItemTransaction> GetItemTable(ISession session)

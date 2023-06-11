@@ -106,6 +106,8 @@ public class BazaarOrderListener : UpdateListener
             var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount).FirstOrDefault();
             if (order != null)
                 args.currentState.BazaarOffers.Remove(order);
+            else 
+                Console.WriteLine("No order found for " + itemName + " " + amount + " to cancel " + JsonConvert.SerializeObject(args.currentState.BazaarOffers));
             await AddItemTransaction(args, side, amount, itemName);
             return;
         }

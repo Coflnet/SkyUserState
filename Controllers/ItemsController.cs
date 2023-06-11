@@ -13,9 +13,9 @@ namespace Coflnet.Sky.PlayerState.Controllers
     [Route("api/items")]
     public class ItemsController : ControllerBase
     {
-        private readonly ItemsService _booksService;
+        private readonly IItemsService _booksService;
 
-        public ItemsController(ItemsService booksService) =>
+        public ItemsController(IItemsService booksService) =>
             _booksService = booksService;
 
         [HttpPost]
@@ -41,21 +41,15 @@ namespace Coflnet.Sky.PlayerState.Controllers
             });
         }
 
-        [HttpGet]
-        public async Task<List<Item>> Get(List<(string, Guid)> toSearch) =>
+        [HttpPost]
+        [Route("find/uuid")]
+        public async Task<List<Item>> Get(List<ItemIdSearch> toSearch) =>
             await _booksService.FindItems(toSearch);
 
         [HttpGet]
         public async Task<List<Item>> Get([FromQuery] Item item) =>
             await _booksService.GetAsync(new Item[]{item});
 
-
-        [HttpPost]
-        [Route("find")]
-        public async Task<List<Item>> Find(Item item)
-        {
-            return await _booksService.Find(item);
-        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> Get(long id)

@@ -43,10 +43,10 @@ public class PlayerStateBackgroundService : BackgroundService
 
 
         AddHandler<ItemIdAssignUpdate>(UpdateMessage.UpdateKind.INVENTORY);
-        AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<InventoryChangeUpdate>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<AhBrowserListener>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<BazaarListener>(UpdateMessage.UpdateKind.INVENTORY);
+        AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
         this.persistenceService = persistenceService;
@@ -141,7 +141,7 @@ public class PlayerStateBackgroundService : BackgroundService
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
         var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { });
-        var args = new UpdateArgs()
+        using var args = new UpdateArgs()
         {
             currentState = state,
             msg = msg,

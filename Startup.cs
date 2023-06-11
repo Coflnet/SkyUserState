@@ -63,7 +63,7 @@ namespace Coflnet.Sky.PlayerState
             services.AddResponseCompression();
 
             services.Configure<MongoSettings>(Configuration.GetSection("Mongo"));
-            services.AddSingleton<ItemsService>();
+            services.AddSingleton<IItemsService, ItemsService>();
             services.AddSingleton<CoinParser>();
             services.AddSingleton<IPersistenceService, PersistenceService>();
             services.AddSingleton<ITransactionService, TransactionService>();
