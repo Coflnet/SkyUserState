@@ -35,7 +35,7 @@ public class BazaarOrderListener : UpdateListener
         var side = Transaction.TransactionType.BAZAAR;
         var amount = 0;
         var itemName = "";
-        var price = 0.0;
+        long price = 0;
         if (msg.Contains("Buy Order"))
             side |= Transaction.TransactionType.RECEIVE;
         var isSell = msg.Contains("Sell Offer");
@@ -52,7 +52,7 @@ public class BazaarOrderListener : UpdateListener
             {
                 Amount = amount,
                 ItemName = itemName,
-                PricePerUnit = price / amount,
+                PricePerUnit = (double)price / amount / 10,
                 IsSell = side.HasFlag(Transaction.TransactionType.REMOVE),
                 Created = args.msg.ReceivedAt,
             });
@@ -76,7 +76,6 @@ public class BazaarOrderListener : UpdateListener
                 Console.WriteLine("No order found for " + itemName + " " + amount);
                 return;
             }
-            price = order.PricePerUnit;
             order.Customers.Add(new Fill()
             {
                 Amount = amount - order.Customers.Select(c => c.Amount).DefaultIfEmpty(0).Sum(),
@@ -94,7 +93,7 @@ public class BazaarOrderListener : UpdateListener
                 var buyOrder = args.currentState.BazaarOffers.Where(o => (long)(o.PricePerUnit * 10 * o.Amount) == price).FirstOrDefault();
                 if (buyOrder == null)
                 {
-                    Console.WriteLine("No order found for " + price);
+                    Console.WriteLine($"No order found for {price} found {string.Join(',',args.currentState.BazaarOffers.Select(o=>(long)(o.PricePerUnit * 10 * o.Amount)))}");
                     return;
                 }
                 args.currentState.BazaarOffers.Remove(buyOrder);

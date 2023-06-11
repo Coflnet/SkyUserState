@@ -43,7 +43,7 @@ public class BazaarOrderTests
         ), Times.Once);
         Assert.AreEqual(1, currentState.BazaarOffers.Count);
         Assert.AreEqual(64, currentState.BazaarOffers[0].Amount);
-        Assert.AreEqual(1344 / 64, currentState.BazaarOffers[0].PricePerUnit);
+        Assert.AreEqual(134.4 / 64, currentState.BazaarOffers[0].PricePerUnit);
 
         return;
         await listener.Process(CreateArgs("[Bazaar] Your Buy Order for 64x Coal was filled!"));
