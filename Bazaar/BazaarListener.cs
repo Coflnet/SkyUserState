@@ -15,7 +15,9 @@ public class BazaarListener : UpdateListener
         if (args.msg.Chest?.Name != "Your Bazaar Orders" && args.msg.Chest?.Name != "Co-op Bazaar Orders")
             return Task.CompletedTask;
         var offers = new List<Offer>();
-        foreach (var item in args.msg.Chest.Items)
+        // only the first 5 rows (x9) are potential orders (to include bazaar upgrade)
+        var bazaarItems = args.msg.Chest.Items.Take(45);
+        foreach (var item in bazaarItems)
         {
             if (string.IsNullOrWhiteSpace(item?.Description) || string.IsNullOrWhiteSpace(item.ItemName))
                 continue;
