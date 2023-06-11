@@ -91,7 +91,7 @@ public class BazaarOrderListener : UpdateListener
             {
                 var buyParts = Regex.Match(msg, @"Refunded ([.\d,]+) coins from cancelling").Groups;
                 price = ParseCoins(buyParts[1].Value);
-                var buyOrder = args.currentState.BazaarOffers.Where(o => o.PricePerUnit * o.Amount == price).FirstOrDefault();
+                var buyOrder = args.currentState.BazaarOffers.Where(o => (long)(o.PricePerUnit * 10 * o.Amount) == price).FirstOrDefault();
                 if (buyOrder == null)
                 {
                     Console.WriteLine("No order found for " + price);

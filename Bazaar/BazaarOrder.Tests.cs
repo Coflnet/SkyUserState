@@ -199,6 +199,29 @@ public class BazaarOrderTests
         transactionService.VerifyAll();
     }
 
+    [Test]
+    public async Task CancelBuyOrder()
+    {
+        currentState.BazaarOffers.Add(new Offer()
+        {
+            Amount = 64,
+            ItemName = "Enchanted End Stone",
+            PricePerUnit = 60000,
+            IsSell = false,
+            Created = DateTime.Now - TimeSpan.FromHours(1),
+        });
+        await listener.Process(CreateArgs("[Bazaar] Cancelling order...",
+                "[Bazaar] Cancelled! Refunded 3,840,000 coins from cancelling Buy Order!"));
+        transactionService.Verify(t => t.AddTransactions(It.Is<Transaction>(t =>
+                    t.Type == (Transaction.TransactionType.BAZAAR | Transaction.TransactionType.Move | Transaction.TransactionType.RECEIVE)
+                    && t.Amount == 38400000
+                    && t.ItemId == TradeDetect.IdForCoins
+                    )
+                ), Times.Once);
+        Assert.AreEqual(0, currentState.BazaarOffers.Count);
+        transactionService.VerifyAll();
+    }
+
     private MockedUpdateArgs CreateArgs(params string[] msgs)
     {
         var args = new MockedUpdateArgs()
