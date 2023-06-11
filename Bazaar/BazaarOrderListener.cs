@@ -52,7 +52,7 @@ public class BazaarOrderListener : UpdateListener
             {
                 Amount = amount,
                 ItemName = itemName,
-                PricePerUnit = price / amount,
+                PricePerUnit = price / amount / 10,
                 IsSell = side.HasFlag(Transaction.TransactionType.REMOVE),
                 Created = args.msg.ReceivedAt,
             });
@@ -76,7 +76,6 @@ public class BazaarOrderListener : UpdateListener
                 Console.WriteLine("No order found for " + itemName + " " + amount);
                 return;
             }
-            price = order.PricePerUnit;
             order.Customers.Add(new Fill()
             {
                 Amount = amount - order.Customers.Select(c => c.Amount).DefaultIfEmpty(0).Sum(),
