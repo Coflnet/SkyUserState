@@ -42,8 +42,6 @@ public class AhBrowserListener : UpdateListener
             {
                 if (item.Description.Contains("Refreshing"))
                     Console.WriteLine("found listing with no username: " + item.ItemName);
-                else
-                    Console.WriteLine("found new listing \n" + item.Description);
                 var sellerName = item.Description.Split('\n')
                         .Where(x => x.StartsWith("§7Seller:"))
                         .FirstOrDefault()?.Replace("§7Seller: §7", "")
