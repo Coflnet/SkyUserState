@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using System.ComponentModel.DataAnnotations;
 
 namespace Coflnet.Sky.PlayerState.Models;
 
@@ -127,8 +126,8 @@ public class TransactionService : ITransactionService, ICassandraService
         return new Table<CassandraItem>(session, new MappingConfiguration()
             .Define(new Map<CassandraItem>()
             .PartitionKey(t => t.Tag)
-            .Column(o => o.Id, c=>c.WithSecondaryIndex())
-            .Column(o => o.Enchantments, c=>c.WithDbType<Dictionary<string,int>>())
+            .Column(o => o.Id, c => c.WithSecondaryIndex())
+            .Column(o => o.Enchantments, c => c.WithDbType<Dictionary<string, int>>())
             .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending), new Tuple<string, SortOrder>("Id", SortOrder.Descending))), "items");
     }
 
@@ -211,6 +210,11 @@ public class TransactionService : ITransactionService, ICassandraService
     {
         var table = GetItemTable(await GetSession());
         return await table.Where(t => t.ItemId == itemId).Take(max).ExecuteAsync();
+    }
+
+    public Task<IEnumerable<Transaction>> GetTradeTransactions(string itemTag, Guid itemId, DateTime end)
+    {
+        throw new NotImplementedException();
     }
 }
 #nullable restore

@@ -54,7 +54,8 @@ public class AhBrowserListener : UpdateListener
             if (item.Description.Contains("Sold for"))
             {
                 var parts = item.Description.Split('\n');
-                Console.WriteLine($"Item from {parts.Where(x => x.StartsWith("§7Seller:")).FirstOrDefault()?.Replace("§7Seller: §7", "")} sold to: " + parts.Where(x => x.StartsWith("§7Buyer:")).FirstOrDefault()?.Replace("§7Buyer: §7", ""));
+                Console.WriteLine($"Item from {parts.Where(x => x.StartsWith("§7Seller:")).FirstOrDefault()?.Replace("§7Seller: ", "")} sold to: " 
+                        + parts.Where(x => x.StartsWith("§7Buyer:")).FirstOrDefault()?.Replace("§7Buyer: ", ""));
             }
         }
         // TODO find profile
