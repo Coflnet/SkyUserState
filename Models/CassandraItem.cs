@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Coflnet.Sky.PlayerState.Models;
+
+public interface ICassandraItem
+{
+    Guid ItemId { get; set; }
+    long? Id { get; set; }
+    string? ItemName { get; set; }
+    string Tag { get; set; }
+    string ExtraAttributesJson { get; set; }
+    Dictionary<string, int>? Enchantments { get; set; }
+    int? Color { get; set; }
+}
 #nullable enable
 /// <summary>
 /// see <see cref="TransactionService.GetItemsTable"/> for key definition
 /// </summary>
-public class CassandraItem
+public class CassandraItem : ICassandraItem
 {
     public Guid ItemId { get; set; }
     /// <summary>
@@ -25,7 +36,7 @@ public class CassandraItem
         ItemId = item.ExtraAttributes?.TryGetValue("uuid", out var uuid) == true ? Guid.Parse(uuid.ToString()!) : default;
         ItemName = item.ItemName;
         Tag = item.Tag;
-        Enchantments = item.Enchantments?.OrderBy(k=>k.Key).ToDictionary(x => x.Key, x =>(int) x.Value) ?? new Dictionary<string, int>();
+        Enchantments = item.Enchantments?.OrderBy(k => k.Key).ToDictionary(x => x.Key, x => (int)x.Value) ?? new Dictionary<string, int>();
         Color = item.Color;
         Id = item.Id;
         ExtraAttributesJson = Newtonsoft.Json.JsonConvert.SerializeObject(item.ExtraAttributes);
@@ -40,7 +51,7 @@ public class CassandraItem
         return new Item()
         {
             Color = Color,
-            Enchantments = Enchantments?.ToDictionary(x => x.Key, x =>(byte) x.Value),
+            Enchantments = Enchantments?.ToDictionary(x => x.Key, x => (byte)x.Value),
             ExtraAttributes = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(ExtraAttributesJson),
             Id = Id,
             ItemName = ItemName,
