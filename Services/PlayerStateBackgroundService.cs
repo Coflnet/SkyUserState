@@ -96,7 +96,18 @@ public class PlayerStateBackgroundService : BackgroundService
         {
             if (batch.Max(b => b.ReceivedAt) < DateTime.Now - TimeSpan.FromHours(3))
             {
-                logger.LogWarning("Received old batch of {0} messages", batch.Count()); 
+                logger.LogWarning("Received old batch of {0} messages", batch.Count());
+                _ = Task.WhenAll(batch.Select(async update =>
+                {
+                    try
+                    {
+                        await Update(update);
+                    }
+                    catch (System.Exception e)
+                    {
+                        logger.LogError(e, "Error while processing old update");
+                    }
+                }));
                 return;
             }
             logger.LogInformation("Consuming batch of {0} messages", batch.Count());
