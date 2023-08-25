@@ -46,6 +46,11 @@ public class AhBrowserListener : UpdateListener
                         .Where(x => x.StartsWith("§7Seller:"))
                         .FirstOrDefault()?.Replace("§7Seller: §7", "")
                         .Split(' ').Last(); // skip rank prefix
+                if (sellerName == null)
+                {
+                    Console.WriteLine("found listing with no username: " + item.Description);
+                    continue;
+                }
                 var nameService = args.GetService<IPlayerNameApi>();
                 var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
                 Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid + " " + args.msg.Chest.Name);
@@ -54,7 +59,7 @@ public class AhBrowserListener : UpdateListener
             if (item.Description.Contains("Sold for"))
             {
                 var parts = item.Description.Split('\n');
-                Console.WriteLine($"Item from {parts.Where(x => x.StartsWith("§7Seller:")).FirstOrDefault()?.Replace("§7Seller: ", "")} sold to: " 
+                Console.WriteLine($"Item from {parts.Where(x => x.StartsWith("§7Seller:")).FirstOrDefault()?.Replace("§7Seller: ", "")} sold to: "
                         + parts.Where(x => x.StartsWith("§7Buyer:")).FirstOrDefault()?.Replace("§7Buyer: ", ""));
             }
         }
