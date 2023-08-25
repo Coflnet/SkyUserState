@@ -31,9 +31,10 @@ public class BazaarListener : UpdateListener
             }
             catch (Exception e)
             {
-                if(args.currentState.PlayerId == null)
+                if (args.currentState.PlayerId == null)
                     throw; // for test
-                args.GetService<ILogger<BazaarListener>>().LogError(e, "Error parsing bazaar offer: {0}", JsonConvert.SerializeObject(item));
+                args.GetService<ILogger<BazaarListener>>()
+                    .LogError(e, "Error parsing bazaar offer: {0} {chest} {user}", JsonConvert.SerializeObject(item), args.msg.Chest.Name, args.currentState.PlayerId);
             }
         }
         Console.WriteLine($"Found {offers.Count} bazaar offers for {args.currentState.PlayerId}");

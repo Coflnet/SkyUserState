@@ -48,7 +48,7 @@ public class AhBrowserListener : UpdateListener
                         .Split(' ').Last(); // skip rank prefix
                 var nameService = args.GetService<IPlayerNameApi>();
                 var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
-                Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid);
+                Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid + " " + args.msg.Chest.Name);
                 await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid);
             }
             if (item.Description.Contains("Sold for"))
