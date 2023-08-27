@@ -54,7 +54,7 @@ public class AhBrowserListener : UpdateListener
                 var nameService = args.GetService<IPlayerNameApi>();
                 var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
                 Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid + " " + args.msg.Chest.Name);
-                await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid);
+                await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid, $"player: {args.msg.PlayerId}");
             }
             if (item.Description.Contains("Sold for"))
             {
