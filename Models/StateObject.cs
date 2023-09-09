@@ -50,6 +50,8 @@ public class StateObject
     public List<Offer> BazaarOffers = new();
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
+    [IgnoreMember]
+    public DateTime LastAccess { get; internal set; }
 }
 
 [MessagePackObject]

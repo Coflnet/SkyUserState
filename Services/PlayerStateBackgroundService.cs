@@ -94,7 +94,7 @@ public class PlayerStateBackgroundService : BackgroundService
 
         await Kafka.KafkaConsumer.ConsumeBatch<UpdateMessage>(consumerConfig, new string[] { config["TOPICS:STATE_UPDATE"] }, async batch =>
         {
-            if (batch.Max(b => b.ReceivedAt) < DateTime.Now - TimeSpan.FromHours(3))
+            if (batch.Max(b => b.ReceivedAt) < DateTime.UtcNow - TimeSpan.FromHours(3))
             {
                 logger.LogWarning("Received old batch of {0} messages", batch.Count());
                 _ = Task.WhenAll(batch.Select(async update =>
@@ -116,8 +116,25 @@ public class PlayerStateBackgroundService : BackgroundService
                 await Update(update);
                 consumeCount.Inc();
             }));
+            if(States.Count > 200)
+            {
+                logger.LogWarning("States count is {0}", States.Count);
+                RemoveUnusedStates();
+            }
         }, stoppingToken, 10);
         var retrieved = new UpdateMessage();
+    }
+
+    private void RemoveUnusedStates()
+    {
+        foreach (var key in States.Keys)
+        {
+            var item = States[key];
+            if (item.LastAccess < DateTime.UtcNow - TimeSpan.FromHours(0.5))
+            {
+                States.TryRemove(key, out _);
+            }
+        }
     }
 
     private async Task TestCassandraConnection()
@@ -175,6 +192,7 @@ public class PlayerStateBackgroundService : BackgroundService
                 await item.Process(args);
             }
             await persistenceService.SaveStateObject(state);
+            state.LastAccess = DateTime.UtcNow;
         }
         catch (Exception e)
         {
