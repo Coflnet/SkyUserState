@@ -15,6 +15,7 @@ using Coflnet.Sky.EventBroker.Client.Api;
 using Coflnet.Sky.PlayerName.Client.Api;
 using Coflnet.Sky.Proxy.Client.Api;
 using Coflnet.Sky.Items.Client.Api;
+using Coflnet.Sky.Core;
 
 namespace Coflnet.Sky.PlayerState
 {
@@ -57,7 +58,7 @@ namespace Coflnet.Sky.PlayerState
                 Configuration["Mongo:ConnectionString"]
             ));
             services.AddHostedService<PlayerStateBackgroundService>();
-            //services.AddJaeger();
+            services.AddJaeger(Configuration);
             services.AddTransient<PlayerStateService>();
             services.AddResponseCaching();
             services.AddResponseCompression();

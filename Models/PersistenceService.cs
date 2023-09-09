@@ -73,6 +73,11 @@ public class PersistenceService : IPersistenceService
 
     public async Task SaveStateObject(StateObject stateObject)
     {
+        await SaveStateObject(stateObject, false);
+    }
+
+    public async Task SaveStateObject(StateObject stateObject, bool recursive )
+    {
         var table = await GetPlayerTable();
         var inventory = new Inventory(stateObject);
         byte[] hash;
@@ -88,14 +93,16 @@ public class PersistenceService : IPersistenceService
         var waitTime = TimeSpan.FromSeconds(10);
         if (!lastSaveLock.TryAdd(stateObject.PlayerId, (DateTime.Now + waitTime)))
         {
-            _ = saveTasks.AddOrUpdate(stateObject.PlayerId, (key)=> Task.Run(async () =>
+            if (recursive)
+                return;
+            _ = saveTasks.AddOrUpdate(stateObject.PlayerId, (key) => Task.Run(async () =>
             {
                 await Task.Delay(waitTime);
                 lastSaveLock.TryRemove(stateObject.PlayerId, out var _);
-                await SaveStateObject(stateObject);
+                await SaveStateObject(stateObject, true);
                 saveTasks.TryRemove(stateObject.PlayerId, out var _);
                 await Task.Delay(waitTime);
-                if(lastSaveLock.TryRemove(stateObject.PlayerId, out var _))
+                if (lastSaveLock.TryRemove(stateObject.PlayerId, out var _))
                 {
                     logger.LogDebug("Removed lock for {playerId}", stateObject.PlayerId);
                 }
@@ -104,7 +111,7 @@ public class PersistenceService : IPersistenceService
         }
         try
         {
-            await table.Insert(inventory).ExecuteAsync();
+            await table.Insert(inventory).ExecuteAsync().ConfigureAwait(false);
             logger.LogInformation("Saved state object for player {playerId}", stateObject.PlayerId);
             savedHashList[stateObject.PlayerId] = hash;
         }

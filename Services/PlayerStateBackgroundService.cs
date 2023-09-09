@@ -15,6 +15,7 @@ using System;
 using Newtonsoft.Json;
 using Confluent.Kafka.Admin;
 using Coflnet.Sky.PlayerState.Bazaar;
+using System.Diagnostics;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -27,11 +28,12 @@ public class PlayerStateBackgroundService : BackgroundService
 
     public ConcurrentDictionary<string, StateObject> States = new();
     private IPersistenceService persistenceService;
+    private ActivitySource activitySource;
 
     private ConcurrentDictionary<UpdateMessage.UpdateKind, List<UpdateListener>> Handlers = new();
 
     public PlayerStateBackgroundService(
-        IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<PlayerStateBackgroundService> logger, IPersistenceService persistenceService)
+        IServiceScopeFactory scopeFactory, IConfiguration config, ILogger<PlayerStateBackgroundService> logger, IPersistenceService persistenceService, ActivitySource activitySource)
     {
         this.scopeFactory = scopeFactory;
         this.config = config;
@@ -50,6 +52,7 @@ public class PlayerStateBackgroundService : BackgroundService
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
         this.persistenceService = persistenceService;
+        this.activitySource = activitySource;
     }
 
     private void AddHandler<T>(UpdateMessage.UpdateKind kinds = UpdateMessage.UpdateKind.UNKOWN) where T : UpdateListener
@@ -173,6 +176,7 @@ public class PlayerStateBackgroundService : BackgroundService
 
     private async Task Update(UpdateMessage msg)
     {
+        using var span = activitySource.StartActivity("Update", ActivityKind.Consumer);
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
         var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { });
@@ -182,6 +186,8 @@ public class PlayerStateBackgroundService : BackgroundService
             msg = msg,
             stateService = this
         };
+        span?.SetTag("playerId", msg.PlayerId);
+        span?.SetTag("kind", msg.Kind.ToString());
         try
         {
             await state.Lock.WaitAsync();
