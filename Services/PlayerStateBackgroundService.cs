@@ -119,7 +119,7 @@ public class PlayerStateBackgroundService : BackgroundService
 
 
             KeepStateCountInCheck();
-        }, stoppingToken, 10);
+        }, stoppingToken, 12);
         var retrieved = new UpdateMessage();
     }
 
