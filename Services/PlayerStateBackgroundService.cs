@@ -198,7 +198,17 @@ public class PlayerStateBackgroundService : BackgroundService
             {
                 await item.Process(args);
             }
-            await persistenceService.SaveStateObject(state);
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await persistenceService.SaveStateObject(state);
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, "failed to save state");
+                }
+            });
             state.LastAccess = DateTime.UtcNow;
         }
         catch (Exception e)
