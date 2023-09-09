@@ -116,17 +116,17 @@ public class PlayerStateBackgroundService : BackgroundService
                 await Update(update);
                 consumeCount.Inc();
             }));
-            if(States.Count > 200)
-            {
-                logger.LogWarning("States count is {0}", States.Count);
-                RemoveUnusedStates();
-            }
+
+
+            KeepStateCountInCheck();
         }, stoppingToken, 10);
         var retrieved = new UpdateMessage();
     }
 
-    private void RemoveUnusedStates()
+    private void KeepStateCountInCheck()
     {
+        if (States.Count < 200)
+            return;
         foreach (var key in States.Keys)
         {
             var item = States[key];
@@ -135,6 +135,13 @@ public class PlayerStateBackgroundService : BackgroundService
                 States.TryRemove(key, out _);
             }
         }
+
+        if (States.Count < 300)
+            return;
+
+        var oldest = States.OrderBy(s => s.Value.LastAccess).First();
+        States.TryRemove(oldest.Key, out var removed);
+        logger.LogWarning("States count is {0} removed {1}", States.Count, removed?.PlayerId);
     }
 
     private async Task TestCassandraConnection()
