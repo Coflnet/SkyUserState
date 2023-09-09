@@ -12,7 +12,7 @@ public class ChatHistoryUpdate : UpdateListener
         {
             chatHistory.Enqueue(new() { Content = chatMsg, Time = args.msg.ReceivedAt });
         }
-        while (chatHistory.Count > 100)
+        while (chatHistory.Count > 50)
             chatHistory.TryDequeue(out _);
         return Task.CompletedTask;
     }
