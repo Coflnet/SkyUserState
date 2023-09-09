@@ -114,6 +114,7 @@ public class PlayerStateBackgroundService : BackgroundService
                 return;
             }
             logger.LogInformation("Consuming batch of {0} messages", batch.Count());
+            using var span = activitySource.StartActivity("Batch", ActivityKind.Consumer);
             await Task.WhenAll(batch.Select(async update =>
             {
                 await Update(update);
