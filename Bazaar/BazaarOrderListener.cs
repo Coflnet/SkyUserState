@@ -167,11 +167,12 @@ public class BazaarOrderListener : UpdateListener
 
         if (side == Transaction.TransactionType.BAZAAR)
             return; // no order affecting message
-        await AddItemTransaction(args, side, amount, itemName);
+        var itemTransactionTask = AddItemTransaction(args, side, amount, itemName);
         if (price != 0)
         {
             await AddCoinTransaction(args, InvertSide(side), price);
         }
+        await itemTransactionTask;
 
         static async Task AddItemTransaction(UpdateArgs args, Transaction.TransactionType side, int amount, string itemName)
         {
