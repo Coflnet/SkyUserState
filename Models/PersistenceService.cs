@@ -90,7 +90,7 @@ public class PersistenceService : IPersistenceService
         // allow only one save every 5 seconds
         // start new thread to wait if necessary
         // skip if more than one thread is waiting
-        var waitTime = TimeSpan.FromSeconds(10);
+        var waitTime = TimeSpan.FromSeconds(8);
         if (!lastSaveLock.TryAdd(stateObject.PlayerId, (DateTime.Now + waitTime)))
         {
             if (recursive)
