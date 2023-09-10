@@ -13,12 +13,12 @@ public class BazaarOrderListener : UpdateListener
 {
     public override async Task Process(UpdateArgs args)
     {
-        foreach (var item in args.msg.ChatBatch)
+        await Parallel.ForEachAsync(args.msg.ChatBatch, async (item, ct) =>
         {
             if (!item.StartsWith("[Bazaar]"))
-                continue;
+                return;
             await HandleUpdate(item, args);
-        }
+        });
     }
     /// <summary>
     /// Listing => coins/item locked up (REMOVE)
@@ -106,7 +106,7 @@ public class BazaarOrderListener : UpdateListener
             var order = args.currentState.BazaarOffers.Where(o => o.ItemName == itemName && o.Amount == amount).FirstOrDefault();
             if (order != null)
                 args.currentState.BazaarOffers.Remove(order);
-            else 
+            else
                 Console.WriteLine("No order found for " + itemName + " " + amount + " to cancel " + JsonConvert.SerializeObject(args.currentState.BazaarOffers));
             await AddItemTransaction(args, side, amount, itemName);
             return;
