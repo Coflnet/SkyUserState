@@ -203,6 +203,8 @@ public class PlayerStateBackgroundService : BackgroundService
             span?.SetTag("kind", msg.Kind.ToString());
             foreach (var item in Handlers[msg.Kind])
             {
+                using var procSpan = activitySource.StartActivity("Process", ActivityKind.Consumer);
+                procSpan?.SetTag("handler", item.GetType().Name);
                 await item.Process(args);
             }
             _ = Task.Run(async () =>
