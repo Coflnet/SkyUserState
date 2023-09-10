@@ -59,7 +59,6 @@ namespace Coflnet.Sky.PlayerState
             ));
             services.AddHostedService<PlayerStateBackgroundService>();
             services.AddJaeger(Configuration);
-            services.AddTransient<PlayerStateService>();
             services.AddResponseCaching();
             services.AddResponseCompression();
 

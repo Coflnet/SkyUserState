@@ -15,17 +15,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Coflnet.Sky.PlayerState.Services
 {
-    public class PlayerStateService
-    {
-
-
-        public async Task<Flip> AddFlip(Flip flip)
-        {
-
-            return flip;
-        }
-    }
-
     public interface IItemsService
     {
         Task CreateAsync(Item newItem);
@@ -120,7 +109,7 @@ namespace Coflnet.Sky.PlayerState.Services
 
         public async Task<List<Item>> FindOrCreate(IEnumerable<Item> original)
         {
-            var cassandraItems = original.Select(i => new CassandraItem(i)).ToList();
+            var cassandraItems = original.Select(i => new CassandraItem(i)).Where(c => c.ItemId != Guid.Empty).ToList();
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();

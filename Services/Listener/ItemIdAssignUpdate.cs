@@ -28,7 +28,7 @@ public class ItemIdAssignUpdate : UpdateListener
     private static bool CanGetAnIdByStoring(Item i, string chestName)
     {
         // one extra attribute is the tier
-        return (i.ExtraAttributes != null && i.ExtraAttributes.Count > 1 || i.Enchantments?.Count != 0) && !IsNpcSell(i) && !IsBazaar(chestName);
+        return (i.ExtraAttributes != null && i.ExtraAttributes.Count > 1) && !IsNpcSell(i) && !IsBazaar(chestName);
     }
 
     private static bool IsBazaar(string chestName)
@@ -44,14 +44,12 @@ public class ItemIdAssignUpdate : UpdateListener
 
     private IEnumerable<Item> Join(IEnumerable<Item> original, IEnumerable<Item> stored)
     {
-        var mcount = 0;
         foreach (var item in original)
         {
             var inMogo = stored.Where(m => comparer.Equals(item, m)).FirstOrDefault();
             if (inMogo != null)
             {
                 item.Id = inMogo.Id;
-                mcount++;
             }
             yield return item;
         }
