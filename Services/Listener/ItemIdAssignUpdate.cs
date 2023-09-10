@@ -52,7 +52,7 @@ public class ItemIdAssignUpdate : UpdateListener
     {
         foreach (var item in original)
         {
-            var inMogo = stored.Where(m => comparer.Equals(item, m)).FirstOrDefault();
+            var inMogo = stored.Where(m => comparer.Equals(item, m)).Where(m => m.Id != null).FirstOrDefault();
             if (inMogo != null)
             {
                 item.Id = inMogo.Id;
