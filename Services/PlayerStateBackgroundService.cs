@@ -119,11 +119,11 @@ public class PlayerStateBackgroundService : BackgroundService
             {
                 await Update(update);
                 consumeCount.Inc();
-            })), Task.Delay(TimeSpan.FromSeconds(2)));
+            })), Task.Delay(TimeSpan.FromSeconds(1)));
 
 
             KeepStateCountInCheck();
-        }, stoppingToken, 12);
+        }, stoppingToken, 10);
         var retrieved = new UpdateMessage();
     }
 
