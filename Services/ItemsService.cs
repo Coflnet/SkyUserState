@@ -12,6 +12,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
 using Cassandra.Data.Linq;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace Coflnet.Sky.PlayerState.Services
 {
@@ -116,6 +117,7 @@ namespace Coflnet.Sky.PlayerState.Services
             var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
             var found = res.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
+            Activity.Current?.AddTag("tags", string.Join(",", tags));
             foreach (var item in toCreate.Where(c => c.Tag.Contains("LAPIS_ARMOR_H")))
             {
                 Console.WriteLine("yay " + JsonConvert.SerializeObject(item, Formatting.Indented));
