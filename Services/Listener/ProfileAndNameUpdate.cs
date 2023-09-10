@@ -3,6 +3,7 @@ using System;
 using Coflnet.Sky.PlayerName.Client.Api;
 using System.Linq;
 using Coflnet.Sky.Proxy.Client.Api;
+using System.Diagnostics;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -52,10 +53,11 @@ public class AhBrowserListener : UpdateListener
                     continue;
                 }
                 var nameService = args.GetService<IPlayerNameApi>();
-                var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
-                Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid + " " + args.msg.Chest.Name);
-                await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid, $"player: {args.msg.PlayerId}");
+                // var uuid = await nameService.PlayerNameUuidNameGetAsync(sellerName);
+                // Console.WriteLine("Checking listings for " + sellerName + " uuid " + uuid + " " + args.msg.Chest.Name);
+                // await args.GetService<IBaseApi>().BaseAhPlayerIdPostAsync(uuid, $"player: {args.msg.PlayerId}");
             }
+            Activity.Current?.AddTag("name", args.msg.Chest.Name);
             if (item.Description.Contains("Sold for"))
             {
                 var parts = item.Description.Split('\n');
