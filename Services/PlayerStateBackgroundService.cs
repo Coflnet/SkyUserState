@@ -119,7 +119,7 @@ public class PlayerStateBackgroundService : BackgroundService
             {
                 await Update(update);
                 consumeCount.Inc();
-            })), Task.Delay(TimeSpan.FromSeconds(3)));
+            })), Task.Delay(TimeSpan.FromSeconds(2)));
 
 
             KeepStateCountInCheck();
