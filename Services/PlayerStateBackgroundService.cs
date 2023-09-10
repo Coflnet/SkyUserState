@@ -177,7 +177,6 @@ public class PlayerStateBackgroundService : BackgroundService
 
     private async Task Update(UpdateMessage msg)
     {
-        using var span = activitySource.StartActivity("Update", ActivityKind.Consumer);
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
         var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { });
@@ -187,8 +186,6 @@ public class PlayerStateBackgroundService : BackgroundService
             msg = msg,
             stateService = this
         };
-        span?.SetTag("playerId", msg.PlayerId);
-        span?.SetTag("kind", msg.Kind.ToString());
         try
         {
             await state.Lock.WaitAsync();
@@ -201,6 +198,9 @@ public class PlayerStateBackgroundService : BackgroundService
                 state = loaded;
                 States[msg.PlayerId] = state;
             }
+            using var span = activitySource.StartActivity("Update", ActivityKind.Consumer);
+            span?.SetTag("playerId", msg.PlayerId);
+            span?.SetTag("kind", msg.Kind.ToString());
             foreach (var item in Handlers[msg.Kind])
             {
                 await item.Process(args);
