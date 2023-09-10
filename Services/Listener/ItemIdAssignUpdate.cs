@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using System.Diagnostics;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -22,6 +23,11 @@ public class ItemIdAssignUpdate : UpdateListener
         var itemsWithIds = await service.FindOrCreate(toSearchInDb);
 
         Console.WriteLine("to search: " + toSearchFor.Count + " found local: " + foundLocal.Count + " from db: " + itemsWithIds.Count + " present: " + localPresent.Count);
+        Activity.Current?.AddTag("to search", toSearchFor.Count.ToString());
+        Activity.Current?.AddTag("found local", foundLocal.Count.ToString());
+        Activity.Current?.AddTag("from db", itemsWithIds.Count.ToString());
+        Activity.Current?.AddTag("present", localPresent.Count.ToString());
+        Activity.Current?.AddTag("chest", chestName);
         args.msg.Chest.Items = Join(collection, itemsWithIds.Concat(foundLocal)).ToList();
     }
 
