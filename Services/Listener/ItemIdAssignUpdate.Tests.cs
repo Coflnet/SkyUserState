@@ -12,32 +12,46 @@ public class ItemIdAssignUpdateTest
 {
     private StateObject currentState = new();
     private Mock<IItemsService> itemsService;
-    private List<Item> calledWith;
+    private List<Item>? calledWith;
+    private Item sampleItem = new()
+    {
+        ItemName = "Lapis Helmet",
+        Enchantments = new Dictionary<string, byte>() { { "protection", 1 } },
+        ExtraAttributes = new Dictionary<string, object>() { { "uuid", "96606179-dc64-4184-a356-6758856f593b" }, { "tier", "UNCOMMON" } }
+    };
     [Test]
     public async Task HigherEnchantIsNew()
     {
         var listener = new ItemIdAssignUpdate();
+        var changedSample = new Item(sampleItem);
+        changedSample.Enchantments!["protection"] = 2;
 
-        await listener.Process(CreateArgs(new Item()
-        {
-            ItemName = "Lapis Helmet",
-            Enchantments = new Dictionary<string, byte>() { { "protection", 2 } },
-        }));
+        await listener.Process(CreateArgs(changedSample));
         Assert.IsNotNull(calledWith);
         Assert.AreEqual(1, calledWith.Count, JsonConvert.SerializeObject(calledWith));
         itemsService.Verify(s => s.FindOrCreate(It.Is<IEnumerable<Item>>(i => i.Count() == 1)), Times.Once);
     }
 
+    [Test]
+    public async Task SameNoLookup()
+    {
+        var listener = new ItemIdAssignUpdate();
+        var matchingSample = new Item(sampleItem);
+
+        await listener.Process(CreateArgs(matchingSample));
+        Assert.IsNull(calledWith);
+        Assert.AreEqual(1, matchingSample.Id);
+        itemsService.Verify(s => s.FindOrCreate(It.IsAny<IEnumerable<Item>>()), Times.Never);
+    }
+
     private MockedUpdateArgs CreateArgs(params Item[] items)
     {
+        var sampleWithId = new Item(sampleItem);
+        sampleWithId.Id = 1;
         currentState.RecentViews.Enqueue(new()
         {
             Items = new List<Item>(){
-                new Item()
-                    {
-                        ItemName = "Lapis Helmet",
-                        Enchantments = new Dictionary<string, byte>() { { "protection", 1 } },
-                    }
+                sampleWithId
             }
         });
         var args = new MockedUpdateArgs()
@@ -58,6 +72,7 @@ public class ItemIdAssignUpdateTest
             calledWith = v.ToList();
         }).ReturnsAsync(items.ToList());
         args.AddService<IItemsService>(itemsService.Object);
+        calledWith = null;
 
         return args;
     }

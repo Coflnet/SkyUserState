@@ -55,5 +55,20 @@ public class Item
     [Key(7)]
     public byte? Count { get; set; }
 
+    public Item(Item item)
+    {
+        Id = item.Id;
+        ItemName = item.ItemName;
+        Tag = item.Tag;
+        ExtraAttributes = item.ExtraAttributes == null ? null : new Dictionary<string, object>(item.ExtraAttributes);
+        Enchantments = item.Enchantments == null ? null : new Dictionary<string, byte>(item.Enchantments);
+        Color = item.Color;
+        Description = item.Description;
+        Count = item.Count;
+    }
+
+    public Item()
+    {
+    }
 }
 #nullable restore

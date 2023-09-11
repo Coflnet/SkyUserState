@@ -19,8 +19,8 @@ public class ItemIdAssignUpdate : UpdateListener
         var toSearchFor = collection.Where(i => CanGetAnIdByStoring(i, chestName)).ToHashSet();
         var localPresent = args.currentState.RecentViews.SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer);
         var foundLocal = toSearchFor.Select(s => localPresent.Values.Where(b => comparer.Equals(b, s)).FirstOrDefault()).Where(s => s != null).ToList();
-        var toSearchInDb = toSearchFor.Except(foundLocal, comparer);
-        var itemsWithIds = await service.FindOrCreate(toSearchInDb);
+        var toSearchInDb = toSearchFor.Except(foundLocal, comparer).ToList();
+        var itemsWithIds = toSearchInDb.Count > 0 ? await service.FindOrCreate(toSearchInDb) : new List<Item>();
 
         Console.WriteLine("to search: " + toSearchFor.Count + " found local: " + foundLocal.Count + " from db: " + itemsWithIds.Count + " present: " + localPresent.Count);
         Activity.Current?.AddTag("to search", toSearchFor.Count.ToString());

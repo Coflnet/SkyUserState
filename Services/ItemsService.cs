@@ -111,6 +111,8 @@ namespace Coflnet.Sky.PlayerState.Services
         public async Task<List<Item>> FindOrCreate(IEnumerable<Item> original)
         {
             var cassandraItems = original.Select(i => new CassandraItem(i)).Where(c => c.ItemId != Guid.Empty).ToList();
+            if(cassandraItems.Count == 0)
+                return new List<Item>();
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();
