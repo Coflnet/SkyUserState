@@ -17,7 +17,7 @@ public class ItemIdAssignUpdateTest
     {
         ItemName = "Lapis Helmet",
         Enchantments = new Dictionary<string, byte>() { { "protection", 1 } },
-        ExtraAttributes = new Dictionary<string, object>() { { "uuid", "96606179-dc64-4184-a356-6758856f593b" }, { "tier", "UNCOMMON" } }
+        ExtraAttributes = new Dictionary<string, object>() { { "uuid", "96606179-dc64-4184-a356-6758856f593b" }, { "tier", 5 } }
     };
     [Test]
     public async Task HigherEnchantIsNew()
@@ -42,6 +42,29 @@ public class ItemIdAssignUpdateTest
         Assert.IsNull(calledWith);
         Assert.AreEqual(1, matchingSample.Id);
         itemsService.Verify(s => s.FindOrCreate(It.IsAny<IEnumerable<Item>>()), Times.Never);
+    }
+    
+    [Test]
+    public async Task BoosterCookie()
+    {
+        var json = 
+        """
+        {"Id":null,"ItemName":"§6Booster Cookie","Tag":"BOOSTER_COOKIE","ExtraAttributes":{"uid":"4bee3a354fb4","uuid":"19746077-7ecb-46a8-a220-4bee3a354fb4","timestamp":"9/24/20 3:19 PM","tier":5},"Enchantments":null,"Color":null,
+        "Description":"§7Consume to gain the §dCookie\n§dBuff §7for §b4 §7days:\n\n§8‣ §7Ability to gain §bBits§7!\n§8‣ §3+25☯ §7Insta-sell your Material stash to the §6Bazaar\n\n§6§lLEGENDARY","Count":1}
+        """;
+        var existing = JsonConvert.DeserializeObject<Item>(json);
+        existing.Id = 1;
+        currentState.RecentViews.Enqueue(new()
+        {
+            Items = new List<Item>(){
+                existing
+            }
+        });
+        var listener = new ItemIdAssignUpdate();
+        var matchingSample = JsonConvert.DeserializeObject<Item>(json);
+        await listener.Process(CreateArgs(matchingSample));
+        Assert.IsNull(calledWith);
+        Assert.AreEqual(1, matchingSample.Id);
     }
 
     private MockedUpdateArgs CreateArgs(params Item[] items)

@@ -53,6 +53,15 @@ public class ItemCompareTests
         Assert.IsFalse(comparer.Equals(a, b));
     }
     [Test]
+    public void NoEnchants()
+    {
+        var comparer = new ItemCompare();
+        var a = new Item() { ExtraAttributes = new() { { "array", "b" } } };
+        var b = new Item() { ExtraAttributes = new() { { "array", "b" } } };
+        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
+        Assert.IsTrue(comparer.Equals(a, b));
+    }
+    [Test]
     public void CompareComplex()
     {
         var comparer = new ItemCompare();

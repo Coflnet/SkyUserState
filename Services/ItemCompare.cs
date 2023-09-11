@@ -22,12 +22,12 @@ public class ItemCompare : IEqualityComparer<Item>
 
     private bool AttributeMatch(Item x, Item y)
     {
-        return x.ExtraAttributes != null && y.ExtraAttributes != null && x.ExtraAttributes.Count == y.ExtraAttributes.Count && !x.ExtraAttributes.Except(y.ExtraAttributes, internalComparer).Any();
+        return x.ExtraAttributes == null && y.ExtraAttributes == null || x.ExtraAttributes != null && y.ExtraAttributes != null && x.ExtraAttributes.Count == y.ExtraAttributes.Count && !x.ExtraAttributes.Except(y.ExtraAttributes, internalComparer).Any();
     }
 
     private static bool EnchantMatch(Item? x, Item? y)
     {
-        return (  y?.Enchantments != null && x?.Enchantments != null &&
+        return y?.Enchantments == null && x.Enchantments == null || (  y?.Enchantments != null && x?.Enchantments != null &&
             y.Enchantments?.Count == x.Enchantments?.Count
                 && x.Enchantments!.Sum(x => x.Value) == y.Enchantments!.Sum(x => x.Value) && !x.Enchantments!.Except(y.Enchantments!).Any());
     }
