@@ -114,7 +114,7 @@ public class TransactionService : ITransactionService, ICassandraService
         var mapping = new MappingConfiguration()
             .Define(new Map<PlayerTransaction>()
             .PartitionKey(t => t.PlayerUuid)
-            .ClusteringKey(new Tuple<string, SortOrder>("timestamp", SortOrder.Ascending), new("itemid", SortOrder.Descending))
+            .ClusteringKey(new Tuple<string, SortOrder>("timestamp", SortOrder.Descending), new("itemid", SortOrder.Descending))
         .Column(o => o.Type, c => c.WithName("type").WithDbType<int>()));
         var table = new Table<PlayerTransaction>(session, mapping, "transactions");
         table.SetConsistencyLevel(ConsistencyLevel.Quorum);

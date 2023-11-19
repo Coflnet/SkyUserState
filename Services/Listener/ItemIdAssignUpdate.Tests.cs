@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
+using Coflnet.Sky.PlayerState.Tests;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -98,21 +99,5 @@ public class ItemIdAssignUpdateTest
         calledWith = null;
 
         return args;
-    }
-
-    private class MockedUpdateArgs : UpdateArgs
-    {
-        private Dictionary<Type, object> services = new();
-        public override T GetService<T>()
-        {
-            if (services.ContainsKey(typeof(T)))
-                return (T)services[typeof(T)];
-            throw new Exception($"Service {typeof(T)} not found");
-        }
-
-        public void AddService<T>(T service)
-        {
-            services.Add(typeof(T), service);
-        }
     }
 }

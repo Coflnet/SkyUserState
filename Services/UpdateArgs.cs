@@ -8,7 +8,7 @@ public class UpdateArgs : IDisposable
 {
     public UpdateMessage msg;
     public StateObject currentState;
-    public PlayerStateBackgroundService stateService;
+    public IPlayerStateService stateService;
     private AsyncServiceScope? scope;
 
 
@@ -32,7 +32,7 @@ public class UpdateArgs : IDisposable
     public virtual T GetService<T>() where T : notnull
     {
         if (scope == null)
-            scope = stateService.scopeFactory.CreateAsyncScope();
+            scope = stateService.CreateAsyncScope();
         return scope.Value.ServiceProvider.GetRequiredService<T>();
     }
 

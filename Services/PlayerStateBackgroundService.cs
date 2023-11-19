@@ -19,7 +19,14 @@ using System.Diagnostics;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
-public class PlayerStateBackgroundService : BackgroundService
+public interface IPlayerStateService
+{
+    public Task ExecuteInScope(Func<IServiceProvider, Task> todo);
+    public void TryExecuteInScope(Func<IServiceProvider, Task> todo);
+    public AsyncServiceScope CreateAsyncScope();
+}
+
+public class PlayerStateBackgroundService : BackgroundService, IPlayerStateService
 {
     public IServiceScopeFactory scopeFactory { private set; get; }
     private IConfiguration config;
@@ -179,6 +186,11 @@ public class PlayerStateBackgroundService : BackgroundService
     {
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
+        if(msg.PlayerId == "Ekwav")
+        {
+            // dump for debug
+            logger.LogInformation("Received update for Ekwav {0}", JsonConvert.SerializeObject(msg));
+        }
         var state = States.GetOrAdd(msg.PlayerId, (p) => new StateObject() { });
         using var args = new UpdateArgs()
         {
@@ -249,5 +261,10 @@ public class PlayerStateBackgroundService : BackgroundService
                 logger.LogError(e, "failed to execute in scope");
             }
         });
+    }
+
+    public AsyncServiceScope CreateAsyncScope()
+    {
+        return scopeFactory.CreateAsyncScope();
     }
 }

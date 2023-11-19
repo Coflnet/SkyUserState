@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Coflnet.Sky.Items.Client.Api;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
+using Coflnet.Sky.PlayerState.Tests;
 using Moq;
 using NUnit.Framework;
 
@@ -238,21 +238,5 @@ public class BazaarOrderTests
         args.AddService<ITransactionService>(transactionService.Object);
 
         return args;
-    }
-
-    private class MockedUpdateArgs : UpdateArgs
-    {
-        private Dictionary<Type, object> services = new();
-        public override T GetService<T>()
-        {
-            if (services.ContainsKey(typeof(T)))
-                return (T)services[typeof(T)];
-            return base.GetService<T>();
-        }
-
-        public void AddService<T>(T service)
-        {
-            services.Add(typeof(T), service);
-        }
     }
 }

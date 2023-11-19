@@ -25,7 +25,7 @@ public class TradeDetect : UpdateListener
     {
         if (args.msg.Kind == UpdateMessage.UpdateKind.CHAT)
         {
-            var lastMessage = args.currentState.ChatHistory.Last().Content;
+            var lastMessage = args.msg.ChatBatch.Last();
             if (!lastMessage.StartsWith(" + ") && !lastMessage.StartsWith(" - "))
                 return;
 
@@ -94,39 +94,33 @@ public class TradeDetect : UpdateListener
             logger.LogError(e, "Trying to add other side of trade " + tradeView.Name);
         }
 
-        await args.stateService.ExecuteInScope(async sp =>
-        {
-            var service = sp.GetRequiredService<ITransactionService>();
-
-            await service.AddTransactions(transactions.Where(t => t.ItemId > 0));
-        });
+        var service = args.GetService<ITransactionService>();
+        await service.AddTransactions(transactions.Where(t => t.ItemId > 0).ToList());
     }
 
     private async Task AddOtherSideOfTrade(UpdateArgs args, List<Item> spent, List<Item> received, DateTime timestamp, List<Transaction> transactions, ChestView chest)
     {
-        await args.stateService.ExecuteInScope(async sp =>
+        var nameService = args.GetService<IPlayerNameApi>();
+        var playerName = chest.Name.Substring(21);
+        var uuidString = await nameService.PlayerNameUuidNameGetAsync(playerName);
+        logger.LogInformation($"other side of trade is {playerName} {uuidString}");
+        var uuid = Guid.Parse(uuidString.Trim('"'));
+        transactions.AddRange(spent.Select(s =>
         {
-            var nameService = args.GetService<IPlayerNameApi>();
-            var playerName = chest.Name.Substring(21);
-            var uuidString = await nameService.PlayerNameUuidNameGetAsync(playerName);
-            logger.LogInformation($"other side of trade is {playerName} {uuidString}");
-            var uuid = Guid.Parse(uuidString.Trim('"'));
-            transactions.AddRange(spent.Select(s =>
-            {
-                return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
-            }));
-            transactions.AddRange(received.Select(s =>
-            {
-                return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.REMOVE);
-            }));
-        });
+            return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.RECEIVE);
+        }));
+        transactions.AddRange(received.Select(s =>
+        {
+            return CreateTransaction(uuid, s, timestamp, Transaction.TransactionType.TRADE | Transaction.TransactionType.REMOVE);
+        }));
     }
 
     private Transaction CreateTransaction(UpdateArgs args, Item s, DateTime timestamp, Transaction.TransactionType type)
     {
         var playerUuid = args.currentState.McInfo.Uuid;
+        var trnsaction = CreateTransaction(playerUuid, s, timestamp, type);
         logger.LogInformation($"Creating transaction for {playerUuid} with {s.ItemName} {s.Id} {s.Tag}");
-        return CreateTransaction(playerUuid, s, timestamp, type);
+        return trnsaction;
     }
 
     private Transaction CreateTransaction(Guid playerUuid, Item s, DateTime timestamp, Transaction.TransactionType type)
@@ -155,6 +149,6 @@ public class TradeDetect : UpdateListener
     {
         if (parser.IsCoins(item))
             return IdForCoins;
-        return -1;
+        return Core.ItemDetails.Instance.GetItemIdForTag(item.Tag);
     }
 }
