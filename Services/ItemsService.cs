@@ -111,13 +111,17 @@ namespace Coflnet.Sky.PlayerState.Services
         public async Task<List<Item>> FindOrCreate(IEnumerable<Item> original)
         {
             var cassandraItems = original.Select(i => new CassandraItem(i)).Where(c => c.ItemId != Guid.Empty).ToList();
-            if(cassandraItems.Count == 0)
+            if (cassandraItems.Count == 0)
                 return new List<Item>();
+            var oldTable = cassandraService.GetItemsTable(await cassandraService.GetCassandraSession());
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
-            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != null).Distinct().ToList();
+            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().ToList();
+            var oldResTask = oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
             var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
+            var oldRes = await oldResTask;
             var found = res.ToList();
+            var oldFound = oldRes.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
             Activity.Current?.AddTag("tags", string.Join(",", tags));
             foreach (var item in toCreate.Where(c => c.Tag.Contains("LAPIS_ARMOR_H")))
@@ -132,7 +136,15 @@ namespace Coflnet.Sky.PlayerState.Services
             {
                 try
                 {
-                    i.Id = ThreadSaveIdGenerator.NextId;
+                    var matchInOld = oldFound.Where(r => cassandraCompare.Equals(r, i)).FirstOrDefault();
+                    if (matchInOld != null)
+                    {
+                        // assign old id
+                        i.Id = matchInOld.Id;
+                        Console.WriteLine("Found in old " + i.ItemName + " " + i.Id);
+                    }
+                    else
+                        i.Id = ThreadSaveIdGenerator.NextId;
                     cassandraInsertCount.Inc();
                     Console.WriteLine("Inserting " + i.ItemName + " " + i.Id);
                     return table.Insert(i).ExecuteAsync();

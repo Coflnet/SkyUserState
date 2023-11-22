@@ -24,21 +24,26 @@ public interface ITransactionService
 public interface ICassandraService
 {
     Task<ISession> GetSession();
+    Task<ISession> GetCassandraSession();
     Table<CassandraItem> GetItemsTable(ISession session);
 }
 
 public class TransactionService : ITransactionService, ICassandraService
 {
     ISession _session;
+    ISession _oldSession;
     private SemaphoreSlim sessionOpenLock = new SemaphoreSlim(1);
     private IConfiguration config;
     private ILogger<TransactionService> logger;
     private Table<PlayerTransaction> _table;
 
-    public TransactionService(ILogger<TransactionService> logger, IConfiguration config)
+    public TransactionService(ILogger<TransactionService> logger, IConfiguration config, ISession session)
     {
         this.logger = logger;
         this.config = config;
+        this._session = session;
+
+        _table = Create(_session).Result;
     }
 
     private static Prometheus.Counter insertCount = Prometheus.Metrics.CreateCounter("sky_playerstate_transaction_insert", "How many inserts were made");
@@ -148,9 +153,17 @@ public class TransactionService : ITransactionService, ICassandraService
     {
         if (_session != null)
             return _session;
+        throw new Exception("got moved to DI, migrate this");
+        return await GetCassandraSession();
+    }
+
+    public async Task<ISession> GetCassandraSession()
+    {
+        if (_oldSession != null)
+            return _oldSession;
         await sessionOpenLock.WaitAsync();
-        if (_session != null)
-            return _session;
+        if (_oldSession != null)
+            return _oldSession;
         try
         {
             var builder = Cluster.Builder()
@@ -176,8 +189,7 @@ public class TransactionService : ITransactionService, ICassandraService
                 {"class", config["CASSANDRA:REPLICATION_CLASS"]},
                 {"replication_factor", config["CASSANDRA:REPLICATION_FACTOR"]}
             });
-            _session = await cluster.ConnectAsync(config["CASSANDRA:KEYSPACE"]);
-            _table = await Create(_session);
+            _oldSession = await cluster.ConnectAsync(config["CASSANDRA:KEYSPACE"]);
         }
         catch (Exception e)
         {
@@ -188,7 +200,7 @@ public class TransactionService : ITransactionService, ICassandraService
         {
             sessionOpenLock.Release();
         }
-        return _session;
+        return _oldSession;
     }
 
     private async Task<Table<PlayerTransaction>> GetPlayerTable()
