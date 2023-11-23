@@ -8,6 +8,7 @@ using System.Collections;
 using Coflnet.Sky.PlayerState.Services;
 using System.Dynamic;
 using System.Collections.Generic;
+using Coflnet.Sky.Core;
 
 namespace Coflnet.Sky.PlayerState.Controllers
 {
@@ -47,7 +48,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
         public async Task<List<Coflnet.Sky.PlayerState.Models.Item>> GetInventory(string playerId)
         {
             var data = await service.GetStateObject(playerId);
-            return data.RecentViews.Last().Items;
+            return data?.RecentViews?.LastOrDefault()?.Items ?? throw new CoflnetException("no_inventory", $"No inventory found for {playerId}. Make sure you use the CoflMod and opened your inventory.");
         }
     }
 }
