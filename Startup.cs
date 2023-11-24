@@ -61,7 +61,13 @@ public class Startup
         services.AddSingleton(a => new MongoClient(
             Configuration["Mongo:ConnectionString"]
         ));
-        services.AddHostedService<PlayerStateBackgroundService>();
+
+        if (Configuration["MIGRATOR"] == "true")
+        {
+            services.AddHostedService<MigrationService>();
+        }
+        else
+            services.AddHostedService<PlayerStateBackgroundService>();
         services.AddJaeger(Configuration);
         services.AddResponseCaching();
         services.AddResponseCompression();

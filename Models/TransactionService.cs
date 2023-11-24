@@ -114,7 +114,7 @@ public class TransactionService : ITransactionService, ICassandraService
         return table;
     }
 
-    private static Table<PlayerTransaction> GetPlayerTable(ISession session)
+    public static Table<PlayerTransaction> GetPlayerTable(ISession session)
     {
         var mapping = new MappingConfiguration()
             .Define(new Map<PlayerTransaction>()
@@ -136,7 +136,7 @@ public class TransactionService : ITransactionService, ICassandraService
             .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending), new Tuple<string, SortOrder>("Id", SortOrder.Descending))), "items");
     }
 
-    private static Table<ItemTransaction> GetItemTable(ISession session)
+    public static Table<ItemTransaction> GetItemTable(ISession session)
     {
         var mapping = new MappingConfiguration()
             .Define(new Map<ItemTransaction>()
