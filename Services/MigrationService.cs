@@ -40,7 +40,7 @@ public class MigrationService : BackgroundService
         var itemsTable = cassandraService.GetItemsTable(oldDb);
         var newItemsTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
         var itemTransactionsTable = TransactionService.GetItemTable(oldDb);
-        var semaphore = new SemaphoreSlim(20);
+        var semaphore = new SemaphoreSlim(150);
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys;
@@ -61,7 +61,8 @@ public class MigrationService : BackgroundService
                         await newItemsTable.Insert(item).ExecuteAsync();
                         await transactionService.AddTransactions((await transactionsTask).ToList());
                         migrateCount.Inc();
-                        logger.LogInformation($"Migrated {item.Id} {item.ItemName}");
+                        if (migrateCount.Value % 20 == 0)
+                            logger.LogInformation($"Migrated {item.Id} {item.ItemName}");
                     }
                     catch (Exception e)
                     {
