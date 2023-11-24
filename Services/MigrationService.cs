@@ -9,6 +9,7 @@ using Cassandra.Data.Linq;
 using Coflnet.Sky.Core;
 using System.Collections.Generic;
 using System.Linq;
+using ZstdSharp.Unsafe;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -39,6 +40,7 @@ public class MigrationService : BackgroundService
         var itemsTable = cassandraService.GetItemsTable(oldDb);
         var newItemsTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
         var itemTransactionsTable = TransactionService.GetItemTable(oldDb);
+        var semaphore = new SemaphoreSlim(20);
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys;
@@ -50,10 +52,29 @@ public class MigrationService : BackgroundService
             var items = await itemsTable.Where(t => t.Tag == tag).ExecuteAsync();
             foreach (var item in items)
             {
-                var transactionsTask = itemTransactionsTable.Where(t => t.ItemId == item.Id).ExecuteAsync();
-                await newItemsTable.Insert(item).ExecuteAsync();
-                await transactionService.AddTransactions(await transactionsTask);
-                logger.LogInformation($"Migrated {item.Id} {item.ItemName}");
+                _ = Task.Run(async () =>
+                {
+                    await semaphore.WaitAsync();
+                    try
+                    {
+                        var transactionsTask = itemTransactionsTable.Where(t => t.ItemId == item.Id).ExecuteAsync();
+                        await newItemsTable.Insert(item).ExecuteAsync();
+                        await transactionService.AddTransactions((await transactionsTask).ToList());
+                        migrateCount.Inc();
+                        logger.LogInformation($"Migrated {item.Id} {item.ItemName}");
+                    }
+                    catch (Exception e)
+                    {
+                        migrateFailed.Inc();
+                        logger.LogError(e, $"Failed to migrate {item.Id} {item.ItemName}");
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+                });
+                if (semaphore.CurrentCount == 0)
+                    await Task.Delay(100);
             }
 
             doneTags.Add(tag);

@@ -59,7 +59,10 @@ public class TransactionService : ITransactionService, ICassandraService
         var session = await GetSession();
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
-        Console.WriteLine("adding transactions " + transactions.Count());
+        var count = transactions.Count();
+        if(count == 0)
+            return;
+        Console.WriteLine("adding transactions " + count);
         await Task.WhenAll(transactions.GroupBy(t => new { t.PlayerUuid, t.ItemId, t.TimeStamp }).Select(g =>
         {
             if (g.Count() > 1)
