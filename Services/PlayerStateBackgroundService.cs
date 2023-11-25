@@ -182,11 +182,11 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
 
     }
 
-    private async Task Update(UpdateMessage msg)
+    private async Task Update(UpdateMessage msg, int attempt = 0)
     {
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
-        if(msg.PlayerId == "Ekwav")
+        if (msg.PlayerId == "Ekwav")
         {
             // dump for debug
             logger.LogInformation("Received update for Ekwav {0}", JsonConvert.SerializeObject(msg));
@@ -198,6 +198,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
             msg = msg,
             stateService = this
         };
+        var error = false;
         try
         {
             await state.Lock.WaitAsync();
@@ -235,11 +236,14 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         catch (Exception e)
         {
             logger.LogError(e, "failed update state on " + msg.Kind + " with " + JsonConvert.SerializeObject(msg));
+            error = true;
         }
         finally
         {
             state.Lock.Release();
         }
+        if (error && attempt < 3) // after finally to avoid semaphore lock
+            await Update(msg, attempt + 1);
     }
 
     public async Task ExecuteInScope(Func<IServiceProvider, Task> todo)
