@@ -18,13 +18,16 @@ public class ItemIdAssignUpdate : UpdateListener
         var collection = args.msg.Chest.Items;
         var chestName = args.msg.Chest.Name;
         var toSearchFor = collection.Where(i => CanGetAnIdByStoring(i, chestName)).ToHashSet();
-        var localPresent = new Dictionary<Item,Item>(args.currentState.RecentViews.SelectMany(s => s.Items).GroupBy(e => e, comparer).Select(e => e.First()).ToDictionary(e => e, comparer), comparer);
+        var localPresent = new Dictionary<Item, Item>(args.currentState.RecentViews.SelectMany(s => s.Items)
+                .Where(i => i.Id != null)
+                .GroupBy(e => e, comparer)
+                .Select(e => e.First()).ToDictionary(e => e, comparer), comparer);
         var foundLocal = toSearchFor.Select(s => localPresent.GetValueOrDefault(s)).Where(s => s != null).ToList();
         var toSearchInDb = toSearchFor.Except(foundLocal, comparer).ToList();
         var itemsWithIds = toSearchInDb.Count > 0 ? await service.FindOrCreate(toSearchInDb) : new List<Item>();
         foreach (var item in localPresent.Keys)
         {
-            if(item.Tag != "BOOSTER_COOKIE")
+            if (item.Tag != "BOOSTER_COOKIE")
                 continue;
             Console.WriteLine($"found local: {JsonConvert.SerializeObject(item)}");
         }
@@ -36,7 +39,7 @@ public class ItemIdAssignUpdate : UpdateListener
         Activity.Current?.AddTag("chest", chestName);
         foreach (var item in itemsWithIds)
         {
-            if(item.Tag != "BOOSTER_COOKIE")
+            if (item.Tag != "BOOSTER_COOKIE")
                 continue;
             Console.WriteLine($"from db: {JsonConvert.SerializeObject(item)}");
         }

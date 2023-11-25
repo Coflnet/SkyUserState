@@ -27,7 +27,7 @@ public class ItemCompare : IEqualityComparer<Item>
 
     private static bool EnchantMatch(Item? x, Item? y)
     {
-        return y?.Enchantments == null && x.Enchantments == null || (  y?.Enchantments != null && x?.Enchantments != null &&
+        return (y?.Enchantments?.Count ?? 0) == 0 && x?.Enchantments == null || (  y?.Enchantments != null && x?.Enchantments != null &&
             y.Enchantments?.Count == x.Enchantments?.Count
                 && x.Enchantments!.Sum(x => x.Value) == y.Enchantments!.Sum(x => x.Value) && !x.Enchantments!.Except(y.Enchantments!).Any());
     }
