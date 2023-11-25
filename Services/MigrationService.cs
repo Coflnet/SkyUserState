@@ -40,7 +40,7 @@ public class MigrationService : BackgroundService
         var itemsTable = cassandraService.GetItemsTable(oldDb);
         var newItemsTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
         var itemTransactionsTable = TransactionService.GetItemTable(oldDb);
-        var semaphore = new SemaphoreSlim(150);
+        var semaphore = new SemaphoreSlim(90);
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys;
