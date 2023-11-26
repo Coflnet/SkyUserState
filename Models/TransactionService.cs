@@ -218,7 +218,7 @@ public class TransactionService : ITransactionService, ICassandraService
     {
         var table = await GetPlayerTable();
         var start = end - timeSpan;
-        return await table.Where(t => t.PlayerUuid == guid && t.TimeStamp > start && t.TimeStamp < end).ExecuteAsync();
+        return await table.Where(t => t.PlayerUuid == guid && t.TimeStamp > start && t.TimeStamp <= end).ExecuteAsync();
     }
 
     public async Task<IEnumerable<Transaction>> GetItemTransactions(long itemId, int max)
