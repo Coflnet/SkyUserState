@@ -49,7 +49,13 @@ public class ItemIdAssignUpdate : UpdateListener
     private static bool CanGetAnIdByStoring(Item i, string chestName)
     {
         // one extra attribute is the tier
-        return (i.ExtraAttributes != null && i.ExtraAttributes.Count > 1) && !IsNpcSell(i) && !IsBazaar(chestName);
+        return (i.ExtraAttributes != null && i.ExtraAttributes.Count > 1) && !IsNpcSell(i) && !IsBazaar(chestName) && !IsDungeonItem(i);
+    }
+
+    private static bool IsDungeonItem(Item i)
+    {
+        // eg. REVIVE_STONE
+        return i.ExtraAttributes.ContainsKey("dontSaveToProfile");
     }
 
     private static bool IsBazaar(string chestName)
