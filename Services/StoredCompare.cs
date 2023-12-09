@@ -40,13 +40,17 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         left.Remove("compact_blocks");
         left.Remove("bottle_of_jyrre_seconds");
         left.Remove("bottle_of_jyrre_last_update");
+        left.Remove("builder's_ruler_data");
+        left.Remove("champion_combat_xp");
+        left.Remove("farmed_cultivating");
+        left.Remove("mined_crops");
         foreach (var item in left.Properties().ToList())
         {
             // if value is bigger than 100 ignore
             if (item.Value.Type == JTokenType.Integer && item.Value.Value<int>() > 100)
                 left.Remove(item.Name);
             // also for float 
-            if (item.Value.Type == JTokenType.Float && item.Value.Value<float>() > 100)
+            if (item.Value.Type == JTokenType.Float && item.Value.Value<double>() > 100)
                 left.Remove(item.Name);
         }
         return left;
