@@ -166,7 +166,7 @@ namespace Coflnet.Sky.PlayerState.Services
             var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
             var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggest.First())).Select(e => e.Id).ToList();
             Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count}");
-            await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i).Delete().ExecuteAsync()));
+            await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i && o.ItemId == biggest.Key.ItemId && o.Tag == biggest.Key.Tag).Delete().ExecuteAsync()));
         }
 
         public async Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids)
