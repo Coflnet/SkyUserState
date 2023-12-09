@@ -117,11 +117,8 @@ namespace Coflnet.Sky.PlayerState.Services
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().ToList();
-            var oldResTask = oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
             var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
-            var oldRes = await oldResTask;
             var found = res.ToList();
-            var oldFound = oldRes.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
             Activity.Current?.AddTag("tags", string.Join(",", tags));
             foreach (var item in toCreate.Where(c => c.Tag.Contains("LAPIS_ARMOR_H")))
@@ -136,15 +133,7 @@ namespace Coflnet.Sky.PlayerState.Services
             {
                 try
                 {
-                    var matchInOld = oldFound.Where(r => cassandraCompare.Equals(r, i)).FirstOrDefault();
-                    if (matchInOld != null)
-                    {
-                        // assign old id
-                        i.Id = matchInOld.Id;
-                        Console.WriteLine("Found in old " + i.ItemName + " " + i.Id);
-                    }
-                    else
-                        i.Id = ThreadSaveIdGenerator.NextId;
+                    i.Id = ThreadSaveIdGenerator.NextId;
                     cassandraInsertCount.Inc();
                     Console.WriteLine("Inserting " + i.ItemName + " " + i.Id);
                     return table.Insert(i).ExecuteAsync();
@@ -155,6 +144,11 @@ namespace Coflnet.Sky.PlayerState.Services
                     return Task.CompletedTask;
                 }
             }));
+            if(found.Count > 500)
+            {
+                var biggest = found.GroupBy(f => (f.Tag,f.ItemId)).OrderByDescending(g => g.Count()).First();
+                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId}");
+            }
             return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
             /*
                         List<StoredItem> batch = ToStored(original);
