@@ -113,7 +113,6 @@ namespace Coflnet.Sky.PlayerState.Services
             var cassandraItems = original.Select(i => new CassandraItem(i)).Where(c => c.ItemId != Guid.Empty).ToList();
             if (cassandraItems.Count == 0)
                 return new List<Item>();
-            var oldTable = cassandraService.GetItemsTable(await cassandraService.GetCassandraSession());
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().ToList();
@@ -144,13 +143,9 @@ namespace Coflnet.Sky.PlayerState.Services
                     return Task.CompletedTask;
                 }
             }));
-            if (found.Count > 100)
+            if (found.Count > 35)
             {
-                var biggest = res.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
-                var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
-                var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggest.First())).Select(e => e.Id).ToList();
-                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count}");
-                await Task.WhenAll(matchingIds.Select(i => oldTable.Where(o => o.Id == i).Delete().ExecuteAsync()));
+                await YeetBadData(table, found);
             }
             return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
             /*
@@ -164,6 +159,15 @@ namespace Coflnet.Sky.PlayerState.Services
             */
         }
 
+        private static async Task YeetBadData(Table<CassandraItem> table, List<CassandraItem> found)
+        {
+
+            var biggest = found.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
+            var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
+            var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggest.First())).Select(e => e.Id).ToList();
+            Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count}");
+            await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i).Delete().ExecuteAsync()));
+        }
 
         public async Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids)
         {
