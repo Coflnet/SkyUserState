@@ -144,10 +144,13 @@ namespace Coflnet.Sky.PlayerState.Services
                     return Task.CompletedTask;
                 }
             }));
-            if(found.Count > 500)
+            if (found.Count > 100)
             {
-                var biggest = found.GroupBy(f => (f.Tag,f.ItemId)).OrderByDescending(g => g.Count()).First();
-                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId}");
+                var biggest = res.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
+                var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
+                var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggest.First())).Select(e => e.Id).ToList();
+                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count}");
+                await Task.WhenAll(matchingIds.Select(i => oldTable.Where(o => o.Id == i).Delete().ExecuteAsync()));
             }
             return found.Concat(toCreate).Select(s => s.ToTransfer()).ToList();
             /*
