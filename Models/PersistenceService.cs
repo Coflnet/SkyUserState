@@ -149,7 +149,8 @@ public class Inventory
     public Inventory(StateObject stateObject)
     {
         PlayerId = stateObject.PlayerId;
-        Serialized = LZ4MessagePackSerializer.Serialize(stateObject);
+        var copy = new StateObject(stateObject);
+        Serialized = LZ4MessagePackSerializer.Serialize(copy);
     }
 
     public Inventory()

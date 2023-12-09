@@ -52,6 +52,23 @@ public class StateObject
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
     [IgnoreMember]
     public DateTime LastAccess { get; internal set; }
+
+    public StateObject()
+    {
+    }
+    // deep copy constructor
+    public StateObject(StateObject other)
+    {
+        Inventory = new List<Item>(other.Inventory);
+        Storage = new List<List<Item>>(other.Storage);
+        RecentViews = new Queue<ChestView>(other.RecentViews);
+        ChatHistory = new Queue<ChatMessage>(other.ChatHistory);
+        PurseHistory = new Queue<PurseUpdate>(other.PurseHistory);
+        McInfo = other.McInfo;
+        PlayerId = other.PlayerId;
+        Profiles = new List<Profile>(other.Profiles);
+        BazaarOffers = new List<Offer>(other.BazaarOffers);
+    }
 }
 
 [MessagePackObject]
