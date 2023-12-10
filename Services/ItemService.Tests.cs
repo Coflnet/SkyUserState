@@ -41,4 +41,13 @@ public class ItemServiceTests
         // bigger = better
         Assert.AreEqual(202, badItems.matchingIds.Count);
     }
+    [Test]
+    public void FindDupplicateItemsGlacialScythe()
+    {
+        var data = System.IO.File.ReadAllText("Mock/glacialScythe.json");
+        var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Models.Item>>(data);
+        var badItems = ItemsService.FindBadItems(items.Select(i=>new CassandraItem(i)).ToList());
+        // bigger = better
+        Assert.AreEqual(251, badItems.matchingIds.Count);
+    }
 }

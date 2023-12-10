@@ -73,7 +73,11 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
                 // for nested objects
                 hash = hash * 23 + item.Value.ToString().GetHashCode();
         }
-        return HashCode.Combine(hash, obj.Enchantments?.Sum(e => e.Value), obj.Tag);
+        foreach (var item in obj.Enchantments ?? new Dictionary<string, int>())
+        {
+            hash = hash * 23 + item.Key.GetHashCode() + item.Value;
+        }
+        return HashCode.Combine(hash, obj.Tag);
     }
 }
 
