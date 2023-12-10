@@ -36,7 +36,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
     private static JObject Normalize(CassandraItem? x)
     {
         var left = JsonConvert.DeserializeObject<JObject>(x?.ExtraAttributesJson ?? "{}");
-        left.Remove("drill_fuel");
+        left!.Remove("drill_fuel");
         left.Remove("compact_blocks");
         left.Remove("bottle_of_jyrre_seconds");
         left.Remove("bottle_of_jyrre_last_update");
@@ -44,6 +44,14 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         left.Remove("champion_combat_xp");
         left.Remove("farmed_cultivating");
         left.Remove("mined_crops");
+        if(left.TryGetValue("petInfo", out var petInfoGeneric) && petInfoGeneric is JObject petInfo)
+        {
+            petInfo.Remove("active");
+            petInfo.Remove("noMove");
+            petInfo.Remove("uniqueId");
+            left.Remove("timestamp");
+            left.Remove("tier");
+        }
         foreach (var item in left.Properties().ToList())
         {
             // if value is bigger than 100 ignore
