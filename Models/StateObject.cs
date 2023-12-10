@@ -56,18 +56,27 @@ public class StateObject
     public StateObject()
     {
     }
-    // deep copy constructor
+    // deep copy constructor with null checks
     public StateObject(StateObject other)
     {
-        Inventory = new List<Item>(other.Inventory);
-        Storage = new List<List<Item>>(other.Storage);
-        RecentViews = new Queue<ChestView>(other.RecentViews);
-        ChatHistory = new Queue<ChatMessage>(other.ChatHistory);
-        PurseHistory = new Queue<PurseUpdate>(other.PurseHistory);
-        McInfo = other.McInfo;
-        PlayerId = other.PlayerId;
-        Profiles = new List<Profile>(other.Profiles);
-        BazaarOffers = new List<Offer>(other.BazaarOffers);
+        if (other.Inventory != null)
+            Inventory = new List<Item>(other.Inventory);
+        if (other.Storage != null)
+            Storage = new List<List<Item>>(other.Storage);
+        if (other.RecentViews != null)
+            RecentViews = new Queue<ChestView>(other.RecentViews);
+        if (other.ChatHistory != null)
+            ChatHistory = new Queue<ChatMessage>(other.ChatHistory);
+        if (other.PurseHistory != null)
+            PurseHistory = new Queue<PurseUpdate>(other.PurseHistory);
+        if (other.McInfo != null)
+            McInfo = other.McInfo;
+        if (other.PlayerId != null)
+            PlayerId = other.PlayerId;
+        if (other.Profiles != null)
+            Profiles = new List<Profile>(other.Profiles);
+        if (other.BazaarOffers != null)
+            BazaarOffers = new List<Offer>(other.BazaarOffers);
     }
 }
 

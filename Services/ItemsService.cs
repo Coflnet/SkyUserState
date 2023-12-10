@@ -143,7 +143,7 @@ namespace Coflnet.Sky.PlayerState.Services
                     return Task.CompletedTask;
                 }
             }));
-            if (found.Count > 35)
+            if (found.Count > 90)
             {
                 await YeetBadData(table, found);
             }
