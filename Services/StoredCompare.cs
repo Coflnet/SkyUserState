@@ -63,7 +63,15 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         foreach (var item in left)
         {
             hash = hash * 23 + item.Key.GetHashCode();
-            hash = hash * 23 + item.Value?.GetHashCode() ?? 0;
+            if (item.Value.Type == JTokenType.Integer)
+                hash = hash * 23 + item.Value.Value<int>();
+            else if (item.Value.Type == JTokenType.Float)
+                hash = hash * 23 + item.Value.Value<double>().GetHashCode();
+            else if (item.Value.Type == JTokenType.String)
+                hash = hash * 23 + item.Value.Value<string>()?.GetHashCode() ?? 0;
+            else
+                // for nested objects
+                hash = hash * 23 + item.Value.ToString().GetHashCode();
         }
         return HashCode.Combine(hash, obj.Enchantments?.Sum(e => e.Value), obj.Tag);
     }

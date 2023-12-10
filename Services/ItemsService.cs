@@ -161,13 +161,18 @@ namespace Coflnet.Sky.PlayerState.Services
 
         private static async Task YeetBadData(Table<CassandraItem> table, List<CassandraItem> found)
         {
+            (IGrouping<(string Tag, Guid ItemId), CassandraItem> biggest, List<long?> matchingIds) = FindBadItems(found);
+            await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i && o.ItemId == biggest.Key.ItemId && o.Tag == biggest.Key.Tag).Delete().ExecuteAsync()));
+        }
 
+        public static (IGrouping<(string Tag, Guid ItemId), CassandraItem> biggest, List<long?> matchingIds) FindBadItems(List<CassandraItem> found)
+        {
             var biggest = found.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
             var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
             var biggestGroup = elements.GroupBy(g => (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(g)).OrderByDescending(g => g.Count()).First();
             var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggestGroup.First())).Select(e => e.Id).Skip(1).ToList();
             Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count} from {biggestGroup.Count()}");
-            await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i && o.ItemId == biggest.Key.ItemId && o.Tag == biggest.Key.Tag).Delete().ExecuteAsync()));
+            return (biggest, matchingIds);
         }
 
         public async Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids)
