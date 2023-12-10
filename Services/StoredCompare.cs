@@ -55,7 +55,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         foreach (var item in left.Properties().ToList())
         {
             // if value is bigger than 100 ignore
-            if (item.Value.Type == JTokenType.Integer && item.Value.Value<int>() > 100)
+            if (item.Value.Type == JTokenType.Integer && item.Value.Value<long>() > 100)
                 left.Remove(item.Name);
             // also for float 
             if (item.Value.Type == JTokenType.Float && item.Value.Value<double>() > 100)
