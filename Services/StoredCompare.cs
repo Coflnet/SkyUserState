@@ -62,7 +62,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             // also for float 
             if (item.Value.Type == JTokenType.Float && item.Value.Value<double>() > 100)
                 left.Remove(item.Name);
-            if(item.Name.EndsWith("_data"))
+            if(item.Name.EndsWith("_data") || item.Name.StartWith("personal_deletor_"))
                 left.Remove(item.Name);
         }
         return left;
