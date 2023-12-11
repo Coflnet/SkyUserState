@@ -62,7 +62,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             // also for float 
             if (item.Value.Type == JTokenType.Float && item.Value.Value<double>() > 100)
                 left.Remove(item.Name);
-            if(item.Name.EndsWith("_data") || item.Name.StartWith("personal_deletor_"))
+            if(item.Name.EndsWith("_data") || item.Name.StartsWith("personal_deletor_"))
                 left.Remove(item.Name);
         }
         return left;
@@ -76,7 +76,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         {
             hash = hash * 23 + item.Key.GetHashCode();
             if (item.Value.Type == JTokenType.Integer)
-                hash = hash * 23 + item.Value.Value<int>();
+                hash = hash * 23 + unchecked((int)item.Value.Value<long>());
             else if (item.Value.Type == JTokenType.Float)
                 hash = hash * 23 + item.Value.Value<double>().GetHashCode();
             else if (item.Value.Type == JTokenType.String)
