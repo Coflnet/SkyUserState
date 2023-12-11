@@ -30,7 +30,8 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         return x != null && y != null && JToken.DeepEquals(Normalize(x), Normalize(y))
            && (x.Enchantments == y.Enchantments || y.Enchantments?.Count == x.Enchantments?.Count && y.Enchantments != null && x.Enchantments != null && !x.Enchantments.Except(y.Enchantments).Any())
            && x.Color == y.Color
-           && x.Tag == y.Tag;
+           && x.Tag == y.Tag
+           && (x.ItemName == null || y.ItemName == null || x.ItemName == y.ItemName);
     }
 
     private static JObject Normalize(CassandraItem? x)
@@ -51,6 +52,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             petInfo.Remove("uniqueId");
             left.Remove("timestamp");
             left.Remove("tier");
+            left.Remove("exp");
         }
         foreach (var item in left.Properties().ToList())
         {
