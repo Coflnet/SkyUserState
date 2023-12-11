@@ -50,9 +50,9 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             petInfo.Remove("active");
             petInfo.Remove("noMove");
             petInfo.Remove("uniqueId");
+            petInfo.Remove("exp");
             left.Remove("timestamp");
             left.Remove("tier");
-            left.Remove("exp");
         }
         foreach (var item in left.Properties().ToList())
         {
