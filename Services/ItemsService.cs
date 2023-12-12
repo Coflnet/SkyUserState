@@ -170,7 +170,13 @@ namespace Coflnet.Sky.PlayerState.Services
             var biggest = found.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
             var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
             var biggestGroup = elements.GroupBy(g => (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(g)).OrderByDescending(g => g.Count()).First();
-            var matchingIds = elements.Where(e => cassandraCompare.Equals(e, biggestGroup.First())).Select(e => e.Id).Skip(1).ToList();
+            if(biggestGroup.Count() <= 2)
+            {
+                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {biggestGroup.Count()}");
+                return (biggest, new List<long?>());
+            }
+            var matchingElement = biggestGroup.Skip(Random.Shared.Next(0, biggestGroup.Count() - 1)).First();
+            var matchingIds = elements.Where(e => cassandraCompare.Equals(e, matchingElement)).Select(e => e.Id).Skip(1).ToList();
             Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count} from {biggestGroup.Count()}");
             return (biggest, matchingIds);
         }
