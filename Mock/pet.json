@@ -1,0 +1,4203 @@
+[
+    {
+        "id": 614017231511400,
+        "itemName": "§7[Lvl 148] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 113786696.02182382,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "12/12/23 11:01 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613992930450400,
+        "itemName": "§7[Lvl 148] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 113762715.99432382,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613075929353521,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111680589.73502332,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613072315607521,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111670320.58556336,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613065816263555,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111660832.11215341,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613057327512562,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111652100.35596831,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 613047846549521,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111601699.11065336,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612796922864555,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111477195.68525727,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612451340624562,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111434340.93525727,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612286783358545,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111409774.8166872,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612249166720896,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111409774.8166872,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612204957089896,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111388305.46587737,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612203882243896,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111388305.46587737,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612183766083748,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111347996.56815732,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612183240704748,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111347996.56815732,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612150965626421,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111314653.08057952,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612150858169748,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111314653.08057952,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612051113148314,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111286180.28187959,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612051070565315,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111286180.28187959,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612038232342314,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111286180.28187959,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 612022385357695,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111237271.74267927,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611988887702698,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111219057.12210926,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611980327174698,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111212020.57904427,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611980281665697,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111212020.57904427,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611969129959697,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111211161.08751926,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611948215153750,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111211161.08751926,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611948153626750,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111211161.08751926,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611945835476903,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111179113.18751925,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611706008719750,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111133509.58993413,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611674213811817,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111171257.36443427,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611672358637815,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111169705.34143426,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611672120248813,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111169705.34143426,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611670716642284,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111100888.77231248,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611666786000875,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111171257.36443427,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611659607802873,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111157363.71313424,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611653785790875,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111119689.73489901,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611651913798816,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111100888.77231248,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611639636017875,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111117533.02008247,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611626403871328,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111070832.0119373,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611596155432332,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 111068829.18138231,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611572480943391,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 111006095.84118277,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 611433511642398,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110787108.36886072,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610729751675764,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110562216.08509661,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610554677582098,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110562216.08509661,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610520574368098,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110451935.19756602,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610511823620764,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110450279.70636599,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610484774059098,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110418389.19573565,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610484761821881,
+        "itemName": "§7[Lvl 147] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110418389.19573565,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610473649424098,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110247380.20484982,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "12/8/23 8:35 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610461271573764,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110242142.50886978,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610460531087098,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110242142.50886978,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610388357480098,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110178088.84658983,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610388350664265,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110178088.84658983,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610336603362577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110169936.25789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610330653773265,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110169936.25789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 610320698233513,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110004852.30789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false,
+                "noMove": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 609573136509577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 110004852.30789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 609571068763577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 110004852.30789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 609563586749577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109961997.55789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 609535418293668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109961997.55789477,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 609467133151668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109853806.98867717,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608836209063577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109853806.98867717,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608771440114577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109799514.83249484,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608716550913548,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109711923.0466848,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608702899892181,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109670810.3776098,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608649429036668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109630633.6891192,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608603600705668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109630633.6891192,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608596880334577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109609773.45529407,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608566541674668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109609773.45529407,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608521247491668,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109367017.22103518,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608363334498577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109328880.18405522,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608021732460577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109286025.43405522,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 608015169831577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109286025.43405522,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607980836519577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109231055.1694951,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607978623541181,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109231055.1694951,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607969703588181,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109202547.44449511,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607968858069577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109202547.44449511,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607088048120577,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 109077035.32520999,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607071239726504,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 109077035.32520999,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 607068453727504,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108865929.10020998,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606291068668221,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108865929.10020998,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606242132481221,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108815328.47275296,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "12/3/23 11:03 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606207791180221,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108787241.49787305,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606207753116221,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108787241.49787305,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606205250029737,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108787111.39162305,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606204757206737,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108787111.39162305,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 606192454036221,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108631101.77366805,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604586999800499,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108529426.14866805,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604507838933142,
+        "itemName": "§7[Lvl 146] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108529426.14866805,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604459692488142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108319373.64037259,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604410183795142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108186972.21203728,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604307840269818,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 108134916.0479897,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 604307742869142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 108134916.0479897,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603772791732499,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107910591.99173969,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603618477474015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107676561.6051063,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603563600605379,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107607337.55129136,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603475816351379,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107502462.46261537,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603437994931481,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 107383088.64826535,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 603327268829379,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107383088.64826535,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602584062700015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 107196660.84826535,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602527287456015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107196660.84826535,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602522484175015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107194505.18366534,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602522482610142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107194505.18366534,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602518579323142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107079728.75236529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602449306269015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 107071416.40861529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 602437795040142,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106866086.25861529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601941584117481,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106866086.25861529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601934311622015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106861588.75861529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/28/23 11:23 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601934164248481,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106861588.75861529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601732672061015,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106861548.60236529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601680198988818,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106861548.60236529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601680175552481,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106861548.60236529,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/28/23 4:20 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601676003218379,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106636654.32736526,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 601675773002499,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106636654.32736526,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600763887162499,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106562710.65102015,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600753262692499,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106560782.80946712,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600746535542739,
+        "itemName": "§7[Lvl 145] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106560782.80946712,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600141141010499,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106347254.35946712,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600121539483739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106347254.35946712,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600115522650739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106347254.35946712,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/26/23 8:52 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600112521274739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106307656.57046719,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/26/23 8:47 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600112423626818,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106307656.57046719,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600107697234499,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106299160.25964075,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600106380834739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106300065.87068956,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600106331594739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106299352.30556355,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600106248386818,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106299280.06810635,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 600079955564739,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106120484.21484166,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599962271861250,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 106120474.92814665,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599960962537801,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106120474.92814665,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599960096123801,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106120474.92814665,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/26/23 4:33 AM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599954387783747,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 106042095.90421905,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599948339508747,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 105929146.78275412,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599885319494747,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 105929146.78275412,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599560020594907,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 105678353.33275412,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599531808357747,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 105672496.86604191,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599529326811894,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 105678353.33275412,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599503757123747,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 105578532.72907193,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599498834644894,
+        "itemName": "§7[Lvl 144] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 105578532.72907193,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599491990422747,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 104031693.99474908,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599489359375894,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 104032461.66402967,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "DWARF_TURTLE_SHELMET",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599476073758747,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 104006709.98646891,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599474560799894,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 104031693.99474908,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599471581608894,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 103996287.51594877,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599468365537747,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 102968545.00938182,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599466173633907,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 104031693.99474908,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/25/23 2:47 PM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599464093043894,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 102968545.00938182,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": true
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+            "timestamp": "11/25/23 2:26 PM",
+            "tier": 5
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599461850399894,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 102931364.13784334,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 599312668234358,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 102717180.33784334,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 598323012568169,
+        "itemName": "§7[Lvl 143] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 102717180.33784334,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 598305694346169,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 102355450.08604193,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 598291083877812,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 101737553.75028734,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 598281179958909,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 101556267.36532941,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597666651159432,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 101323271.1730395,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597637644336587,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 101323271.1730395,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597596628433761,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 101313769.48468949,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597510950604587,
+        "itemName": "§7[Lvl 142] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 101313769.48468949,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597349062417587,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 100565371.1825682,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597335367781011,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 100419648.6012733,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597312211509011,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 100419648.6012733,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597303326119011,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 100229854.1012733,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 597298492270011,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 100229854.1012733,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 596896334802587,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 100218844.2212733,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 596885687275761,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 99985566.59239547,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 596853241314067,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": false,
+                "exp": 99426789.37394175,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    },
+    {
+        "id": 596486121047756,
+        "itemName": "§7[Lvl 141] §6Golden Dragon",
+        "tag": "PET_GOLDEN_DRAGON",
+        "extraAttributes": {
+            "petInfo": {
+                "type": "GOLDEN_DRAGON",
+                "active": true,
+                "exp": 99426789.37394175,
+                "tier": "LEGENDARY",
+                "hideInfo": false,
+                "heldItem": "PET_ITEM_COMBAT_SKILL_BOOST_RARE",
+                "candyUsed": 0,
+                "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923",
+                "uniqueId": "fa9d61a4-de3c-434f-bbb9-5d2a03b6909c",
+                "hideRightClick": false
+            },
+            "uid": "afbf9f9ab923",
+            "uuid": "b57d6ef4-e335-4372-8315-afbf9f9ab923"
+        },
+        "enchantments": {},
+        "color": null,
+        "description": null,
+        "count": 1
+    }
+]

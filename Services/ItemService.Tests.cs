@@ -36,6 +36,7 @@ public class ItemServiceTests
     [TestCase("glacialScythe.json",251)]
     [TestCase("iceSprayWand.json",7)]
     [TestCase("jyrre.json",6)]
+    [TestCase("pet.json",45)]
     public void FindDupplicateItemsLarge(string fileName, int expected)
     {
         var data = System.IO.File.ReadAllText($"Mock/{fileName}");

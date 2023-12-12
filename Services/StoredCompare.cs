@@ -52,6 +52,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             petInfo.Remove("uniqueId");
             petInfo.Remove("exp");
             petInfo.Remove("noMove");
+            petInfo.Remove("hideInfo");
             petInfo.Remove("hideRightClick");
             left.Remove("timestamp");
             left.Remove("tier");
@@ -90,7 +91,7 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
         {
             hash = hash * 23 + item.Key.GetHashCode() + item.Value;
         }
-        return HashCode.Combine(hash, obj.Tag);
+        return HashCode.Combine(hash, obj.Tag, obj.ItemName);
     }
 }
 
