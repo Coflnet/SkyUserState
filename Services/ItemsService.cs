@@ -172,7 +172,7 @@ namespace Coflnet.Sky.PlayerState.Services
         public static (IGrouping<(string Tag, Guid ItemId, int code), CassandraItem> biggest, List<long?> matchingIds) FindBadItems(List<CassandraItem> found)
         {
             var biggest = found.GroupBy(f => (f.Tag, f.ItemId, (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(f))).OrderByDescending(g => g.Count()).First();
-            var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
+            var elements = biggest.OrderBy(biggest => biggest.Id).Skip(1).ToList();
             if (biggest.Count() <= 2)
             {
                 if (found.Count > 90)

@@ -22,21 +22,23 @@ public class ItemServiceTests
         "uuid": "40e86d04-e6f4-4bb7-a7d0-661c8c47dd65"}
         """;
         var badItems = ItemsService.FindBadItems(new List<Models.CassandraItem>() {
-            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
-            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
-            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
-            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
-            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
+            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 5},
+            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 4},
+            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 3},
+            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 2},
+            new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 1},
         });
-        Assert.AreEqual(3, badItems.matchingIds.Count);
+        Assert.AreEqual(4, badItems.matchingIds.Count);
+        // keep oldest - id is time based snowflake
+        Assert.IsFalse(badItems.matchingIds.Any(id=>id == 1));
     }
 
 
-    [TestCase("dupplicateItems.json",202)]
-    [TestCase("glacialScythe.json",251)]
-    [TestCase("iceSprayWand.json",8)]
-    [TestCase("jyrre.json",7)]
-    [TestCase("pet.json",44)]
+    [TestCase("dupplicateItems.json",203)]
+    [TestCase("glacialScythe.json",252)]
+    [TestCase("iceSprayWand.json",9)]
+    [TestCase("jyrre.json",8)]
+    [TestCase("pet.json",45)]
     public void FindDupplicateItemsLarge(string fileName, int expected)
     {
         var data = System.IO.File.ReadAllText($"Mock/{fileName}");
