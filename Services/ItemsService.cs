@@ -143,7 +143,7 @@ namespace Coflnet.Sky.PlayerState.Services
                     return Task.CompletedTask;
                 }
             }));
-            if (found.Count > 90)
+            if (found.Count > 30)
             {
                 await YeetBadData(table, found);
             }
@@ -162,6 +162,10 @@ namespace Coflnet.Sky.PlayerState.Services
         private static async Task YeetBadData(Table<CassandraItem> table, List<CassandraItem> found)
         {
             (IGrouping<(string Tag, Guid ItemId, int hash), CassandraItem> biggest, List<long?> matchingIds) = FindBadItems(found);
+            if (matchingIds.Count == 0)
+            {
+                return;
+            }
             await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i && o.ItemId == biggest.Key.ItemId && o.Tag == biggest.Key.Tag).Delete().ExecuteAsync()));
         }
 
@@ -169,9 +173,10 @@ namespace Coflnet.Sky.PlayerState.Services
         {
             var biggest = found.GroupBy(f => (f.Tag, f.ItemId, (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(f))).OrderByDescending(g => g.Count()).First();
             var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
-            if(biggest.Count() <= 2)
+            if (biggest.Count() <= 2)
             {
-                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {biggest.Count()}");
+                if (found.Count > 90)
+                    Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {biggest.Count()}");
                 return (biggest, new List<long?>());
             }
             var matchingElement = elements.Skip(Random.Shared.Next(0, biggest.Count() - 1)).First();
