@@ -32,22 +32,16 @@ public class ItemServiceTests
     }
 
 
-    [Test]
-    public void FindDupplicateItemsLarge()
+    [TestCase("dupplicateItems.json",202)]
+    [TestCase("glacialScythe.json",251)]
+    [TestCase("iceSprayWand.json",7)]
+    [TestCase("jyrre.json",6)]
+    public void FindDupplicateItemsLarge(string fileName, int expected)
     {
-        var data = System.IO.File.ReadAllText("Mock/dupplicateItems.json");
+        var data = System.IO.File.ReadAllText($"Mock/{fileName}");
         var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Models.Item>>(data);
         var badItems = ItemsService.FindBadItems(items.Select(i=>new CassandraItem(i)).ToList());
         // bigger = better
-        Assert.AreEqual(202, badItems.matchingIds.Count);
-    }
-    [Test]
-    public void FindDupplicateItemsGlacialScythe()
-    {
-        var data = System.IO.File.ReadAllText("Mock/glacialScythe.json");
-        var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Models.Item>>(data);
-        var badItems = ItemsService.FindBadItems(items.Select(i=>new CassandraItem(i)).ToList());
-        // bigger = better
-        Assert.AreEqual(251, badItems.matchingIds.Count);
-    }
+        Assert.AreEqual(expected, badItems.matchingIds.Count);
+    }    
 }

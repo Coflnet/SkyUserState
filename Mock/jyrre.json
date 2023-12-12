@@ -1,0 +1,155 @@
+[
+	{
+		"id": 607223510294518,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345420,
+			"bottle_of_jyrre_last_update": 1701716808445,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607222802378776,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345430,
+			"bottle_of_jyrre_last_update": 1701716809598,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607222500133768,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345410,
+			"bottle_of_jyrre_last_update": 1701716802644,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607217280002579,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345440,
+			"bottle_of_jyrre_last_update": 1701716810496,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607217217202774,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345280,
+			"bottle_of_jyrre_last_update": 1701716694039,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607217173129577,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345460,
+			"bottle_of_jyrre_last_update": 1701716812647,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607217057704580,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345380,
+			"bottle_of_jyrre_last_update": 1701716795280,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607216912220587,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345370,
+			"bottle_of_jyrre_last_update": 1701716785184,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	},
+	{
+		"id": 607216735464586,
+		"itemName": "§9§cBottle of Jyrre",
+		"tag": "NEW_BOTTLE_OF_JYRRE",
+		"extraAttributes": {
+			"bottle_of_jyrre_seconds": 345360,
+			"bottle_of_jyrre_last_update": 1701716775125,
+			"uid": "072aec9fc333",
+			"uuid": "8f07b3f1-b247-402d-b6eb-072aec9fc333",
+			"timestamp": "12/2/23 4:09 PM",
+			"tier": 3
+		},
+		"enchantments": {},
+		"color": null,
+		"description": null,
+		"count": 1
+	}
+]

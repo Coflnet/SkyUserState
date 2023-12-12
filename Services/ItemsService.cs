@@ -116,7 +116,7 @@ namespace Coflnet.Sky.PlayerState.Services
             var table = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().ToList();
-            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).ExecuteAsync();
+            var res = await table.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).Take(20_000).ExecuteAsync();
             var found = res.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
             Activity.Current?.AddTag("tags", string.Join(",", tags));
