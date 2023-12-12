@@ -51,12 +51,13 @@ public class CassandraItemCompare : IEqualityComparer<CassandraItem>
             petInfo.Remove("noMove");
             petInfo.Remove("uniqueId");
             petInfo.Remove("exp");
+            petInfo.Remove("noMove");
+            petInfo.Remove("hideRightClick");
             left.Remove("timestamp");
             left.Remove("tier");
         }
         foreach (var item in left.Properties().ToList())
         {
-            // if value is bigger than 100 ignore
             if (item.Value.Type == JTokenType.Integer && item.Value.Value<long>() > 20)
                 left.Remove(item.Name);
             // also for float 
