@@ -161,23 +161,22 @@ namespace Coflnet.Sky.PlayerState.Services
 
         private static async Task YeetBadData(Table<CassandraItem> table, List<CassandraItem> found)
         {
-            (IGrouping<(string Tag, Guid ItemId), CassandraItem> biggest, List<long?> matchingIds) = FindBadItems(found);
+            (IGrouping<(string Tag, Guid ItemId, int hash), CassandraItem> biggest, List<long?> matchingIds) = FindBadItems(found);
             await Task.WhenAll(matchingIds.Select(i => table.Where(o => o.Id == i && o.ItemId == biggest.Key.ItemId && o.Tag == biggest.Key.Tag).Delete().ExecuteAsync()));
         }
 
-        public static (IGrouping<(string Tag, Guid ItemId), CassandraItem> biggest, List<long?> matchingIds) FindBadItems(List<CassandraItem> found)
+        public static (IGrouping<(string Tag, Guid ItemId, int code), CassandraItem> biggest, List<long?> matchingIds) FindBadItems(List<CassandraItem> found)
         {
-            var biggest = found.GroupBy(f => (f.Tag, f.ItemId)).OrderByDescending(g => g.Count()).First();
+            var biggest = found.GroupBy(f => (f.Tag, f.ItemId, (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(f))).OrderByDescending(g => g.Count()).First();
             var elements = biggest.Skip(1).Reverse().Skip(1).ToList();
-            var biggestGroup = elements.GroupBy(g => (cassandraCompare as IEqualityComparer<CassandraItem>).GetHashCode(g)).OrderByDescending(g => g.Count()).First();
-            if(biggestGroup.Count() <= 2)
+            if(biggest.Count() <= 2)
             {
-                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {biggestGroup.Count()}");
+                Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {biggest.Count()}");
                 return (biggest, new List<long?>());
             }
-            var matchingElement = biggestGroup.Skip(Random.Shared.Next(0, biggestGroup.Count() - 1)).First();
-            var matchingIds = elements.Where(e => cassandraCompare.Equals(e, matchingElement)).Select(e => e.Id).Skip(1).ToList();
-            Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count} from {biggestGroup.Count()}");
+            var matchingElement = elements.Skip(Random.Shared.Next(0, biggest.Count() - 1)).First();
+            var matchingIds = elements.Where(e => cassandraCompare.Equals(e, matchingElement)).Select(e => e.Id).ToList();
+            Console.WriteLine($"Found {found.Count} items with tag {biggest.Key.Tag} and uuid {biggest.Key.ItemId} deleting {matchingIds.Count} from {biggest.Count()}");
             return (biggest, matchingIds);
         }
 

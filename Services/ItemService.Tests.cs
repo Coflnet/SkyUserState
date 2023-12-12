@@ -28,15 +28,15 @@ public class ItemServiceTests
             new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
             new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson},
         });
-        Assert.AreEqual(2, badItems.matchingIds.Count);
+        Assert.AreEqual(3, badItems.matchingIds.Count);
     }
 
 
     [TestCase("dupplicateItems.json",202)]
     [TestCase("glacialScythe.json",251)]
-    [TestCase("iceSprayWand.json",7)]
-    [TestCase("jyrre.json",6)]
-    [TestCase("pet.json",45)]
+    [TestCase("iceSprayWand.json",8)]
+    [TestCase("jyrre.json",7)]
+    [TestCase("pet.json",44)]
     public void FindDupplicateItemsLarge(string fileName, int expected)
     {
         var data = System.IO.File.ReadAllText($"Mock/{fileName}");
