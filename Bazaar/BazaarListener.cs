@@ -44,25 +44,26 @@ public class BazaarListener : UpdateListener
 
     private static Offer ParseOffer(Item item)
     {
-        var parts = item.Description.Split("\n");
+        var parts = item.Description!.Split("\n");
 
         var amount = parts.Where(p => p.Contains("amount: §a")).First().Split("amount: §a").Last().Split("§").First();
         var pricePerUnit = parts.Where(p => p.StartsWith("§7Price per unit: §6")).First().Split("§7Price per unit: §6").Last().Split(" coins").First();
+        var customers =  parts.Where(p => p.StartsWith("§8- §a")).Select(p => new Fill()
+            {
+                Amount = ParseInt(p.Split("§8- §a").Last().Split("§7x").First()),
+                PlayerName = p.Split("§8- §a").Last().Split("§7x").Last().Split("§f §8").First().Trim(),
+                TimeStamp = DateTime.Now
+            }).ToList();
 
         var offer = new Offer()
         {
-            IsSell = item.ItemName.StartsWith("§6§lSELL"),
+            IsSell = item.ItemName!.StartsWith("§6§lSELL"),
             ItemTag = item.Tag,
             Amount = ParseInt(amount),
             PricePerUnit = double.Parse(pricePerUnit, System.Globalization.CultureInfo.InvariantCulture),
             ItemName = item.ItemName.Substring("§6§lSELL ".Length),
             Created = item.Description.Contains("Expired") ? default : DateTime.Now,
-            Customers = parts.Where(p => p.StartsWith("§8- §a")).Select(p => new Fill()
-            {
-                Amount = ParseInt(p.Split("§8- §a").Last().Split("§7x").First()),
-                PlayerName = p.Split("§8- §a").Last().Split("§7x").Last().Split("§f §8").First().Trim(),
-                TimeStamp = DateTime.Now
-            }).ToList()
+            Customers =customers
         };
         return offer;
     }
