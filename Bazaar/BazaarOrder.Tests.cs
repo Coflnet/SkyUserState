@@ -93,7 +93,7 @@ public class BazaarOrderTests
         Assert.That(currentState.BazaarOffers[0].PricePerUnit, Is.EqualTo(303.7 / 64));
 
         await listener.Process(CreateArgs("[Bazaar] Your Sell Offer for 64x Coal was filled!"));
-
+        await listener.Process(CreateArgs("[Bazaar] Your co-op Sell Offer for 1x Wither Blood was filled!"));
         return;
         AssertCoalSell();
         Assert.AreEqual(3, invokeCount);

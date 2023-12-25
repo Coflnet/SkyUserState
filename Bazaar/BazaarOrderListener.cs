@@ -66,7 +66,7 @@ public class BazaarOrderListener : UpdateListener
         }
         if (msg.Contains("filled!"))
         {
-            var parts = Regex.Match(msg, @"Your (Buy Order|Sell Offer) for ([\d,]+)x (.+) was filled!").Groups;
+            var parts = Regex.Match(msg, @"Your .*(Buy Order|Sell Offer) for ([\d,]+)x (.+) was filled!").Groups;
             amount = ParseInt(parts[2].Value);
             itemName = parts[3].Value;
             // find price from order
