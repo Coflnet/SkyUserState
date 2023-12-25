@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <GenerateProgramFile>false</GenerateProgramFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
@@ -19,6 +19,7 @@
     <Compile Remove="**\*.Tests.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <PackageReference Include="Coflnet.Sky.Bazaar.Client" Version="0.3.1" />
     <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />

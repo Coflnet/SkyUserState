@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyPlayerState", "SkyPlayerState.csproj", "{CEA0C7D7-0CB5-418E-BDEC-E40414F8D634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hypixel", "..\dev\hypixel.csproj", "{5451FE75-9363-49FE-8D32-DEEA5FF5C612}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEA0C7D7-0CB5-418E-BDEC-E40414F8D634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA0C7D7-0CB5-418E-BDEC-E40414F8D634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA0C7D7-0CB5-418E-BDEC-E40414F8D634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA0C7D7-0CB5-418E-BDEC-E40414F8D634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5451FE75-9363-49FE-8D32-DEEA5FF5C612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5451FE75-9363-49FE-8D32-DEEA5FF5C612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5451FE75-9363-49FE-8D32-DEEA5FF5C612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5451FE75-9363-49FE-8D32-DEEA5FF5C612}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D223709C-558C-4203-BFFF-24EA81641B42}
+	EndGlobalSection
+EndGlobal
