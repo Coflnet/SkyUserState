@@ -39,7 +39,7 @@ public class ItemIdAssignUpdate : UpdateListener
     private static bool CanGetAnIdByStoring(Item i, string chestName)
     {
         // one extra attribute is the tier
-        return (i.ExtraAttributes != null && i.ExtraAttributes.Count > 1) && !IsNpcSell(i) && !IsBazaar(chestName) && !IsDungeonItem(i);
+        return i.ExtraAttributes != null && i.ExtraAttributes.Count > 1 && !IsNpcSell(i) && !IsBazaar(chestName) && !IsDungeonItem(i);
     }
 
     private static bool IsDungeonItem(Item i)
@@ -56,7 +56,9 @@ public class ItemIdAssignUpdate : UpdateListener
     private static bool IsNpcSell(Item i)
     {
         // Another valid indicator would be "Click to trade!"
-        return i.Description?.Contains("§7Cost\n") ?? false;
+        return (i.Description?.Contains("§7Cost\n") ?? false)
+        // Firesales have different lore
+        || (i.Description?.Contains("§7Cost: §a") ?? false);
     }
 
     private IEnumerable<Item> Join(IEnumerable<Item> original, IEnumerable<Item> stored)
