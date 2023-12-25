@@ -34,7 +34,9 @@ public class BazaarListener : UpdateListener
                 var key = OrderKey(offer);
                 if (orderLookup.Contains(key))
                 {
-                    var existing = orderLookup[key].First(o => o.Customers.FirstOrDefault()?.PlayerName == offer.Customers.FirstOrDefault()?.PlayerName || o.Customers.Count == 0);
+                    var existing = orderLookup[key].OrderByDescending(o =>
+                        (o.Customers.FirstOrDefault()?.PlayerName == offer.Customers.FirstOrDefault()?.PlayerName ? 10 : 0) - Math.Abs(o.Customers.Count - offer.Customers.Count))
+                        .First();
                     offer.Created = existing.Created;
                     // update customer timestamps
                     foreach (var customer in offer.Customers)
