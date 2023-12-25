@@ -21,7 +21,9 @@ public class BazaarListener : UpdateListener
         var orderLookup = args.currentState.BazaarOffers.ToLookup(OrderKey, o => o);
         foreach (var item in bazaarItems)
         {
-            if (string.IsNullOrWhiteSpace(item?.Description) || string.IsNullOrWhiteSpace(item.ItemName))
+            if (string.IsNullOrWhiteSpace(item?.Description)
+                || string.IsNullOrWhiteSpace(item.ItemName)
+                || !item.Description.Contains("§7Price per unit: §6"))
                 continue;
             if (item.ItemName.Contains("Go Back"))
                 break;
