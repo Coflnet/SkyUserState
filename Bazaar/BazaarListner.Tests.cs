@@ -41,6 +41,15 @@ public class BazaarListnerTests
                 PricePerUnit = 1820.9,
                 IsSell = true,
                 Created = time,
+                Customers = new ()
+                {
+                    new ()
+                    {
+                        Amount = 1501,
+                        PlayerName = "§b[MVP§2+§b] Terminator602",
+                        TimeStamp = time
+                    },
+                }
             }
         };
         args.currentState.BazaarOffers = offer;
@@ -49,6 +58,9 @@ public class BazaarListnerTests
         var stored = args.currentState.BazaarOffers.First();
         Assert.That(BazaarListener.OrderKey(stored), Is.EqualTo(BazaarListener.OrderKey(offer.First())));
         Assert.That(stored.Created, Is.EqualTo(offer.First().Created));
+        Assert.That(stored.Customers, Has.Count.EqualTo(2));
+        Assert.That(stored.Customers[0].TimeStamp, Is.EqualTo(time), 
+            "Customer timestamp should not be updated as previous time is more exact");
     }
 
     private static UpdateArgs GetArgs()

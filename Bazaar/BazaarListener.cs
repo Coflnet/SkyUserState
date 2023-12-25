@@ -33,7 +33,15 @@ public class BazaarListener : UpdateListener
                 if(orderLookup.TryGetValue(key, out var existing))
                 {
                     offer.Created = existing.Created;
-                    offer.Customers = existing.Customers;
+                    // update customer timestamps
+                    foreach (var customer in offer.Customers)
+                    {
+                        var existingCustomer = existing.Customers.FirstOrDefault(c => c.PlayerName == customer.PlayerName);
+                        if(existingCustomer != null)
+                        {
+                            customer.TimeStamp = existingCustomer.TimeStamp;
+                        }
+                    }
                 }
                 else
                 {
