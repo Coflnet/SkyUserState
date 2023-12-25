@@ -224,6 +224,14 @@ public class BazaarOrderTests
         transactionService.VerifyAll();
     }
 
+    [Test]
+    public async Task IgnoresMessage()
+    {
+        await listener.Process(CreateArgs("[Bazaar] There are no Buy Orders for this product!"));
+        Assert.AreEqual(0, currentState.BazaarOffers.Count);
+        Assert.AreEqual(0, invokeCount);
+    }
+
     private MockedUpdateArgs CreateArgs(params string[] msgs)
     {
         var args = new MockedUpdateArgs()

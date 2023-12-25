@@ -15,7 +15,7 @@ public class BazaarOrderListener : UpdateListener
     {
         await Parallel.ForEachAsync(args.msg.ChatBatch, async (item, ct) =>
         {
-            if (!item.StartsWith("[Bazaar]"))
+            if (!item.StartsWith("[Bazaar]") || item.StartsWith("[Bazaar] There are no"))
                 return;
             await HandleUpdate(item, args);
         });
