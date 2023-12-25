@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
@@ -11,7 +12,48 @@ public class BazaarListnerTests
     [Test]
     public async Task Parse()
     {
-        var args = new UpdateArgs()
+        UpdateArgs args = GetArgs();
+        var listener = new BazaarListener();
+        await listener.Process(args);
+        Assert.AreEqual(2, args.currentState.BazaarOffers.Count);
+        Assert.AreEqual(2640, args.currentState.BazaarOffers[0].Amount);
+        Assert.AreEqual(1820.9, args.currentState.BazaarOffers[0].PricePerUnit);
+        Assert.AreEqual(2, args.currentState.BazaarOffers[0].Customers.Count);
+        Assert.AreEqual(1501, args.currentState.BazaarOffers[0].Customers[0].Amount);
+        Assert.AreEqual("§b[MVP§2+§b] Terminator602", args.currentState.BazaarOffers[0].Customers[0].PlayerName);
+        Assert.AreEqual(139, args.currentState.BazaarOffers[0].Customers[1].Amount);
+        Assert.AreEqual("§a[VIP§6+§a] Luka_Daddy", args.currentState.BazaarOffers[0].Customers[1].PlayerName);
+        Assert.AreEqual(400, args.currentState.BazaarOffers[1].Amount);
+        Assert.AreEqual(25130.6, args.currentState.BazaarOffers[1].PricePerUnit);
+    }
+
+    [Test]
+    public async Task UpdateNotOverride()
+    {
+        UpdateArgs args = GetArgs();
+        var time = new DateTime(2021, 1, 1) + TimeSpan.FromSeconds(Random.Shared.Next(1, 100000));
+        var offer = new List<Offer>()
+        {
+            new Offer()
+            {
+                Amount = 2640,
+                ItemName = "Enchanted Rotten Flesh",
+                PricePerUnit = 1820.9,
+                IsSell = true,
+                Created = time,
+            }
+        };
+        args.currentState.BazaarOffers = offer;
+        var listener = new BazaarListener();
+        await listener.Process(args);
+        var stored = args.currentState.BazaarOffers.First();
+        Assert.That(BazaarListener.OrderKey(stored), Is.EqualTo(BazaarListener.OrderKey(offer.First())));
+        Assert.That(stored.Created, Is.EqualTo(offer.First().Created));
+    }
+
+    private static UpdateArgs GetArgs()
+    {
+        return new UpdateArgs()
         {
             currentState = new(),
             msg = new UpdateMessage()
@@ -51,17 +93,5 @@ Tag = "ROTTEN_FLESH"
                 }
             }
         };
-        var listener = new BazaarListener();
-        await listener.Process(args);
-        Assert.AreEqual(2, args.currentState.BazaarOffers.Count);
-        Assert.AreEqual(2640, args.currentState.BazaarOffers[0].Amount);
-        Assert.AreEqual(1820.9, args.currentState.BazaarOffers[0].PricePerUnit);
-        Assert.AreEqual(2, args.currentState.BazaarOffers[0].Customers.Count);
-        Assert.AreEqual(1501, args.currentState.BazaarOffers[0].Customers[0].Amount);
-        Assert.AreEqual("§b[MVP§2+§b] Terminator602", args.currentState.BazaarOffers[0].Customers[0].PlayerName);
-        Assert.AreEqual(139, args.currentState.BazaarOffers[0].Customers[1].Amount);
-        Assert.AreEqual("§a[VIP§6+§a] Luka_Daddy", args.currentState.BazaarOffers[0].Customers[1].PlayerName);
-        Assert.AreEqual(400, args.currentState.BazaarOffers[1].Amount);
-        Assert.AreEqual(25130.6, args.currentState.BazaarOffers[1].PricePerUnit);
     }
 }

@@ -5,6 +5,7 @@ using Coflnet.Sky.PlayerState.Services;
 using Coflnet.Sky.PlayerState.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
 
@@ -17,6 +18,7 @@ public class BazaarListener : UpdateListener
         var offers = new List<Offer>();
         // only the first 5 rows (x9) are potential orders (to include bazaar upgrade)
         var bazaarItems = args.msg.Chest.Items.Take(45);
+        var orderLookup = args.currentState.BazaarOffers.ToDictionary(OrderKey, o => o);
         foreach (var item in bazaarItems)
         {
             if (string.IsNullOrWhiteSpace(item?.Description) || string.IsNullOrWhiteSpace(item.ItemName))
@@ -27,6 +29,16 @@ public class BazaarListener : UpdateListener
             try
             {
                 Offer offer = ParseOffer(item);
+                var key = OrderKey(offer);
+                if(orderLookup.TryGetValue(key, out var existing))
+                {
+                    offer.Created = existing.Created;
+                    offer.Customers = existing.Customers;
+                }
+                else
+                {
+                    offer.Created = args.msg.ReceivedAt;
+                }
                 offers.Add(offer);
             }
             catch (Exception e)
@@ -42,18 +54,23 @@ public class BazaarListener : UpdateListener
         return Task.CompletedTask;
     }
 
+    public static string OrderKey(Offer o)
+    {
+        return o.Amount + Regex.Replace(o.ItemName, "(§.)*", "") + o.PricePerUnit;
+    }
+
     private static Offer ParseOffer(Item item)
     {
         var parts = item.Description!.Split("\n");
 
         var amount = parts.Where(p => p.Contains("amount: §a")).First().Split("amount: §a").Last().Split("§").First();
         var pricePerUnit = parts.Where(p => p.StartsWith("§7Price per unit: §6")).First().Split("§7Price per unit: §6").Last().Split(" coins").First();
-        var customers =  parts.Where(p => p.StartsWith("§8- §a")).Select(p => new Fill()
-            {
-                Amount = ParseInt(p.Split("§8- §a").Last().Split("§7x").First()),
-                PlayerName = p.Split("§8- §a").Last().Split("§7x").Last().Split("§f §8").First().Trim(),
-                TimeStamp = DateTime.Now
-            }).ToList();
+        var customers = parts.Where(p => p.StartsWith("§8- §a")).Select(p => new Fill()
+        {
+            Amount = ParseInt(p.Split("§8- §a").Last().Split("§7x").First()),
+            PlayerName = p.Split("§8- §a").Last().Split("§7x").Last().Split("§f §8").First().Trim(),
+            TimeStamp = DateTime.Now
+        }).ToList();
 
         var offer = new Offer()
         {
@@ -63,7 +80,7 @@ public class BazaarListener : UpdateListener
             PricePerUnit = double.Parse(pricePerUnit, System.Globalization.CultureInfo.InvariantCulture),
             ItemName = item.ItemName.Substring("§6§lSELL ".Length),
             Created = item.Description.Contains("Expired") ? default : DateTime.Now,
-            Customers =customers
+            Customers = customers
         };
         return offer;
     }

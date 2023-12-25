@@ -25,24 +25,14 @@ public class ItemIdAssignUpdate : UpdateListener
         var foundLocal = toSearchFor.Select(s => localPresent.GetValueOrDefault(s)).Where(s => s != null).ToList();
         var toSearchInDb = toSearchFor.Except(foundLocal, comparer).ToList();
         var itemsWithIds = toSearchInDb.Count > 0 ? await service.FindOrCreate(toSearchInDb) : new List<Item>();
-        foreach (var item in localPresent.Keys)
-        {
-            if (item.Tag != "BOOSTER_COOKIE")
-                continue;
-            Console.WriteLine($"found local: {JsonConvert.SerializeObject(item)}");
-        }
-        Console.WriteLine("to search: " + toSearchFor.Count + " found local: " + foundLocal.Count + " from db: " + itemsWithIds.Count + " present: " + localPresent.Count);
+
+        if (toSearchFor.Count > 0)
+            Console.WriteLine("to search: " + toSearchFor.Count + " found local: " + foundLocal.Count + " from db: " + itemsWithIds.Count + " present: " + localPresent.Count);
         Activity.Current?.AddTag("to search", toSearchFor.Count.ToString());
         Activity.Current?.AddTag("found local", foundLocal.Count.ToString());
         Activity.Current?.AddTag("from db", itemsWithIds.Count.ToString());
         Activity.Current?.AddTag("present", localPresent.Count.ToString());
         Activity.Current?.AddTag("chest", chestName);
-        foreach (var item in itemsWithIds)
-        {
-            if (item.Tag != "BOOSTER_COOKIE")
-                continue;
-            Console.WriteLine($"from db: {JsonConvert.SerializeObject(item)}");
-        }
         args.msg.Chest.Items = Join(collection, itemsWithIds.Concat(foundLocal)).ToList();
     }
 

@@ -66,7 +66,12 @@ public class StateObject
         if (other.RecentViews != null)
             RecentViews = new Queue<ChestView>(other.RecentViews);
         if (other.ChatHistory != null)
-            ChatHistory = new Queue<ChatMessage>(other.ChatHistory);
+        {
+            var intermediate = new ChatMessage[other.ChatHistory.Count];
+            // prevent concurrent modification
+            other.ChatHistory.CopyTo(intermediate, 0);
+            ChatHistory = new Queue<ChatMessage>(intermediate);
+        }
         if (other.PurseHistory != null)
             PurseHistory = new Queue<PurseUpdate>(other.PurseHistory);
         if (other.McInfo != null)

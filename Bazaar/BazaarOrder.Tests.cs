@@ -82,13 +82,15 @@ public class BazaarOrderTests
                     "[Bazaar] Sell Offer Setup! 64x Coal for 303.7 coins.");
         await listener.Process(args);
 
-        var expectedType = Transaction.TransactionType.BAZAAR | Transaction.TransactionType.Move;
         transactionService.Verify(t => t.AddTransactions(It.Is<Transaction>(t =>
                         t.Type == Transaction.TransactionType.BazaarListSell
                         && t.Amount == 64
                         && t.ItemId == 5
                         )
                     ), Times.Once);
+        Assert.That(currentState.BazaarOffers.Count, Is.EqualTo(1));
+        Assert.That(currentState.BazaarOffers[0].Amount, Is.EqualTo(64));
+        Assert.That(currentState.BazaarOffers[0].PricePerUnit, Is.EqualTo(303.7 / 64));
 
         await listener.Process(CreateArgs("[Bazaar] Your Sell Offer for 64x Coal was filled!"));
 

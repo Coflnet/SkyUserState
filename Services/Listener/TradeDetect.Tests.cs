@@ -26,7 +26,9 @@ public class TradeDetectTests
     public async Task TriggersTrades()
     {
         // console logger for ILogger<TradeDetect>
-        var logger = LoggerFactory.Create(b => b.AddConsole()).CreateLogger<TradeDetect>();
+        var logger = LoggerFactory.Create(b => {
+            //b.AddConsole();
+        }).CreateLogger<TradeDetect>();
         var service = new TradeDetect(logger);
         var inventory = JsonConvert.DeserializeObject<UpdateMessage>(Inventory)!.Chest;
         var args = GetUpdateArgs(ChatUpdate);
