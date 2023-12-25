@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
@@ -32,32 +34,34 @@ public class BazaarListnerTests
     {
         UpdateArgs args = GetArgs();
         var time = new DateTime(2021, 1, 1) + TimeSpan.FromSeconds(Random.Shared.Next(1, 100000));
-        var offer = new List<Offer>()
+        var offer = new Offer()
         {
-            new Offer()
+            Amount = 2640,
+            ItemName = "Enchanted Rotten Flesh",
+            PricePerUnit = 1820.9,
+            IsSell = true,
+            Created = time,
+            Customers = new()
             {
-                Amount = 2640,
-                ItemName = "Enchanted Rotten Flesh",
-                PricePerUnit = 1820.9,
-                IsSell = true,
-                Created = time,
-                Customers = new ()
+                new()
                 {
-                    new ()
-                    {
-                        Amount = 1501,
-                        PlayerName = "§b[MVP§2+§b] Terminator602",
-                        TimeStamp = time
-                    },
-                }
+                    Amount = 1501,
+                    PlayerName = "§b[MVP§2+§b] Terminator602",
+                    TimeStamp = time
+                },
             }
         };
-        args.currentState.BazaarOffers = offer;
+        var offers = new List<Offer>()
+        {
+            offer,
+            offer
+        };
+        args.currentState.BazaarOffers = offers;
         var listener = new BazaarListener();
         await listener.Process(args);
         var stored = args.currentState.BazaarOffers.First();
-        Assert.That(BazaarListener.OrderKey(stored), Is.EqualTo(BazaarListener.OrderKey(offer.First())));
-        Assert.That(stored.Created, Is.EqualTo(offer.First().Created));
+        Assert.That(BazaarListener.OrderKey(stored), Is.EqualTo(BazaarListener.OrderKey(offer)));
+        Assert.That(stored.Created, Is.EqualTo(offer.Created));
         Assert.That(stored.Customers, Has.Count.EqualTo(2));
         Assert.That(stored.Customers[0].TimeStamp, Is.EqualTo(time), 
             "Customer timestamp should not be updated as previous time is more exact");

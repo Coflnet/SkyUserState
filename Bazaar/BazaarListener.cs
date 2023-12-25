@@ -18,7 +18,7 @@ public class BazaarListener : UpdateListener
         var offers = new List<Offer>();
         // only the first 5 rows (x9) are potential orders (to include bazaar upgrade)
         var bazaarItems = args.msg.Chest.Items.Take(45);
-        var orderLookup = args.currentState.BazaarOffers.ToDictionary(OrderKey, o => o);
+        var orderLookup = args.currentState.BazaarOffers.ToLookup(OrderKey, o => o);
         foreach (var item in bazaarItems)
         {
             if (string.IsNullOrWhiteSpace(item?.Description) || string.IsNullOrWhiteSpace(item.ItemName))
@@ -30,14 +30,15 @@ public class BazaarListener : UpdateListener
             {
                 Offer offer = ParseOffer(item);
                 var key = OrderKey(offer);
-                if(orderLookup.TryGetValue(key, out var existing))
+                if (orderLookup.Contains(key))
                 {
+                    var existing = orderLookup[key].First(o => o.Customers.FirstOrDefault()?.PlayerName == offer.Customers.FirstOrDefault()?.PlayerName);
                     offer.Created = existing.Created;
                     // update customer timestamps
                     foreach (var customer in offer.Customers)
                     {
                         var existingCustomer = existing.Customers.FirstOrDefault(c => c.PlayerName == customer.PlayerName);
-                        if(existingCustomer != null)
+                        if (existingCustomer != null)
                         {
                             customer.TimeStamp = existingCustomer.TimeStamp;
                         }
@@ -64,7 +65,7 @@ public class BazaarListener : UpdateListener
 
     public static string OrderKey(Offer o)
     {
-        return o.Amount + Regex.Replace(o.ItemName, "(§.)*", "") + o.PricePerUnit;
+        return o.IsSell.ToString() + o.Amount + Regex.Replace(o.ItemName, "(§.)*", "") + o.PricePerUnit;
     }
 
     private static Offer ParseOffer(Item item)
