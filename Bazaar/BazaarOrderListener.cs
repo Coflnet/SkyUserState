@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Globalization;
+using Coflnet.Sky.EventBroker.Client.Api;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
 
@@ -48,20 +49,32 @@ public class BazaarOrderListener : UpdateListener
             amount = ParseInt(parts[1].Value);
             itemName = parts[2].Value;
             price = ParseCoins(parts[3].Value);
-            args.currentState.BazaarOffers.Add(new Offer()
+            var order = new Offer()
             {
                 Amount = amount,
                 ItemName = itemName,
                 PricePerUnit = (double)price / amount / 10,
                 IsSell = side.HasFlag(Transaction.TransactionType.REMOVE),
                 Created = args.msg.ReceivedAt,
-            });
+            };
+            args.currentState.BazaarOffers.Add(order);
 
             if (isSell)
                 await AddItemTransaction(args, Transaction.TransactionType.BazaarListSell, amount, itemName);
             else
                 await AddCoinTransaction(args, Transaction.TransactionType.BazaarListSell, price);
 
+            var scheduleApi = args.GetService<IScheduleApi>();
+
+            if (args.msg.UserId != null)
+                await scheduleApi.ScheduleUserIdPostAsync(args.msg.UserId, DateTime.UtcNow + TimeSpan.FromDays(7), new()
+                {
+                    Summary = "Bazaar order expired",
+                    Message = $"Your bazaar order for {itemName} expired",
+                    Reference = BazaarListener.OrderKey(order),
+                    SourceType = "user-state",
+                    SourceSubId = "bazaar-expire"
+                });
             return;
         }
         if (msg.Contains("filled!"))

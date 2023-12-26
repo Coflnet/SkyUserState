@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Coflnet.Sky.EventBroker.Client.Api;
+using Coflnet.Sky.EventBroker.Client.Model;
 using Coflnet.Sky.Items.Client.Api;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
@@ -15,6 +17,8 @@ public class BazaarOrderTests
     BazaarOrderListener listener = new BazaarOrderListener();
     StateObject currentState = null!;
     int invokeCount = 0;
+    private Mock<IScheduleApi> scheduleApi;
+
     [SetUp]
     public void Setup()
     {
@@ -92,6 +96,9 @@ public class BazaarOrderTests
         Assert.That(currentState.BazaarOffers[0].Amount, Is.EqualTo(64));
         Assert.That(currentState.BazaarOffers[0].PricePerUnit, Is.EqualTo(303.7 / 64));
 
+        scheduleApi.Verify(s => s.ScheduleUserIdPostAsync("5", It.IsAny<DateTime>(), It.Is<MessageContainer>(con =>
+            con.Message == "Your bazaar order for Coal expired"
+        ), 0, default), Times.Once);
         await listener.Process(CreateArgs("[Bazaar] Your Sell Offer for 64x Coal was filled!"));
         await listener.Process(CreateArgs("[Bazaar] Your co-op Sell Offer for 1x Wither Blood was filled!"));
         return;
@@ -239,13 +246,16 @@ public class BazaarOrderTests
             currentState = currentState,
             msg = new UpdateMessage()
             {
-                ChatBatch = msgs.ToList()
+                ChatBatch = msgs.ToList(),
+                UserId = "5"
             }
         };
         var itemsApi = new Mock<IItemsApi>();
+        scheduleApi = new Mock<IScheduleApi>();
         itemsApi.Setup(i => i.ItemsSearchTermIdGetAsync(It.IsAny<string>(), 0, default)).ReturnsAsync(5);
         args.AddService<IItemsApi>(itemsApi.Object);
         args.AddService<ITransactionService>(transactionService.Object);
+        args.AddService(scheduleApi.Object);
 
         return args;
     }

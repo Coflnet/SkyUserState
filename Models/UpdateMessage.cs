@@ -19,7 +19,7 @@ public class UpdateMessage
     [Key(4)]
     public string PlayerId;
     [Key(5)]
-    public string SessionId { get; set; }
+    public string UserId { get; set; }
 
     public enum UpdateKind 
     {

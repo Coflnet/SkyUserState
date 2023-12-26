@@ -6,15 +6,16 @@ using Coflnet.Sky.PlayerState.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using Coflnet.Sky.EventBroker.Client.Api;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
 
 public class BazaarListener : UpdateListener
 {
-    public override Task Process(UpdateArgs args)
+    public override async Task Process(UpdateArgs args)
     {
         if (args.msg.Chest?.Name != "Your Bazaar Orders" && args.msg.Chest?.Name != "Co-op Bazaar Orders")
-            return Task.CompletedTask;
+            return;
         var offers = new List<Offer>();
         // only the first 5 rows (x9) are potential orders (to include bazaar upgrade)
         var bazaarItems = args.msg.Chest.Items.Take(45);
@@ -64,7 +65,30 @@ public class BazaarListener : UpdateListener
         }
         Console.WriteLine($"Found {offers.Count} bazaar offers for {args.currentState.PlayerId}");
         args.currentState.BazaarOffers = offers;
-        return Task.CompletedTask;
+
+        if (orderLookup.SelectMany(o => o).Count() == offers.Count)
+            return;
+        // order count changed update notifications
+        try
+        {
+            var service = args.GetService<IScheduleApi>();
+            var currentLookup = offers.ToLookup(OrderKey, o => o);
+            var notifications = await service.ScheduleUserIdGetAsync(args.msg.UserId);
+            var bazaarNotifications = notifications.Where(n => n?.Message?.SourceSubId?.StartsWith("bazaar-expire") ?? false).ToList();
+            args.GetService<ILogger<BazaarListener>>()
+                .LogInformation("Found {count} bazaar notifications from {totalNotifications}", bazaarNotifications.Count, notifications.Count);
+            foreach (var notification in bazaarNotifications)
+            {
+                if (currentLookup.Contains(notification.Message.Reference))
+                    continue;
+                await service.ScheduleUserIdIdDeleteAsync(args.msg.UserId, notification.Id);
+                args.GetService<ILogger<BazaarListener>>().LogInformation("Removed bazaar notification {id}", notification.Id);
+            }
+        }
+        catch (Exception e)
+        {
+            args.GetService<ILogger<BazaarListener>>().LogError(e, "Error updating bazaar notifications");
+        }
     }
 
     public static string OrderKey(Offer o)
