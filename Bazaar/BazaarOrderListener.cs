@@ -227,6 +227,7 @@ public class BazaarOrderListener : UpdateListener
                 Timestamp = args.msg.ReceivedAt,
                 PlayerName = args.currentState.McInfo.Name
             });
+            args.GetService<ILogger<BazaarOrderListener>>().LogInformation("Added order to order book for {user} {item} {amount} {price}", args.currentState.McInfo.Name, tag, amount, price);
         }
         catch (Exception e)
         {
