@@ -7,6 +7,8 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Globalization;
 using Coflnet.Sky.EventBroker.Client.Api;
+using Coflnet.Sky.Bazaar.Client.Api;
+using Microsoft.Extensions.Logging;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
 
@@ -64,17 +66,11 @@ public class BazaarOrderListener : UpdateListener
             else
                 await AddCoinTransaction(args, Transaction.TransactionType.BazaarListSell, price);
 
-            var scheduleApi = args.GetService<IScheduleApi>();
 
-            if (args.msg.UserId != null)
-                await scheduleApi.ScheduleUserIdPostAsync(args.msg.UserId, DateTime.UtcNow + TimeSpan.FromDays(7), new()
-                {
-                    Summary = "Bazaar order expired",
-                    Message = $"Your bazaar order for {itemName} expired",
-                    Reference = BazaarListener.OrderKey(order),
-                    SourceType = "user-state",
-                    SourceSubId = "bazaar-expire"
-                });
+            if (args.msg.UserId == null)
+                return;
+            await RegisterUserEvents(args, side, amount, itemName, price, order);
+
             return;
         }
         if (msg.Contains("filled!"))
@@ -200,6 +196,41 @@ public class BazaarOrderListener : UpdateListener
                 Type = side,
             };
             await args.GetService<ITransactionService>().AddTransactions(mainTransaction);
+        }
+    }
+
+    private static async Task RegisterUserEvents(UpdateArgs args, Transaction.TransactionType side, int amount, string itemName, long price, Offer order)
+    {
+        var scheduleApi = args.GetService<IScheduleApi>();
+        await scheduleApi.ScheduleUserIdPostAsync(args.msg.UserId, DateTime.UtcNow + TimeSpan.FromDays(7), new()
+        {
+            Summary = "Bazaar order expired",
+            Message = $"Your bazaar order for {itemName} expired",
+            Reference = BazaarListener.OrderKey(order),
+            SourceType = "user-state",
+            SourceSubId = "bazaar-expire"
+        });
+
+        try
+        {
+            var orderBookApi = args.GetService<IOrderBookApi>();
+            var itemApi = args.GetService<IItemsApi>();
+            var searchResult = await itemApi.ItemsSearchTermGetAsync(itemName);
+            var tag = searchResult.First().Tag;
+            await orderBookApi.OrderBookPostAsync(new()
+            {
+                Amount = amount,
+                UserId = args.msg.UserId,
+                ItemId = tag,
+                PricePerUnit = (double)price / amount / 10,
+                IsSell = side.HasFlag(Transaction.TransactionType.REMOVE),
+                Timestamp = args.msg.ReceivedAt,
+                PlayerName = args.currentState.McInfo.Name
+            });
+        }
+        catch (Exception e)
+        {
+            args.GetService<ILogger<BazaarOrderListener>>().LogError(e, "Error adding order to order book");
         }
     }
 

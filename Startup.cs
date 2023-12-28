@@ -21,6 +21,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Authentication;
 using System.Linq;
 using System.Collections.Generic;
+using Coflnet.Sky.Bazaar.Client.Api;
 
 namespace Coflnet.Sky.PlayerState;
 public class Startup
@@ -82,6 +83,7 @@ public class Startup
         services.AddSingleton<IScheduleApi>(sp => new ScheduleApi(Configuration["EVENTS_BASE_URL"]));
         services.AddSingleton<IPlayerNameApi>(sp => new PlayerNameApi(Configuration["PLAYERNAME_BASE_URL"]));
         services.AddSingleton<IBaseApi>(sp => new BaseApi(Configuration["PROXY_BASE_URL"]));
+        services.AddSingleton<IOrderBookApi>(sp => new OrderBookApi(Configuration["BAZAAR_BASE_URL"]));
 
         services.AddSingleton<IItemsApi>(context => new ItemsApi(Configuration["ITEMS_BASE_URL"]));
         RegisterScyllaSession(services);
