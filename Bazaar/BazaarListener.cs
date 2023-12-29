@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using Coflnet.Sky.EventBroker.Client.Api;
+using Coflnet.Sky.Core;
 
 namespace Coflnet.Sky.PlayerState.Bazaar;
 
@@ -93,10 +94,10 @@ public class BazaarListener : UpdateListener
 
     public static string OrderKey(Offer o)
     {
-        return o.IsSell.ToString() + o.Amount + Regex.Replace(o.ItemName, "(§.)*", "") + o.PricePerUnit;
+        return o.IsSell.ToString() + o.Amount + o.PricePerUnit+ Regex.Replace(o.ItemName, "(§.)*", "").Truncate(32);
     }
 
-    private static Offer ParseOffer(Item item)
+    private static Offer ParseOffer(Models.Item item)
     {
         var parts = item.Description!.Split("\n");
 
