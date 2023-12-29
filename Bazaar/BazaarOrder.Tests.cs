@@ -1,11 +1,14 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Coflnet.Sky.Bazaar.Client.Api;
 using Coflnet.Sky.EventBroker.Client.Api;
 using Coflnet.Sky.EventBroker.Client.Model;
 using Coflnet.Sky.Items.Client.Api;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
 using Coflnet.Sky.PlayerState.Tests;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using NUnit.Framework;
 
@@ -18,6 +21,7 @@ public class BazaarOrderTests
     StateObject currentState = null!;
     int invokeCount = 0;
     private Mock<IScheduleApi> scheduleApi;
+    private Mock<BazaarOrderListener> orderBookApi;
 
     [SetUp]
     public void Setup()
@@ -252,9 +256,12 @@ public class BazaarOrderTests
         };
         var itemsApi = new Mock<IItemsApi>();
         scheduleApi = new Mock<IScheduleApi>();
+        orderBookApi = new Mock<BazaarOrderListener>();
         itemsApi.Setup(i => i.ItemsSearchTermIdGetAsync(It.IsAny<string>(), 0, default)).ReturnsAsync(5);
         args.AddService<IItemsApi>(itemsApi.Object);
         args.AddService<ITransactionService>(transactionService.Object);
+        args.AddService(orderBookApi.Object);
+        args.AddService<ILogger<BazaarOrderListener>>(NullLogger<BazaarOrderListener>.Instance);
         args.AddService(scheduleApi.Object);
 
         return args;

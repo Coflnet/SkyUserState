@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Coflnet.Sky.PlayerState.Models;
 using Coflnet.Sky.PlayerState.Services;
+using Coflnet.Sky.PlayerState.Tests;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -69,7 +72,7 @@ public class BazaarListnerTests
 
     private static UpdateArgs GetArgs()
     {
-        return new UpdateArgs()
+        var args = new MockedUpdateArgs()
         {
             currentState = new(),
             msg = new UpdateMessage()
@@ -109,5 +112,7 @@ Tag = "ROTTEN_FLESH"
                 }
             }
         };
+        args.AddService<ILogger<BazaarListener>>(NullLogger<BazaarListener>.Instance);
+        return args;
     }
 }
