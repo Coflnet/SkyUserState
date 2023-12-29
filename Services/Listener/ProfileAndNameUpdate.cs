@@ -16,7 +16,10 @@ public class ProfileAndNameUpdate : UpdateListener
         {
             var uuid = await nameService.PlayerNameUuidNameGetAsync(args.msg.PlayerId);
             if (uuid != null)
+            {
                 state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
+                state.McInfo.Name = args.msg.PlayerId;
+            }
         }
         // TODO find profile
     }
