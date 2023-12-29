@@ -92,9 +92,15 @@ public class BazaarListener : UpdateListener
         }
     }
 
+    /// <summary>
+    /// Creates a key for the offer to be able to compare them
+    /// capped at 32 characters because the eventbroker doesn't allow more
+    /// </summary>
+    /// <param name="o"></param>
+    /// <returns></returns>
     public static string OrderKey(Offer o)
     {
-        return o.IsSell.ToString() + o.Amount + o.PricePerUnit+ Regex.Replace(o.ItemName, "(§.)*", "").Truncate(32);
+        return ((o.IsSell ? "s" : "b") + o.Amount + o.PricePerUnit+ Regex.Replace(o.ItemName, "(§.)*", "")).Truncate(32);
     }
 
     private static Offer ParseOffer(Models.Item item)
