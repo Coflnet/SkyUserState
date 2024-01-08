@@ -207,8 +207,8 @@ public class BazaarOrderListener : UpdateListener
             Summary = "Bazaar order expired",
             Message = $"Your bazaar order for {itemName} expired",
             Reference = BazaarListener.OrderKey(order),
-            SourceType = "userstate",
-            SourceSubId = "bazaar-expire"
+            SourceType = "BazaarExpire",
+            SourceSubId = itemName
         });
 
         try
