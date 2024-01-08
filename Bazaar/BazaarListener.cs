@@ -75,7 +75,7 @@ public class BazaarListener : UpdateListener
             var service = args.GetService<IScheduleApi>();
             var currentLookup = offers.ToLookup(OrderKey, o => o);
             var notifications = await service.ScheduleUserIdGetAsync(args.msg.UserId);
-            var bazaarNotifications = notifications.Where(n => n?.Message?.SourceSubId?.StartsWith("bazaar-expire") ?? false).ToList();
+            var bazaarNotifications = notifications.Where(n => n?.Message?.SourceType?.StartsWith("BazaarExpire") ?? false).ToList();
             args.GetService<ILogger<BazaarListener>>()
                 .LogInformation("Found {count} bazaar notifications from {totalNotifications}", bazaarNotifications.Count, notifications.Count);
             foreach (var notification in bazaarNotifications)
