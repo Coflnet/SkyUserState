@@ -77,7 +77,7 @@ public class BazaarListener : UpdateListener
             var notifications = await service.ScheduleUserIdGetAsync(args.msg.UserId);
             var bazaarNotifications = notifications.Where(n => n?.Message?.SourceType?.StartsWith("BazaarExpire") ?? false).ToList();
             args.GetService<ILogger<BazaarListener>>()
-                .LogInformation("Found {count} bazaar notifications from {totalNotifications}", bazaarNotifications.Count, notifications.Count);
+                .LogInformation("Found {count} bazaar notifications from {totalNotifications} for {user}", bazaarNotifications.Count, notifications.Count, args.msg.UserId);
             foreach (var notification in bazaarNotifications)
             {
                 if (currentLookup.Contains(notification.Message.Reference))
