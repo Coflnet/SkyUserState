@@ -48,6 +48,8 @@ public class StateObject
     public List<Profile> Profiles;
     [Key(8)]
     public List<Offer> BazaarOffers = new();
+    [Key(9)]
+    public ExtractedInfo ExtractedInfo = new();
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
     [IgnoreMember]
@@ -84,7 +86,6 @@ public class StateObject
             BazaarOffers = new List<Offer>(other.BazaarOffers);
     }
 }
-
 [MessagePackObject]
 public class McInfo
 {

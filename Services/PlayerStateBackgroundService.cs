@@ -56,6 +56,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         AddHandler<AhBrowserListener>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<BazaarListener>(UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<RecentViewsUpdate>(UpdateMessage.UpdateKind.INVENTORY);
+        AddHandler<BoosterCookieExtractor>(UpdateMessage.UpdateKind.INVENTORY);
 
         AddHandler<TradeDetect>(UpdateMessage.UpdateKind.INVENTORY | UpdateMessage.UpdateKind.CHAT);
         this.persistenceService = persistenceService;

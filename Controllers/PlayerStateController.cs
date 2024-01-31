@@ -50,5 +50,13 @@ namespace Coflnet.Sky.PlayerState.Controllers
             var data = await service.GetStateObject(playerId);
             return data?.RecentViews?.LastOrDefault()?.Items ?? throw new CoflnetException("no_inventory", $"No inventory found for {playerId}. Make sure you use the CoflMod and opened your inventory.");
         }
+
+        [HttpGet]
+        [Route("{playerId}/extracted")]
+        public async Task<ExtractedInfo> GetPlayerData(string playerId)
+        {
+            var data = await service.GetStateObject(playerId);
+            return data?.ExtractedInfo ?? throw new CoflnetException("no_player_data", $"No player data found for {playerId}. Make sure you use the CoflMod and opened the skyblock menu.");
+        }
     }
 }
