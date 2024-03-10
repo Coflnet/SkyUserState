@@ -127,7 +127,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
             {
                 await Update(update);
                 consumeCount.Inc();
-            })), Task.Delay(TimeSpan.FromSeconds(1)));
+            })), Task.Delay(TimeSpan.FromSeconds(0.5)));
 
 
             KeepStateCountInCheck();
