@@ -74,6 +74,8 @@ public class BazaarListener : UpdateListener
         {
             var service = args.GetService<IScheduleApi>();
             var currentLookup = offers.ToLookup(OrderKey, o => o);
+            if (args.msg.UserId == null)
+                return; // not logged in, no notifications
             var notifications = await service.ScheduleUserIdGetAsync(args.msg.UserId);
             var bazaarNotifications = notifications.Where(n => n?.Message?.SourceType?.StartsWith("BazaarExpire") ?? false).ToList();
             args.GetService<ILogger<BazaarListener>>()
