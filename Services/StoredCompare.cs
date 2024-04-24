@@ -110,7 +110,7 @@ public class CassandraCompareTests
         var cassandraItem = new CassandraItem(item);
         var cassandraItem2 = new CassandraItem(item);
         cassandraItem.Enchantments!["sharpness"] = 2;
-        Assert.IsFalse(compare.Equals(cassandraItem, cassandraItem2));
+        Assert.That(!compare.Equals(cassandraItem, cassandraItem2));
     }
 
     [Test]
@@ -126,9 +126,9 @@ public class CassandraCompareTests
         var cassandraItem = new CassandraItem(item);
         item.ExtraAttributes["compact_blocks"] = 20000;
         var cassandraItem2 = new CassandraItem(item);
-        Assert.IsTrue(compare.Equals(cassandraItem, cassandraItem2));
+        Assert.That(compare.Equals(cassandraItem, cassandraItem2));
         // hashcode
-        Assert.AreEqual(compare.GetHashCode(cassandraItem), compare.GetHashCode(cassandraItem2));
+        Assert.That(compare.GetHashCode(cassandraItem), Is.EqualTo(compare.GetHashCode(cassandraItem2)));
     }
 
     [Test]
@@ -143,9 +143,9 @@ public class CassandraCompareTests
         var cassandraItem = new CassandraItem(item);
         item.ExtraAttributes["champion_combat_xp"] = 20000.0f;
         var cassandraItem2 = new CassandraItem(item);
-        Assert.IsTrue(compare.Equals(cassandraItem, cassandraItem2));
+        Assert.That(compare.Equals(cassandraItem, cassandraItem2));
         // hashcode
-        Assert.AreEqual(compare.GetHashCode(cassandraItem), compare.GetHashCode(cassandraItem2));
+        Assert.That(compare.GetHashCode(cassandraItem), Is.EqualTo(compare.GetHashCode(cassandraItem2)));
     }
 
     [Test]
@@ -160,6 +160,6 @@ public class CassandraCompareTests
         };
         var cassandraItem = new CassandraItem(item);
         var cassandraItem2 = JsonConvert.DeserializeObject<CassandraItem>(JsonConvert.SerializeObject(new CassandraItem(item)));
-        Assert.IsTrue(compare.Equals(cassandraItem, cassandraItem2));
+        Assert.That(compare.Equals(cassandraItem, cassandraItem2));
     }
 }

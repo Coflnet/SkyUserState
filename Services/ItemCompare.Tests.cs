@@ -13,8 +13,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new() { { "a", "b" }, { "nest", new Dictionary<string, object>() { { "RUNE", 1 } } } } };
         var b = new Item() { ExtraAttributes = new() { { "a", "b" }, { "nest", new Dictionary<string, object>() { { "RUNE", (byte)1 } } } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
     }
     [Test]
     public void CompareArray()
@@ -22,8 +22,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new() { { "array", new string[] { "a", "b" } } } };
         var b = new Item() { ExtraAttributes = new() { { "array", new string[] { "a", "b" } } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
     }
     [Test]
     public void CompareEnchants()
@@ -31,8 +31,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new() { { "array", "b" } }, Enchantments = new() { { "a", 1 } } };
         var b = new Item() { ExtraAttributes = new() { { "array", "b" } }, Enchantments = new() { { "a", 1 } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
     }
     [Test]
     public void TopLevelNumberTypes()
@@ -40,8 +40,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new() { { "num", 200d } } };
         var b = new Item() { ExtraAttributes = new() { { "num", (ushort)200 } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
     }
     [Test]
     public void UpgradeEnchantment()
@@ -49,8 +49,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new(), Enchantments = new() { { "sharpness", 1 } } };
         var b = new Item() { ExtraAttributes = new(), Enchantments = new() { { "sharpness", 2 } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsFalse(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(!comparer.Equals(a, b));
     }
     [Test]
     public void NoEnchants()
@@ -58,8 +58,8 @@ public class ItemCompareTests
         var comparer = new ItemCompare();
         var a = new Item() { ExtraAttributes = new() { { "array", "b" } } };
         var b = new Item() { ExtraAttributes = new() { { "array", "b" } } };
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
     }
     [Test]
     public void CompareComplex()
@@ -68,8 +68,8 @@ public class ItemCompareTests
         var a = NewMethod();
         var b = NewMethod();
         b.Tag = new StringBuilder(b.Tag).Replace("R", "R").ToString();
-        Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
-        Assert.IsTrue(comparer.Equals(a, b));
+        Assert.That(comparer.GetHashCode(a), Is.EqualTo(comparer.GetHashCode(b)));
+        Assert.That(comparer.Equals(a, b));
 
         static Item NewMethod()
         {

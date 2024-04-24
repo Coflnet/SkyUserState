@@ -145,12 +145,14 @@ public class Inventory
     public string PlayerId { get; set; }
     [Cassandra.Mapping.Attributes.Frozen]
     public byte[] Serialized { get; set; }
+    static MessagePackSerializerOptions options =  MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block); 
 
     public Inventory(StateObject stateObject)
     {
         PlayerId = stateObject.PlayerId;
         var copy = new StateObject(stateObject);
-        Serialized = LZ4MessagePackSerializer.Serialize(copy);
+        
+        Serialized = MessagePackSerializer.Serialize(copy, options);
     }
 
     public Inventory()
@@ -159,7 +161,7 @@ public class Inventory
 
     public StateObject GetStateObject()
     {
-        return LZ4MessagePackSerializer.Deserialize<StateObject>(Serialized);
+        return MessagePackSerializer.Deserialize<StateObject>(Serialized, options);
     }
 }
 #nullable restore

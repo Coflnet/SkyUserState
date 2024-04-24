@@ -49,15 +49,15 @@ public class BazaarOrderTests
             && t.ItemId == TradeDetect.IdForCoins
             )
         ), Times.Once);
-        Assert.AreEqual(1, currentState.BazaarOffers.Count);
-        Assert.AreEqual(64, currentState.BazaarOffers[0].Amount);
-        Assert.AreEqual(134.4 / 64, currentState.BazaarOffers[0].PricePerUnit);
+        Assert.That(1, Is.EqualTo(currentState.BazaarOffers.Count));
+        Assert.That(64, Is.EqualTo(currentState.BazaarOffers[0].Amount));
+        Assert.That(134.4 / 64, Is.EqualTo(currentState.BazaarOffers[0].PricePerUnit));
 
         return;
         await listener.Process(CreateArgs("[Bazaar] Your Buy Order for 64x Coal was filled!"));
         AssertCoalBuy();
-        Assert.AreEqual(1, currentState.BazaarOffers.Count);
-        Assert.AreEqual(3, invokeCount);
+        Assert.That(1, Is.EqualTo(currentState.BazaarOffers.Count));
+        Assert.That(3, Is.EqualTo(invokeCount));
     }
 
     private void AssertCoalBuy()
@@ -107,7 +107,7 @@ public class BazaarOrderTests
         await listener.Process(CreateArgs("[Bazaar] Your co-op Sell Offer for 1x Wither Blood was filled!"));
         return;
         AssertCoalSell();
-        Assert.AreEqual(3, invokeCount);
+        Assert.That(3, Is.EqualTo(invokeCount));
     }
 
     private void AssertCoalSell()
@@ -147,7 +147,7 @@ public class BazaarOrderTests
             )
         ), Times.Once);
         AssertCoalSell();
-        Assert.AreEqual(3, invokeCount);
+        Assert.That(3, Is.EqualTo(invokeCount));
     }
     [Test]
     public async Task InstaBuy()
@@ -166,8 +166,8 @@ public class BazaarOrderTests
                     && t.ItemId == 5
                     )
                 ), Times.Once);
-        Assert.AreEqual(0, currentState.BazaarOffers.Count);
-        Assert.AreEqual(2, invokeCount);
+        Assert.That(0, Is.EqualTo(currentState.BazaarOffers.Count));
+        Assert.That(2, Is.EqualTo(invokeCount));
     }
     [Test]
     public async Task InstaSell()
@@ -186,8 +186,8 @@ public class BazaarOrderTests
                     && t.ItemId == TradeDetect.IdForCoins
                     )
                 ), Times.Once);
-        Assert.AreEqual(0, currentState.BazaarOffers.Count);
-        Assert.AreEqual(2, invokeCount);
+        Assert.That(0, Is.EqualTo(currentState.BazaarOffers.Count));
+        Assert.That(2, Is.EqualTo(invokeCount));
     }
     [Test]
     public async Task CancelOrder()
@@ -208,7 +208,7 @@ public class BazaarOrderTests
                     && t.ItemId == 5
                     )
                 ), Times.Once);
-        Assert.AreEqual(0, currentState.BazaarOffers.Count);
+        Assert.That(0, Is.EqualTo(currentState.BazaarOffers.Count));
         transactionService.VerifyAll();
     }
 
@@ -231,7 +231,7 @@ public class BazaarOrderTests
                     && t.ItemId == TradeDetect.IdForCoins
                     )
                 ), Times.Once);
-        Assert.AreEqual(0, currentState.BazaarOffers.Count);
+        Assert.That(0, Is.EqualTo(currentState.BazaarOffers.Count));
         transactionService.VerifyAll();
     }
 
@@ -239,8 +239,8 @@ public class BazaarOrderTests
     public async Task IgnoresMessage()
     {
         await listener.Process(CreateArgs("[Bazaar] There are no Buy Orders for this product!"));
-        Assert.AreEqual(0, currentState.BazaarOffers.Count);
-        Assert.AreEqual(0, invokeCount);
+        Assert.That(0, Is.EqualTo(currentState.BazaarOffers.Count));
+        Assert.That(0, Is.EqualTo(invokeCount));
     }
 
     private MockedUpdateArgs CreateArgs(params string[] msgs)

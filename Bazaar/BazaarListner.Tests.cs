@@ -20,16 +20,16 @@ public class BazaarListnerTests
         UpdateArgs args = GetArgs();
         var listener = new BazaarListener();
         await listener.Process(args);
-        Assert.AreEqual(2, args.currentState.BazaarOffers.Count);
-        Assert.AreEqual(2640, args.currentState.BazaarOffers[0].Amount);
-        Assert.AreEqual(1820.9, args.currentState.BazaarOffers[0].PricePerUnit);
-        Assert.AreEqual(2, args.currentState.BazaarOffers[0].Customers.Count);
-        Assert.AreEqual(1501, args.currentState.BazaarOffers[0].Customers[0].Amount);
-        Assert.AreEqual("§b[MVP§2+§b] Terminator602", args.currentState.BazaarOffers[0].Customers[0].PlayerName);
-        Assert.AreEqual(139, args.currentState.BazaarOffers[0].Customers[1].Amount);
-        Assert.AreEqual("§a[VIP§6+§a] Luka_Daddy", args.currentState.BazaarOffers[0].Customers[1].PlayerName);
-        Assert.AreEqual(400, args.currentState.BazaarOffers[1].Amount);
-        Assert.AreEqual(25130.6, args.currentState.BazaarOffers[1].PricePerUnit);
+        Assert.That(2, Is.EqualTo(args.currentState.BazaarOffers.Count));
+        Assert.That(2640, Is.EqualTo(args.currentState.BazaarOffers[0].Amount));
+        Assert.That(1820.9, Is.EqualTo(args.currentState.BazaarOffers[0].PricePerUnit));
+        Assert.That(2, Is.EqualTo(args.currentState.BazaarOffers[0].Customers.Count));
+        Assert.That(1501, Is.EqualTo(args.currentState.BazaarOffers[0].Customers[0].Amount));
+        Assert.That("§b[MVP§2+§b] Terminator602", Is.EqualTo(args.currentState.BazaarOffers[0].Customers[0].PlayerName));
+        Assert.That(139, Is.EqualTo(args.currentState.BazaarOffers[0].Customers[1].Amount));
+        Assert.That("§a[VIP§6+§a] Luka_Daddy", Is.EqualTo(args.currentState.BazaarOffers[0].Customers[1].PlayerName));
+        Assert.That(400, Is.EqualTo(args.currentState.BazaarOffers[1].Amount));
+        Assert.That(25130.6, Is.EqualTo(args.currentState.BazaarOffers[1].PricePerUnit));
     }
 
     [Test]

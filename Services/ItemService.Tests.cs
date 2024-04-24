@@ -28,9 +28,9 @@ public class ItemServiceTests
             new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 2},
             new(){Tag="BOOSTER_COOKIE",ExtraAttributesJson=attribJson, Id = 1},
         });
-        Assert.AreEqual(4, badItems.matchingIds.Count);
+        Assert.That(4, Is.EqualTo(badItems.matchingIds.Count));
         // keep oldest - id is time based snowflake
-        Assert.IsFalse(badItems.matchingIds.Any(id=>id == 1));
+        Assert.That(!badItems.matchingIds.Any(id=>id == 1));
     }
 
 
@@ -45,6 +45,6 @@ public class ItemServiceTests
         var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Models.Item>>(data);
         var badItems = ItemsService.FindBadItems(items.Select(i=>new CassandraItem(i)).ToList());
         // bigger = better
-        Assert.AreEqual(expected, badItems.matchingIds.Count);
+        Assert.That(expected, Is.EqualTo(badItems.matchingIds.Count));
     }    
 }

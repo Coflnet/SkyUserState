@@ -28,8 +28,8 @@ public class ItemIdAssignUpdateTest
         changedSample.Enchantments!["protection"] = 2;
 
         await listener.Process(CreateArgs(changedSample));
-        Assert.IsNotNull(calledWith);
-        Assert.AreEqual(1, calledWith.Count, JsonConvert.SerializeObject(calledWith));
+        Assert.That(calledWith, Is.Not.Null);
+        Assert.That(1, Is.EqualTo(calledWith.Count), JsonConvert.SerializeObject(calledWith));
         itemsService.Verify(s => s.FindOrCreate(It.Is<IEnumerable<Item>>(i => i.Count() == 1)), Times.Once);
     }
 
@@ -40,8 +40,8 @@ public class ItemIdAssignUpdateTest
         var matchingSample = new Item(sampleItem);
 
         await listener.Process(CreateArgs(matchingSample));
-        Assert.IsNull(calledWith);
-        Assert.AreEqual(1, matchingSample.Id);
+        Assert.That(calledWith, Is.Null);
+        Assert.That(1, Is.EqualTo(matchingSample.Id));
         itemsService.Verify(s => s.FindOrCreate(It.IsAny<IEnumerable<Item>>()), Times.Never);
     }
     
@@ -64,8 +64,8 @@ public class ItemIdAssignUpdateTest
         var listener = new ItemIdAssignUpdate();
         var matchingSample = JsonConvert.DeserializeObject<Item>(json);
         await listener.Process(CreateArgs(matchingSample));
-        Assert.IsNull(calledWith);
-        Assert.AreEqual(1, matchingSample.Id);
+        Assert.That(calledWith, Is.Null);
+        Assert.That(1, Is.EqualTo(matchingSample.Id));
     }
 
     private MockedUpdateArgs CreateArgs(params Item[] items)
