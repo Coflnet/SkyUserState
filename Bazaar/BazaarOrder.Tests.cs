@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Coflnet.Sky.Bazaar.Client.Api;
@@ -21,7 +22,8 @@ public class BazaarOrderTests
     StateObject currentState = null!;
     int invokeCount = 0;
     private Mock<IScheduleApi> scheduleApi;
-    private Mock<BazaarOrderListener> orderBookApi;
+    private Mock<IOrderBookApi> orderBookApi;
+    private Mock<IItemsApi> itemsApi;
 
     [SetUp]
     public void Setup()
@@ -103,19 +105,14 @@ public class BazaarOrderTests
         scheduleApi.Verify(s => s.ScheduleUserIdPostAsync("5", It.IsAny<DateTime>(), It.Is<MessageContainer>(con =>
             con.Message == "Your bazaar order for Coal expired"
         ), 0, default), Times.Once);
-        await listener.Process(CreateArgs("[Bazaar] Your Sell Offer for 64x Coal was filled!"));
-        await listener.Process(CreateArgs("[Bazaar] Your co-op Sell Offer for 1x Wither Blood was filled!"));
-        return;
-        AssertCoalSell();
-        Assert.That(3, Is.EqualTo(invokeCount));
     }
 
     private void AssertCoalSell()
     {
-        transactionService.Verify(t => t.AddTransactions(It.Is<Transaction>(t =>
-                                t.Type == (Transaction.TransactionType.BAZAAR | Transaction.TransactionType.REMOVE)
-                                && t.Amount == 64
-                                && t.ItemId == 5
+        transactionService.Verify(t => t.AddTransactions(It.Is<Transaction[]>(t =>
+                                t.First().Type == (Transaction.TransactionType.BAZAAR | Transaction.TransactionType.REMOVE)
+                                && t.First().Amount == 64
+                                && t.First().ItemId == 5
                                 )
                             ), Times.Once);
         transactionService.Verify(t => t.AddTransactions(It.Is<Transaction>(t =>
@@ -129,16 +126,22 @@ public class BazaarOrderTests
     [Test]
     public async Task ClaimSellWithNoFill()
     {
+        var createTime = DateTime.Now - TimeSpan.FromHours(1);
         currentState.BazaarOffers.Add(new Offer()
         {
             Amount = 64,
             ItemName = "Coal",
             PricePerUnit = 4.8,
             IsSell = true,
-            Created = DateTime.Now - TimeSpan.FromHours(1),
+            Created = createTime,
         });
-        await listener.Process(CreateArgs("[Bazaar] Claiming order...",
-                "[Bazaar] Claimed 303.7 coins from selling 64x Coal at 4.8 each!"));
+        var args = CreateArgs("[Bazaar] Claiming order...",
+                "[Bazaar] Claimed 303.7 coins from selling 64x Coal at 4.8 each!");
+        itemsApi.Setup(i => i.ItemsSearchTermGetAsync(It.IsAny<string>(), null, 0, default))
+            .ReturnsAsync(() => new List<Items.Client.Model.SearchResult>(){new(){
+                Tag = "COAL"
+            }});
+        await listener.Process(args);
 
         transactionService.Verify(t => t.AddTransactions(It.Is<Transaction>(t =>
             t.Type == (Transaction.TransactionType.BAZAAR | Transaction.TransactionType.RECEIVE | Transaction.TransactionType.Move)
@@ -148,6 +151,7 @@ public class BazaarOrderTests
         ), Times.Once);
         AssertCoalSell();
         Assert.That(3, Is.EqualTo(invokeCount));
+        orderBookApi.Verify(o => o.OrderBookDeleteAsync("COAL", "5", createTime, 0, default), Times.Once);
     }
     [Test]
     public async Task InstaBuy()
@@ -254,9 +258,9 @@ public class BazaarOrderTests
                 UserId = "5"
             }
         };
-        var itemsApi = new Mock<IItemsApi>();
+        itemsApi = new Mock<IItemsApi>();
         scheduleApi = new Mock<IScheduleApi>();
-        orderBookApi = new Mock<BazaarOrderListener>();
+        orderBookApi = new Mock<IOrderBookApi>();
         itemsApi.Setup(i => i.ItemsSearchTermIdGetAsync(It.IsAny<string>(), 0, default)).ReturnsAsync(5);
         args.AddService<IItemsApi>(itemsApi.Object);
         args.AddService<ITransactionService>(transactionService.Object);

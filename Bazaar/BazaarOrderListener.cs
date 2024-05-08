@@ -91,6 +91,7 @@ public class BazaarOrderListener : UpdateListener
                 PlayerName = "unknown",
                 TimeStamp = args.msg.ReceivedAt,
             });
+            await ProduceFillEvent(args, itemName, order);
             return;
         }
         if (msg.Contains("Cancelled!"))
@@ -140,6 +141,7 @@ public class BazaarOrderListener : UpdateListener
                     return;
                 }
                 args.currentState.BazaarOffers.Remove(order);
+                await ProduceFillEvent(args, itemName, order);
             }
             else
             {
@@ -158,7 +160,9 @@ public class BazaarOrderListener : UpdateListener
                 }
 
                 args.currentState.BazaarOffers.Remove(order);
+                await ProduceFillEvent(args, itemName, order);
             }
+
 
         }
         if (msg.StartsWith("[Bazaar] Sold ") || msg.StartsWith("[Bazaar] Bought "))
@@ -232,6 +236,22 @@ public class BazaarOrderListener : UpdateListener
         catch (Exception e)
         {
             args.GetService<ILogger<BazaarOrderListener>>().LogError(e, "Error adding order to order book");
+        }
+    }
+
+    private static async Task ProduceFillEvent(UpdateArgs args, string itemName, Offer order)
+    {
+        try
+        {
+            var orderApi = args.GetService<IOrderBookApi>();
+            var itemApi = args.GetService<IItemsApi>();
+            var searchResult = await itemApi.ItemsSearchTermGetAsync(itemName);
+            var tag = searchResult.First().Tag;
+            await orderApi.OrderBookDeleteAsync(tag, args.msg.UserId, order.Created);
+        }
+        catch (Exception e)
+        {
+            args.GetService<ILogger<BazaarOrderListener>>().LogError(e, "Error removing order from order book");
         }
     }
 
