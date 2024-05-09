@@ -248,6 +248,7 @@ public class BazaarOrderListener : UpdateListener
             var searchResult = await itemApi.ItemsSearchTermGetAsync(itemName);
             var tag = searchResult.First().Tag;
             await orderApi.OrderBookDeleteAsync(tag, args.msg.UserId, order.Created);
+            args.GetService<ILogger<BazaarOrderListener>>().LogInformation("Removed order from order book for {user} {item} {amount} {price}", args.currentState.McInfo.Name, tag, order.Amount, order.PricePerUnit);
         }
         catch (Exception e)
         {
