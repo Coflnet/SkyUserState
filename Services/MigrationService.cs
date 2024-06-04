@@ -4,12 +4,11 @@ using Coflnet.Sky.PlayerState.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using StackExchange.Redis;
 using Cassandra.Data.Linq;
 using Coflnet.Sky.Core;
 using System.Collections.Generic;
 using System.Linq;
-using ZstdSharp.Unsafe;
+using Cassandra;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -36,38 +35,41 @@ public class MigrationService : BackgroundService
     }
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var oldDb = await cassandraService.GetCassandraSession();
-        var itemsTable = cassandraService.GetItemsTable(oldDb);
-        var newItemsTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
-        var itemTransactionsTable = TransactionService.GetItemTable(oldDb);
-        var semaphore = new SemaphoreSlim(90);
+        var session = await cassandraService.GetSession();
+        var oldTable = cassandraService.GetItemsTable(session);
+        var newTable = cassandraService.GetSplitItemsTable(session);
+        var semaphore = new SemaphoreSlim(40);
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys;
-        var cacheKey = "playerStatemigratedTags";
+        var cacheKey = "playerStatemigrateTagsDone";
         var doneTags = await CacheService.Instance.GetFromRedis<List<string>>(cacheKey) ?? new();
         foreach (var tag in tags.Except(doneTags))
         {
             logger.LogInformation($"Migrating {tag}");
-            var items = await itemsTable.Where(t => t.Tag == tag).ExecuteAsync();
-            foreach (var item in items)
+            var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
+            foreach (var item in Batch(items, 20))
             {
                 _ = Task.Run(async () =>
                 {
                     await semaphore.WaitAsync();
                     try
                     {
-                        var transactionsTask = itemTransactionsTable.Where(t => t.ItemId == item.Id).ExecuteAsync();
-                        await newItemsTable.Insert(item).ExecuteAsync();
-                        await transactionService.AddTransactions((await transactionsTask).ToList());
-                        migrateCount.Inc();
+                        var batch = new BatchStatement();
+                        foreach (var i in item)
+                        {
+                            batch.Add(newTable.Insert(i));
+                        }
+                        batch.SetConsistencyLevel(ConsistencyLevel.Quorum);
+                        await session.ExecuteAsync(batch);
+                        migrateCount.Inc(item.Count());
                         if (migrateCount.Value % 20 == 0)
-                            logger.LogInformation($"Migrated {item.Id} {item.ItemName}");
+                            logger.LogInformation($"Migrated {item.First().Id} {item.First().ItemName}");
                     }
                     catch (Exception e)
                     {
                         migrateFailed.Inc();
-                        logger.LogError(e, $"Failed to migrate {item.Id} {item.ItemName}");
+                        logger.LogError(e, $"Failed to migrate {item.First().Id} {item.First().ItemName}");
                     }
                     finally
                     {
@@ -75,13 +77,34 @@ public class MigrationService : BackgroundService
                     }
                 });
                 if (semaphore.CurrentCount == 0)
-                    await Task.Delay(100);
+                    await Task.Delay(100, stoppingToken);
             }
 
             doneTags.Add(tag);
             await CacheService.Instance.SaveInRedis(cacheKey, doneTags);
         }
 
-        logger.LogInformation("Migrated player states");
+        logger.LogInformation("Migrated items");
+    }
+
+    private IEnumerable<IEnumerable<T>> Batch<T>(IEnumerable<T> values, int batchSize)
+    {
+        var list = new List<T>(batchSize);
+        foreach (var value in values)
+        {
+            if (value == null)
+                continue;
+            list.Add(value);
+            if (list.Count == batchSize)
+            {
+                yield return list;
+                list = new List<T>(batchSize);
+            }
+        }
+
+        if (list.Count > 0)
+        {
+            yield return list;
+        }
     }
 }

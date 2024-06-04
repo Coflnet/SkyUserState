@@ -26,6 +26,7 @@ public interface ICassandraService
     Task<ISession> GetSession();
     Task<ISession> GetCassandraSession();
     Table<CassandraItem> GetItemsTable(ISession session);
+    Table<CassandraItem> GetSplitItemsTable(ISession session);
 }
 
 public class TransactionService : ITransactionService, ICassandraService
@@ -60,7 +61,7 @@ public class TransactionService : ITransactionService, ICassandraService
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
         var count = transactions.Count();
-        if(count == 0)
+        if (count == 0)
             return;
         Console.WriteLine("adding transactions " + count);
         await Task.WhenAll(transactions.GroupBy(t => new { t.PlayerUuid, t.ItemId, t.TimeStamp }).Select(g =>
@@ -108,7 +109,7 @@ public class TransactionService : ITransactionService, ICassandraService
     {
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
-        var rawitemTable = GetItemsTable(session);
+        var rawitemTable = GetSplitItemsTable(session);
         // drop table
         //session.Execute("DROP TABLE IF EXISTS items");
         await table.CreateIfNotExistsAsync();
@@ -139,6 +140,16 @@ public class TransactionService : ITransactionService, ICassandraService
             .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Ascending), new Tuple<string, SortOrder>("Id", SortOrder.Descending))), "items");
     }
 
+    public Table<CassandraItem> GetSplitItemsTable(ISession session)
+    {
+        return new Table<CassandraItem>(session, new MappingConfiguration()
+            .Define(new Map<CassandraItem>()
+            .PartitionKey(t => t.Tag, t => t.ItemId)
+            .Column(o => o.Id, c => c.WithSecondaryIndex())
+            .Column(o => o.Enchantments, c => c.WithDbType<Dictionary<string, int>>())
+            .ClusteringKey(new Tuple<string, SortOrder>("Id", SortOrder.Descending))), "split_items");
+    }
+
     public static Table<ItemTransaction> GetItemTable(ISession session)
     {
         var mapping = new MappingConfiguration()
@@ -157,7 +168,6 @@ public class TransactionService : ITransactionService, ICassandraService
         if (_session != null)
             return _session;
         throw new Exception("got moved to DI, migrate this");
-        return await GetCassandraSession();
     }
 
     public async Task<ISession> GetCassandraSession()

@@ -162,8 +162,6 @@ public class BazaarOrderListener : UpdateListener
                 args.currentState.BazaarOffers.Remove(order);
                 await ProduceFillEvent(args, itemName, order);
             }
-
-
         }
         if (msg.StartsWith("[Bazaar] Sold ") || msg.StartsWith("[Bazaar] Bought "))
         {
