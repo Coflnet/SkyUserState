@@ -61,6 +61,7 @@ public class MigrationService : BackgroundService
                             batch.Add(newTable.Insert(i));
                         }
                         batch.SetConsistencyLevel(ConsistencyLevel.Quorum);
+                        batch.SetRoutingKey( newTable.Insert(item.First()).RoutingKey);
                         await session.ExecuteAsync(batch);
                         migrateCount.Inc(item.Count());
                         if (migrateCount.Value % 20 == 0)
