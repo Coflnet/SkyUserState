@@ -42,11 +42,11 @@ public class MigrationService : BackgroundService
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys;
-        var cacheKey = "playerStatemigrateTagsDone";
+        var cacheKey = "playerStatemigrateTagsDone2";
         var doneTags = await CacheService.Instance.GetFromRedis<List<string>>(cacheKey) ?? new();
         foreach (var tag in tags.Except(doneTags))
         {
-            logger.LogInformation($"Migrating {tag}");
+            logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
             foreach (var item in Batch(items, 20))
             {
