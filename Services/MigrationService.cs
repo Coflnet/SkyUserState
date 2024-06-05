@@ -48,7 +48,7 @@ public class MigrationService : BackgroundService
         {
             logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
-            foreach (var item in Batch(items, 20))
+            foreach (var item in Batch(items, 2))
             {
                 _ = Task.Run(async () =>
                 {
