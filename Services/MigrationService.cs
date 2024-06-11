@@ -50,7 +50,7 @@ public class MigrationService : BackgroundService
                 continue;
             logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
-            foreach (var item in Batch(items, 1))
+            foreach (var item in Batch(items, 2))
             {
                 _ = Task.Run(async () =>
                 {
@@ -83,20 +83,21 @@ public class MigrationService : BackgroundService
             migrateCount.Inc(item.Count());
             if (migrateCount.Value % 100 == 0)
                 logger.LogInformation($"Migrated {item.First().Id} {item.First().ItemName}");
+            return;
         }
         catch (Exception e)
         {
             migrateFailed.Inc();
             logger.LogError(e, $"Failed to migrate {item.First().Id} {item.First().ItemName}");
-            if (tryIndex < 3)
-            {
-                await Task.Delay((int)(1500 * Random.Shared.NextDouble()));
-                await InsertBatch(session, newTable, semaphore, item, tryIndex + 1);
-            }
         }
         finally
         {
             semaphore.Release();
+        }
+        if (tryIndex < 3)
+        { // early return not hit, retry
+            await Task.Delay(Random.Shared.Next(100, 1000));
+            await InsertBatch(session, newTable, semaphore, item, tryIndex + 1);
         }
     }
 
