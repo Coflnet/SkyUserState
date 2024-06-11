@@ -46,6 +46,8 @@ public class MigrationService : BackgroundService
         var doneTags = await CacheService.Instance.GetFromRedis<List<string>>(cacheKey) ?? new();
         foreach (var tag in tags.Except(doneTags))
         {
+            if(new string []{"ENCHANTED_BOOK", "SLIME_GENERATOR_11", "ENCHANTED_HOPPER", "LARGE_AGRONOMY_SACK", "SNOW_GENERATOR_11", "CATACOMBS_PASS_10"}.Contains(tag))
+                continue;
             logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
             foreach (var item in Batch(items, 5))
@@ -64,7 +66,7 @@ public class MigrationService : BackgroundService
                         batch.SetRoutingKey( newTable.Insert(item.First()).RoutingKey);
                         await session.ExecuteAsync(batch);
                         migrateCount.Inc(item.Count());
-                        if (migrateCount.Value % 20 == 0)
+                        if (migrateCount.Value % 100 == 0)
                             logger.LogInformation($"Migrated {item.First().Id} {item.First().ItemName}");
                     }
                     catch (Exception e)
