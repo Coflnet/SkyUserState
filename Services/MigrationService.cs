@@ -46,7 +46,7 @@ public class MigrationService : BackgroundService
         var doneTags = await CacheService.Instance.GetFromRedis<List<string>>(cacheKey) ?? new();
         foreach (var tag in tags.Except(doneTags))
         {
-            if(new string []{"ENCHANTED_BOOK", "SLIME_GENERATOR_11", "ENCHANTED_HOPPER", "LARGE_AGRONOMY_SACK", "SNOW_GENERATOR_11", "CATACOMBS_PASS_10"}.Contains(tag))
+            if (new string[] { "ENCHANTED_BOOK", "SLIME_GENERATOR_11", "ENCHANTED_HOPPER", "LARGE_AGRONOMY_SACK", "SNOW_GENERATOR_11", "CATACOMBS_PASS_10" }.Contains(tag))
                 continue;
             logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
@@ -54,30 +54,7 @@ public class MigrationService : BackgroundService
             {
                 _ = Task.Run(async () =>
                 {
-                    await semaphore.WaitAsync();
-                    try
-                    {
-                        var batch = new BatchStatement();
-                        foreach (var i in item)
-                        {
-                            batch.Add(newTable.Insert(i));
-                        }
-                        batch.SetConsistencyLevel(ConsistencyLevel.Quorum);
-                        batch.SetRoutingKey( newTable.Insert(item.First()).RoutingKey);
-                        await session.ExecuteAsync(batch);
-                        migrateCount.Inc(item.Count());
-                        if (migrateCount.Value % 100 == 0)
-                            logger.LogInformation($"Migrated {item.First().Id} {item.First().ItemName}");
-                    }
-                    catch (Exception e)
-                    {
-                        migrateFailed.Inc();
-                        logger.LogError(e, $"Failed to migrate {item.First().Id} {item.First().ItemName}");
-                    }
-                    finally
-                    {
-                        semaphore.Release();
-                    }
+                    await InsertBatch(session, newTable, semaphore, item);
                 });
                 if (semaphore.CurrentCount == 0)
                     await Task.Delay(100, stoppingToken);
@@ -88,6 +65,39 @@ public class MigrationService : BackgroundService
         }
 
         logger.LogInformation("Migrated items");
+    }
+
+    private async Task InsertBatch(ISession session, Table<CassandraItem> newTable, SemaphoreSlim semaphore, IEnumerable<CassandraItem> item, int tryIndex = 0)
+    {
+        await semaphore.WaitAsync();
+        try
+        {
+            var batch = new BatchStatement();
+            foreach (var i in item)
+            {
+                batch.Add(newTable.Insert(i));
+            }
+            batch.SetConsistencyLevel(ConsistencyLevel.Quorum);
+            batch.SetRoutingKey(newTable.Insert(item.First()).RoutingKey);
+            await session.ExecuteAsync(batch);
+            migrateCount.Inc(item.Count());
+            if (migrateCount.Value % 100 == 0)
+                logger.LogInformation($"Migrated {item.First().Id} {item.First().ItemName}");
+        }
+        catch (Exception e)
+        {
+            migrateFailed.Inc();
+            logger.LogError(e, $"Failed to migrate {item.First().Id} {item.First().ItemName}");
+            if (tryIndex < 3)
+            {
+                await Task.Delay((int)(1500 * Random.Shared.NextDouble()));
+                await InsertBatch(session, newTable, semaphore, item, tryIndex + 1);
+            }
+        }
+        finally
+        {
+            semaphore.Release();
+        }
     }
 
     private IEnumerable<IEnumerable<T>> Batch<T>(IEnumerable<T> values, int batchSize)
