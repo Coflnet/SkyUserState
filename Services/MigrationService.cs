@@ -41,7 +41,7 @@ public class MigrationService : BackgroundService
         var semaphore = new SemaphoreSlim(40);
 
         await ItemDetails.Instance.LoadLookup();
-        var tags = ItemDetails.Instance.TagLookup.Keys;
+        var tags = ItemDetails.Instance.TagLookup.Keys.OrderBy(t => t).ToList();
         var cacheKey = "playerStatemigrateTagsDone2";
         var doneTags = await CacheService.Instance.GetFromRedis<List<string>>(cacheKey) ?? new();
         foreach (var tag in tags.Except(doneTags))
