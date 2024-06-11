@@ -38,7 +38,7 @@ public class MigrationService : BackgroundService
         var session = await cassandraService.GetSession();
         var oldTable = cassandraService.GetItemsTable(session);
         var newTable = cassandraService.GetSplitItemsTable(session);
-        var semaphore = new SemaphoreSlim(40);
+        var semaphore = new SemaphoreSlim(50);
 
         await ItemDetails.Instance.LoadLookup();
         var tags = ItemDetails.Instance.TagLookup.Keys.OrderBy(t => t).ToList();
@@ -50,7 +50,7 @@ public class MigrationService : BackgroundService
                 continue;
             logger.LogInformation($"Migrating {tag} at {cacheKey}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
-            foreach (var item in Batch(items, 2))
+            foreach (var item in Batch(items, 1))
             {
                 _ = Task.Run(async () =>
                 {
