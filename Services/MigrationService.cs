@@ -48,7 +48,7 @@ public class MigrationService : BackgroundService
         {
             if (new string[] { "ENCHANTED_BOOK", "SLIME_GENERATOR_11", "ENCHANTED_HOPPER", "LARGE_AGRONOMY_SACK", "SNOW_GENERATOR_11", "CATACOMBS_PASS_10" }.Contains(tag))
                 continue;
-            logger.LogInformation($"Migrating {tag} at {cacheKey}");
+            logger.LogInformation($"Migrating {tag} at {cacheKey} progress {doneTags.Count}/{tags.Count}");
             var items = await oldTable.Where(t => t.Tag == tag).ExecuteAsync();
             foreach (var item in Batch(items, 1))
             {
