@@ -114,7 +114,7 @@ namespace Coflnet.Sky.PlayerState.Services
             if (cassandraItems.Count == 0)
                 return new List<Item>();
             var table = cassandraService.GetSplitItemsTable(await cassandraService.GetSession());
-            var oldTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
+            //var oldTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().Take(30).ToList();
             var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().Take(30).ToList();
             var combo = cassandraItems.Select(i => (i.Tag, i.ItemId)).Distinct().Take(30).ToList();
@@ -124,8 +124,8 @@ namespace Coflnet.Sky.PlayerState.Services
                 var uuid = item.ItemId;
                 return table.Where(i => i.Tag == tag && i.ItemId == uuid).Take(100).ExecuteAsync();
             }))).SelectMany(i => i);
-            var oldRes = await oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).Take(2_000).ExecuteAsync();
-            var found = res.Concat(oldRes).ToList();
+            //var oldRes = await oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).Take(2_000).ExecuteAsync();
+            var found = res.ToList();
             var toCreate = cassandraItems.Except(found, cassandraCompare).Where(c => c.Tag != null).ToList();
             Activity.Current?.AddTag("tags", string.Join(",", tags));
             foreach (var item in toCreate.Where(c => c.Tag.Contains("LAPIS_ARMOR_H")))
@@ -196,10 +196,10 @@ namespace Coflnet.Sky.PlayerState.Services
         public async Task<List<Item>> FindItems(IEnumerable<ItemIdSearch> ids)
         {
             var table = cassandraService.GetSplitItemsTable(await cassandraService.GetSession());
-            var oldTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
+            //var oldTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var res = await table.Where(i => ids.Select(id => id.Tag).Contains(i.Tag) && ids.Select(id => id.Uuid).Contains(i.ItemId)).ExecuteAsync();
-            var oldRes = await oldTable.Where(i => ids.Select(id => id.Tag).Contains(i.Tag) && ids.Select(id => id.Uuid).Contains(i.ItemId)).ExecuteAsync();
-            var found = res.Concat(oldRes).ToList();
+           // var oldRes = await oldTable.Where(i => ids.Select(id => id.Tag).Contains(i.Tag) && ids.Select(id => id.Uuid).Contains(i.ItemId)).ExecuteAsync();
+            var found = res.ToList();
             return found.Select(i => i.ToTransfer()).ToList();
         }
 
