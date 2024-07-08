@@ -89,13 +89,29 @@ public class TradeDetect : UpdateListener
         {
             await AddOtherSideOfTrade(args, spent, received, timestamp, transactions, tradeView);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             logger.LogError(e, "Trying to add other side of trade " + tradeView.Name);
         }
 
         var service = args.GetService<ITransactionService>();
         await service.AddTransactions(transactions.Where(t => t.ItemId > 0).ToList());
+        try
+        {
+            StoreUuidtoItemMapping(service, spent, received);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Trying to store uuid to item mapping");
+        }
+
+    }
+
+    private static void StoreUuidtoItemMapping(ITransactionService service, List<Item> spent, List<Item> received)
+    {
+        var itemUuidAndItemId = spent.Concat(received).Where(i => i.Id > 0).Select(s => (s.ExtraAttributes?.GetValueOrDefault("uuid"), s.Id))
+                    .Where(c => c.Item1 != null).Select(c => (Guid.Parse(c.Item1.ToString()), c.Id)).ToList();
+        service.StoreUuidToItemMapping(itemUuidAndItemId);
     }
 
     private async Task AddOtherSideOfTrade(UpdateArgs args, List<Item> spent, List<Item> received, DateTime timestamp, List<Transaction> transactions, ChestView chest)

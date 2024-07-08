@@ -19,6 +19,8 @@ public interface ITransactionService
     Task AddTransactions(IEnumerable<Transaction> transactions);
     Task<IEnumerable<Transaction>> GetTransactions(Guid guid, TimeSpan timeSpan, DateTime end);
     Task<IEnumerable<Transaction>> GetItemTransactions(long itemId, int max);
+    Task StoreUuidToItemMapping(List<(Guid, long? Id)> itemUuidAndItemId);
+    Task<IEnumerable<long>> GetItemIdsFromUuid(Guid itemId);
 }
 
 public interface ICassandraService
@@ -29,6 +31,12 @@ public interface ICassandraService
     Table<CassandraItem> GetSplitItemsTable(ISession session);
 }
 
+public class UuidToItemMapping
+{
+    public Guid ItemUuid { get; set; }
+    public long ItemId { get; set; }
+}
+
 public class TransactionService : ITransactionService, ICassandraService
 {
     ISession _session;
@@ -37,6 +45,7 @@ public class TransactionService : ITransactionService, ICassandraService
     private IConfiguration config;
     private ILogger<TransactionService> logger;
     private Table<PlayerTransaction> _table;
+    private Table<UuidToItemMapping> itemMappingTable;
 
     public TransactionService(ILogger<TransactionService> logger, IConfiguration config, ISession session)
     {
@@ -110,11 +119,18 @@ public class TransactionService : ITransactionService, ICassandraService
         var table = GetPlayerTable(session);
         var itemTable = GetItemTable(session);
         var rawitemTable = GetSplitItemsTable(session);
+        var mapping = new MappingConfiguration()
+            .Define(new Map<UuidToItemMapping>()
+            .PartitionKey(t => t.ItemUuid)
+            .ClusteringKey(new Tuple<string, SortOrder>("ItemId", SortOrder.Descending)));
+        itemMappingTable = new Table<UuidToItemMapping>(session, mapping);
+
         // drop table
         //session.Execute("DROP TABLE IF EXISTS items");
         await table.CreateIfNotExistsAsync();
         await itemTable.CreateIfNotExistsAsync();
         await rawitemTable.CreateIfNotExistsAsync();
+        await itemMappingTable.CreateIfNotExistsAsync();
         return table;
     }
 
@@ -206,8 +222,8 @@ public class TransactionService : ITransactionService, ICassandraService
         }
         catch (Exception e)
         {
-            //logger.LogError(e, "failed to connect to cassandra");
-            throw e;
+            logger.LogError(e, "failed to connect to cassandra");
+            throw;
         }
         finally
         {
@@ -240,6 +256,30 @@ public class TransactionService : ITransactionService, ICassandraService
     public Task<IEnumerable<Transaction>> GetTradeTransactions(string itemTag, Guid itemId, DateTime end)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task StoreUuidToItemMapping(List<(Guid, long? Id)> itemUuidAndItemId)
+    {
+        var table = itemMappingTable;
+        logger.LogInformation($"storing uuid mapping {itemUuidAndItemId.Count}");
+        foreach (var item in itemUuidAndItemId)
+        {
+            if (item.Id == null)
+                continue;
+            var insert = table.Insert(new UuidToItemMapping()
+            {
+                ItemUuid = item.Item1,
+                ItemId = item.Id.Value
+            });
+            insert.SetTTL(60 * 60 * 24 * 30);
+            await insert.ExecuteAsync();
+            logger.LogInformation($"stored uuid mapping {item.Item1} -> {item.Id}");
+        }
+    }
+
+    public async Task<IEnumerable<long>> GetItemIdsFromUuid(Guid itemId)
+    {
+        return await itemMappingTable.Where(t => t.ItemUuid == itemId).Select(t => t.ItemId).ExecuteAsync();
     }
 }
 #nullable restore

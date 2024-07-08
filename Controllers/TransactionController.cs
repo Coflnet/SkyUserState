@@ -35,7 +35,7 @@ namespace Coflnet.Sky.PlayerState.Controllers
             if (end == default)
                 end = DateTime.UtcNow;
             var querSize = TimeSpan.FromSeconds(seconds);
-            if(querSize > TimeSpan.FromDays(30))
+            if (querSize > TimeSpan.FromDays(30))
                 return null;
             return await service.GetTransactions(playerUuid, querSize, end);
         }
@@ -51,6 +51,18 @@ namespace Coflnet.Sky.PlayerState.Controllers
         public async Task<IEnumerable<Transaction>> TrackItem(long itemId, int max = 100)
         {
             return await service.GetItemTransactions(itemId, max);
+        }
+
+        /// <summary>
+        /// Returns the (recent traded) item ids for one uuid
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("uuid/itemId/{uuid}")]
+        public async Task<IEnumerable<long>> GetItemId(Guid uuid)
+        {
+            return await service.GetItemIdsFromUuid(uuid);
         }
     }
 }
