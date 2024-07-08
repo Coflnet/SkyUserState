@@ -21,6 +21,7 @@ public interface ITransactionService
     Task<IEnumerable<Transaction>> GetItemTransactions(long itemId, int max);
     Task StoreUuidToItemMapping(List<(Guid, long? Id)> itemUuidAndItemId);
     Task<IEnumerable<long>> GetItemIdsFromUuid(Guid itemId);
+    Task<Dictionary<Guid, long[]>> GetItemIdsFromUuids(List<Guid> itemIds);
 }
 
 public interface ICassandraService
@@ -280,6 +281,11 @@ public class TransactionService : ITransactionService, ICassandraService
     public async Task<IEnumerable<long>> GetItemIdsFromUuid(Guid itemId)
     {
         return await itemMappingTable.Where(t => t.ItemUuid == itemId).Select(t => t.ItemId).ExecuteAsync();
+    }
+    public async Task<Dictionary<Guid,long[]>> GetItemIdsFromUuids(List<Guid> itemIds)
+    {
+        var result = await itemMappingTable.Where(t => itemIds.Contains(t.ItemUuid)).Select(t => new { t.ItemUuid, t.ItemId }).ExecuteAsync();
+        return result.GroupBy(t => t.ItemUuid).ToDictionary(t => t.Key, t => t.Select(i => i.ItemId).ToArray());
     }
 }
 #nullable restore

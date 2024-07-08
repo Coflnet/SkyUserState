@@ -64,5 +64,17 @@ namespace Coflnet.Sky.PlayerState.Controllers
         {
             return await service.GetItemIdsFromUuid(uuid);
         }
+
+        /// <summary>
+        /// Returns the (recent traded) item ids for multiple uuids
+        /// </summary>
+        /// <param name="uuids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("uuid/itemId")]
+        public async Task<Dictionary<Guid, long[]>> GetItemId([FromBody] List<Guid> uuids)
+        {
+            return await service.GetItemIdsFromUuids(uuids);
+        }
     }
 }
