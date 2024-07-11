@@ -45,6 +45,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         this.scopeFactory = scopeFactory;
         this.config = config;
         this.logger = logger;
+        AddHandler<SettingsListener>(UpdateMessage.UpdateKind.Setting);
 
         AddHandler<ChatHistoryUpdate>(UpdateMessage.UpdateKind.CHAT);
         AddHandler<ProfileAndNameUpdate>(UpdateMessage.UpdateKind.CHAT);
