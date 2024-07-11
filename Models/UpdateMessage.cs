@@ -20,14 +20,26 @@ public class UpdateMessage
     public string PlayerId;
     [Key(5)]
     public string UserId { get; set; }
+    [Key(6)]
+    public StateSettings Settings { get; set; }
 
-    public enum UpdateKind 
+    public enum UpdateKind
     {
         UNKOWN,
         CHAT,
         INVENTORY,
         API = 4,
-
+        Setting = 8
     }
 }
+
+[MessagePackObject]
+public class StateSettings
+{
+    [Key(0)]
+    public bool DisableTradeTracking { get; set; }
+    [Key(1)]
+    public bool DisableBazaarTracking { get; set; }
+}
+
 #nullable restore

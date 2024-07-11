@@ -50,6 +50,8 @@ public class StateObject
     public List<Offer> BazaarOffers = new();
     [Key(9)]
     public ExtractedInfo ExtractedInfo = new();
+    [Key(10)]
+    public StateSettings Settings = new();
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
     [IgnoreMember]

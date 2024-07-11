@@ -15,6 +15,8 @@ public class BazaarListener : UpdateListener
 {
     public override async Task Process(UpdateArgs args)
     {
+        if (args.currentState.Settings?.DisableBazaarTracking ?? false)
+            return;
         if (args.msg.Chest?.Name != "Your Bazaar Orders" && args.msg.Chest?.Name != "Co-op Bazaar Orders")
             return;
         var offers = new List<Offer>();

@@ -16,6 +16,8 @@ public class BazaarOrderListener : UpdateListener
 {
     public override async Task Process(UpdateArgs args)
     {
+        if (args.currentState.Settings?.DisableBazaarTracking ?? false)
+            return;
         await Parallel.ForEachAsync(args.msg.ChatBatch, async (item, ct) =>
         {
             if (!item.StartsWith("[Bazaar]") || item.StartsWith("[Bazaar] There are no"))

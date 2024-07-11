@@ -23,6 +23,8 @@ public class TradeDetect : UpdateListener
     /// <inheritdoc/>
     public override async Task Process(UpdateArgs args)
     {
+        if (args.currentState.Settings?.DisableTradeTracking ?? false)
+            return;
         if (args.msg.Kind == UpdateMessage.UpdateKind.CHAT)
         {
             var lastMessage = args.msg.ChatBatch.Last();
