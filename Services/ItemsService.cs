@@ -116,13 +116,11 @@ namespace Coflnet.Sky.PlayerState.Services
             var table = cassandraService.GetSplitItemsTable(await cassandraService.GetSession());
             //var oldTable = cassandraService.GetItemsTable(await cassandraService.GetSession());
             var tags = cassandraItems.Select(i => i.Tag).Where(t => t != null).Distinct().Take(30).ToList();
-            var uuids = cassandraItems.Select(i => i.ItemId).Where(t => t != default).Distinct().Take(30).ToList();
-            var combo = cassandraItems.Select(i => (i.Tag, i.ItemId)).Distinct().Take(30).ToList();
             var res = (await Task.WhenAll(cassandraItems.Select(item =>
             {
                 var tag = item.Tag;
                 var uuid = item.ItemId;
-                return table.Where(i => i.Tag == tag && i.ItemId == uuid).Take(100).ExecuteAsync();
+                return table.Where(i => i.Tag == tag && i.ItemId == uuid).Take(2).ExecuteAsync();
             }))).SelectMany(i => i);
             //var oldRes = await oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).Take(2_000).ExecuteAsync();
             var found = res.ToList();
