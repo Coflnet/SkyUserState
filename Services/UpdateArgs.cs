@@ -23,7 +23,7 @@ public class UpdateArgs : IDisposable
         stateService.TryExecuteInScope(async provider =>
         {
             var messageService = provider.GetRequiredService<EventBroker.Client.Api.IMessageApi>();
-            provider.GetRequiredService<ILogger<UpdateArgs>>().LogInformation("Sending message to user {message}", text);
+            provider.GetRequiredService<ILogger<UpdateArgs>>().LogInformation("Sending message to {uuid} {message}", currentState.McInfo.Uuid, text);
             await messageService.MessageSendUserIdPostAsync(currentState.McInfo.Uuid.ToString("N"), new()
             {
                 Message = text,
