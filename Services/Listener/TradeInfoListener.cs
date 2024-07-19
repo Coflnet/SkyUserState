@@ -36,11 +36,12 @@ public class TradeInfoListener : UpdateListener
 
         var previousChest = args.currentState.RecentViews.Where(t => t.Name?.StartsWith("You    ") ?? false).Skip(1).Take(1).LastOrDefault();
         TradeDetect.ParseTradeWindow(chest, out _, out var received);
-        TradeDetect.ParseTradeWindow(chest, out _, out var previousReceived);
+        TradeDetect.ParseTradeWindow(previousChest, out _, out var previousReceived);
 
         var newItems = received.Where(r => !previousReceived.Any(p => p.ItemName == r.ItemName && p.Count == r.Count)).ToList();
         var prices = await GetPrices(FromitemRepresent(newItems.ToArray()));
-        logger.LogInformation("Found " + newItems.Count + " new items in trade window");
+        logger.LogInformation("Found " + newItems.Count + " new items in trade window {current} {previous}", 
+            JsonConvert.SerializeObject(received), JsonConvert.SerializeObject(previousReceived));
         for (int i = 0; i < newItems.Count; i++)
         {
             var item = newItems[i];
