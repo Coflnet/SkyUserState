@@ -25,6 +25,8 @@ public class TradeInfoListener : UpdateListener
 
     public override async Task Process(UpdateArgs args)
     {
+        if(args.msg.ReceivedAt < DateTime.UtcNow.AddSeconds(-30))
+            return; // ignore old messages
         if (sniperClient == null)
         {
             var config = args.GetService<IConfiguration>();
@@ -54,7 +56,7 @@ public class TradeInfoListener : UpdateListener
                 args.SendMessage("Most similar lbin not found");
             }
             else
-                args.SendMessage($"Lbin is {price.Lbin} - click to open on ah", $"/viewauction {lbin?.Uuid}");
+                args.SendMessage($"Lbin is {price.Lbin.Price} - click to open on ah", $"/viewauction {lbin?.Uuid}");
 
         }
     }
