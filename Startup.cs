@@ -78,7 +78,8 @@ public class Startup
         services.AddSingleton<CoinParser>();
         services.AddSingleton<IPersistenceService, PersistenceService>();
         services.AddSingleton<ITransactionService, TransactionService>();
-        services.AddSingleton<ICassandraService>(di => di.GetRequiredService<ITransactionService>() as ICassandraService ?? throw new Exception("ITransactionService is not a ICassandraService"));
+        services.AddSingleton<ICassandraService>(di => di.GetRequiredService<ITransactionService>() as ICassandraService 
+                    ?? throw new Exception("ITransactionService is not a ICassandraService"));
         services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));
         services.AddSingleton<IScheduleApi>(sp => new ScheduleApi(Configuration["EVENTS_BASE_URL"]));
         services.AddSingleton<IPlayerNameApi>(sp => new PlayerNameApi(Configuration["PLAYERNAME_BASE_URL"]));

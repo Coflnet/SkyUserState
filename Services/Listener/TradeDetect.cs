@@ -1,9 +1,7 @@
 using System.Threading.Tasks;
 using Coflnet.Sky.PlayerState.Models;
-using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Collections.Generic;
-using System;
 using Microsoft.Extensions.Logging;
 using Coflnet.Sky.PlayerName.Client.Api;
 
@@ -45,28 +43,13 @@ public class TradeDetect : UpdateListener
 
     private async Task StoreTrade(UpdateArgs args)
     {
-        var spent = new List<Item>();
-        var received = new List<Item>();
-        var index = 0;
         var tradeView = args.currentState.RecentViews.Where(t => t.Name?.StartsWith("You    ") ?? false).LastOrDefault();
         if (tradeView == null)
         {
             logger.LogError("no trade view was found");
             return;
         }
-        foreach (var item in tradeView.Items)
-        {
-            var i = index++;
-            if (i >= 36)
-                break;
-            if (item == null || item.ItemName == null)
-                continue;
-            var column = i % 9;
-            if (column < 4)
-                spent.Add(item);
-            else if (column > 4)
-                received.Add(item);
-        }
+        ParseTradeWindow(tradeView, out var spent, out var received);
         foreach (var item in spent)
         {
             Console.WriteLine("sent " + item.ItemName);
@@ -107,6 +90,26 @@ public class TradeDetect : UpdateListener
             logger.LogError(e, "Trying to store uuid to item mapping");
         }
 
+    }
+
+    public static void ParseTradeWindow(ChestView? tradeView, out List<Item> spent, out List<Item> received)
+    {
+        spent = new List<Item>();
+        received = new List<Item>();
+        var index = 0;
+        foreach (var item in tradeView.Items)
+        {
+            var i = index++;
+            if (i >= 36)
+                break;
+            if (item == null || item.ItemName == null)
+                continue;
+            var column = i % 9;
+            if (column < 4)
+                spent.Add(item);
+            else if (column > 4)
+                received.Add(item);
+        }
     }
 
     private static void StoreUuidtoItemMapping(ITransactionService service, List<Item> spent, List<Item> received)

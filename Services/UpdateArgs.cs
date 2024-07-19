@@ -1,6 +1,7 @@
 using System;
 using Coflnet.Sky.PlayerState.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Coflnet.Sky.PlayerState.Services;
 
@@ -16,15 +17,18 @@ public class UpdateArgs : IDisposable
     /// Send message to user
     /// </summary>
     /// <param name="text"></param>
-    public void SendMessage(string text)
+    /// <param name="clickAction"></param>
+    public void SendMessage(string text, string? clickAction = null)
     {
         stateService.TryExecuteInScope(async provider =>
         {
             var messageService = provider.GetRequiredService<EventBroker.Client.Api.IMessageApi>();
+            provider.GetRequiredService<ILogger<UpdateArgs>>().LogInformation("Sending message to user {message}", text);
             await messageService.MessageSendUserIdPostAsync(currentState.McInfo.Uuid.ToString("N"), new()
             {
                 Message = text,
-                Data = msg
+                Data = msg,
+                Link = clickAction!
             });
         });
     }
