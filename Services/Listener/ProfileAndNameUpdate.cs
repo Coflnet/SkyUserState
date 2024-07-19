@@ -20,6 +20,8 @@ public class ProfileAndNameUpdate : UpdateListener
                 state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
                 state.McInfo.Name = args.msg.PlayerId;
             }
+            else 
+                Console.WriteLine($"could not find uuid for {args.msg.PlayerId}");
         }
         // TODO find profile
     }
