@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Coflnet.Sky.Settings.Client" Version="0.2.2" />
+    <PackageReference Include="Coflnet.Sky.Sniper.Client" Version="0.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
