@@ -22,6 +22,7 @@ using System.Security.Authentication;
 using System.Linq;
 using System.Collections.Generic;
 using Coflnet.Sky.Bazaar.Client.Api;
+using Coflnet.Sky.Api.Client.Api;
 
 namespace Coflnet.Sky.PlayerState;
 public class Startup
@@ -87,6 +88,7 @@ public class Startup
         services.AddSingleton<IOrderBookApi>(sp => new OrderBookApi(Configuration["BAZAAR_BASE_URL"]));
 
         services.AddSingleton<IItemsApi>(context => new ItemsApi(Configuration["ITEMS_BASE_URL"]));
+        services.AddSingleton<IAuctionsApi>(context => new AuctionsApi(Configuration["API_BASE_URL"]));
         RegisterScyllaSession(services);
     }
 
