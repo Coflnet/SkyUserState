@@ -48,7 +48,7 @@ public class TradeInfoListener : UpdateListener
             var price = prices[i];
             args.SendMessage($"Item: {item.ItemName} Count: {item.Count} showed up in trade window");
             var uid = price.Lbin.AuctionId;
-            var lbin = await GetAuction(uid);
+            var lbin = await GetAuction(args, uid);
             if (lbin == null)
             {
                 args.SendMessage("Most similar lbin not found");
@@ -59,14 +59,11 @@ public class TradeInfoListener : UpdateListener
         }
     }
 
-    private static async Task<SaveAuction?> GetAuction(long uid)
+    private static async Task<SaveAuction?> GetAuction(UpdateArgs args, long uid)
     {
-        using (var context = new HypixelContext())
-        {
-            IQueryable<SaveAuction> select = context.Auctions;
-            return await context.Auctions.Where(a => a.UId == uid).FirstOrDefaultAsync();
-
-        }
+        var auctionClient = args.GetService<Sky.Api.Client.Api.IAuctionsApi>();
+        var auction = await auctionClient.ApiAuctionAuctionUuidGetWithHttpInfoAsync(AuctionService.Instance.GetUuid(uid));
+        return JsonConvert.DeserializeObject<SaveAuction>(auction.RawContent);
     }
 
     public async Task<List<Sniper.Client.Model.PriceEstimate>> GetPrices(IEnumerable<SaveAuction> auctionRepresent)
