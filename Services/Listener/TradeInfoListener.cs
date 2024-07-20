@@ -25,7 +25,7 @@ public class TradeInfoListener : UpdateListener
 
     public override async Task Process(UpdateArgs args)
     {
-        if(args.msg.ReceivedAt < DateTime.UtcNow.AddSeconds(-30))
+        if (args.msg.ReceivedAt < DateTime.UtcNow.AddSeconds(-30))
             return; // ignore old messages
         if (sniperClient == null)
         {
@@ -42,7 +42,7 @@ public class TradeInfoListener : UpdateListener
 
         var newItems = received.Where(r => !previousReceived.Any(p => p.ItemName == r.ItemName && p.Count == r.Count)).ToList();
         var prices = await GetPrices(FromitemRepresent(newItems.ToArray()));
-        logger.LogInformation("Found " + newItems.Count + " new items in trade window {current} {previous}", 
+        logger.LogInformation("Found " + newItems.Count + " new items in trade window {current} {previous}",
             JsonConvert.SerializeObject(received), JsonConvert.SerializeObject(previousReceived));
         for (int i = 0; i < newItems.Count; i++)
         {
@@ -110,9 +110,14 @@ public class TradeInfoListener : UpdateListener
             Type = Enum.TryParse<Enchantment.EnchantmentType>(e.Key, out var type) ? type : Enchantment.EnchantmentType.unknown,
             Level = e.Value
         }).ToList() ?? new();
-        auction.Tier = Enum.TryParse<Tier>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "tier").Value?.ToString() ?? "", out var tier) ? tier : Tier.UNKNOWN;
-        auction.Reforge = Enum.TryParse<ItemReferences.Reforge>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "modifier").Value?.ToString() ?? "", out var reforge) ? reforge : ItemReferences.Reforge.Unknown;
-        auction.SetFlattenedNbt(NBT.FlattenNbtData(i.ExtraAttributes));
+        if (i.ExtraAttributes != null)
+        {
+            auction.Tier = Enum.TryParse<Tier>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "tier").Value?.ToString() ?? "", out var tier) ? tier : Tier.UNKNOWN;
+            auction.Reforge = Enum.TryParse<ItemReferences.Reforge>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "modifier").Value?.ToString() ?? "", out var reforge) ? reforge : ItemReferences.Reforge.Unknown;
+            auction.SetFlattenedNbt(NBT.FlattenNbtData(i.ExtraAttributes));
+        } else {
+            auction.FlatenedNBT = new();
+        }
         return auction;
     }
 }
