@@ -36,7 +36,7 @@ public class TradeInfoListener : UpdateListener
         if (chest.Name == null || !chest.Name.StartsWith("You                  "))
             return; // not a trade
 
-        var previousChest = args.currentState.RecentViews.Where(t => t.Name?.StartsWith("You    ") ?? false).Skip(1).Take(1).LastOrDefault();
+        var previousChest = args.currentState.RecentViews.Where(t => t.Name?.StartsWith("You    ") ?? false).Reverse().Skip(1).Take(1).LastOrDefault();
         TradeDetect.ParseTradeWindow(chest, out _, out var received);
         TradeDetect.ParseTradeWindow(previousChest, out _, out var previousReceived);
 

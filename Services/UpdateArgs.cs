@@ -18,7 +18,7 @@ public class UpdateArgs : IDisposable
     /// </summary>
     /// <param name="text"></param>
     /// <param name="clickAction"></param>
-    public void SendMessage(string text, string? clickAction = null, string? source = null)
+    public virtual void SendMessage(string text, string? clickAction = null, string? source = null)
     {
         stateService.TryExecuteInScope(async provider =>
         {
