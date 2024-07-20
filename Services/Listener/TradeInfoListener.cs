@@ -62,8 +62,8 @@ public class TradeInfoListener : UpdateListener
             }
             else
             {
-                args.SendMessage($"Lbin is {price.Lbin.Price} - click to open on ah", $"/viewauction {lbin?.Uuid}");
-                if (price.SLbin != null)
+                args.SendMessage($"Lbin is {price!.Lbin.Price} - click to open on ah", $"/viewauction {lbin?.Uuid}");
+                if (price?.SLbin != null && price.SLbin.AuctionId != 0)
                 {
                     var slbin = await GetAuction(args, price.SLbin.AuctionId);
                     if (slbin != null)
