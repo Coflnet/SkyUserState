@@ -97,6 +97,8 @@ public class TradeDetect : UpdateListener
         spent = new List<Item>();
         received = new List<Item>();
         var index = 0;
+        if(tradeView == null)
+            return;
         foreach (var item in tradeView.Items)
         {
             var i = index++;
