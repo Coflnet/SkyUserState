@@ -50,7 +50,7 @@ public class TradeInfoListener : UpdateListener
             var price = prices[i];
             args.SendMessage($"Item: {item.ItemName} Count: {item.Count} showed up in trade window");
             var uid = price?.Lbin?.AuctionId ?? 0;
-            if(uid == 0)
+            if (uid == 0)
             {
                 args.SendMessage("No lbin found");
                 continue;
@@ -61,7 +61,17 @@ public class TradeInfoListener : UpdateListener
                 args.SendMessage("Most similar lbin not found");
             }
             else
+            {
                 args.SendMessage($"Lbin is {price.Lbin.Price} - click to open on ah", $"/viewauction {lbin?.Uuid}");
+                if (price.SLbin != null)
+                {
+                    var slbin = await GetAuction(args, price.SLbin.AuctionId);
+                    if (slbin != null)
+                    {
+                        args.SendMessage($"Second lowest BIN is {price.SLbin.Price} - click to open on ah", $"/viewauction {slbin?.Uuid}");
+                    }
+                }
+            }
 
         }
     }
@@ -120,7 +130,9 @@ public class TradeInfoListener : UpdateListener
             auction.Tier = Enum.TryParse<Tier>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "tier").Value?.ToString() ?? "", out var tier) ? tier : Tier.UNKNOWN;
             auction.Reforge = Enum.TryParse<ItemReferences.Reforge>(i.ExtraAttributes.FirstOrDefault(a => a.Key == "modifier").Value?.ToString() ?? "", out var reforge) ? reforge : ItemReferences.Reforge.Unknown;
             auction.SetFlattenedNbt(NBT.FlattenNbtData(i.ExtraAttributes));
-        } else {
+        }
+        else
+        {
             auction.FlatenedNBT = new();
         }
         return auction;
