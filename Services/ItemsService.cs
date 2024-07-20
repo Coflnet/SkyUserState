@@ -120,7 +120,7 @@ namespace Coflnet.Sky.PlayerState.Services
             {
                 var tag = item.Tag;
                 var uuid = item.ItemId;
-                return table.Where(i => i.Tag == tag && i.ItemId == uuid).Take(2).ExecuteAsync();
+                return table.Where(i => i.Tag == tag && i.ItemId == uuid).Take(10).ExecuteAsync();
             }))).SelectMany(i => i);
             //var oldRes = await oldTable.Where(i => tags.Contains(i.Tag) && uuids.Contains(i.ItemId)).Take(2_000).ExecuteAsync();
             var found = res.ToList();
