@@ -49,7 +49,7 @@ public class TradeInfoListener : UpdateListener
             var item = newItems[i];
             var price = prices[i];
             args.SendMessage($"Item: {item.ItemName} Count: {item.Count} showed up in trade window");
-            var uid = price.Lbin.AuctionId;
+            var uid = price?.Lbin?.AuctionId ?? 0;
             if(uid == 0)
             {
                 args.SendMessage("No lbin found");
