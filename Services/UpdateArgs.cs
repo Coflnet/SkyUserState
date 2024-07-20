@@ -18,7 +18,7 @@ public class UpdateArgs : IDisposable
     /// </summary>
     /// <param name="text"></param>
     /// <param name="clickAction"></param>
-    public void SendMessage(string text, string? clickAction = null)
+    public void SendMessage(string text, string? clickAction = null, string? source = null)
     {
         stateService.TryExecuteInScope(async provider =>
         {
@@ -28,6 +28,7 @@ public class UpdateArgs : IDisposable
             {
                 Message = text,
                 Data = msg,
+                SourceType = source ?? "StateEvents",
                 Link = clickAction!
             });
         });
