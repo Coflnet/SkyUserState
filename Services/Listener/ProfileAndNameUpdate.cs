@@ -11,16 +11,16 @@ public class ProfileAndNameUpdate : UpdateListener
     public override async Task Process(UpdateArgs args)
     {
         var state = args.currentState;
-        var nameService = args.GetService<IPlayerNameApi>();
         if (state.McInfo.Uuid == default)
         {
+            var nameService = args.GetService<IPlayerNameApi>();
             var uuid = await nameService.PlayerNameUuidNameGetAsync(args.msg.PlayerId);
             if (uuid != null)
             {
                 state.McInfo.Uuid = Guid.Parse(uuid.Trim('"'));
                 state.McInfo.Name = args.msg.PlayerId;
             }
-            else 
+            else
                 Console.WriteLine($"could not find uuid for {args.msg.PlayerId}");
         }
         // TODO find profile

@@ -46,9 +46,9 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         this.config = config;
         this.logger = logger;
         AddHandler<SettingsListener>(UpdateMessage.UpdateKind.Setting);
-
+        // handlers are executed in this order
         AddHandler<ChatHistoryUpdate>(UpdateMessage.UpdateKind.CHAT);
-        AddHandler<ProfileAndNameUpdate>(UpdateMessage.UpdateKind.CHAT);
+        AddHandler<ProfileAndNameUpdate>(UpdateMessage.UpdateKind.CHAT | UpdateMessage.UpdateKind.INVENTORY);
         AddHandler<BazaarOrderListener>(UpdateMessage.UpdateKind.CHAT);
 
 
