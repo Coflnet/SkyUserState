@@ -45,7 +45,7 @@ public class TradeService : ITradeService
         this.transactionService = transactionService;
         this.itemService = itemService;
         this.topic = configuration["TOPICS:PLAYER_TRADE"] ?? throw new ValidationException("No TOPICS:PLAYER_TRADE defined");
-        kafkaCreator.CreateTopicIfNotExist(topic).Wait();
+        kafkaCreator.CreateTopicIfNotExist(topic, 1).Wait();
         producer = kafkaCreator.BuildProducer<string,TradeModel>();
     }
     public async Task<IEnumerable<Transaction>> GetTradeTransactions(string itemTag, Guid itemId, DateTime end)
