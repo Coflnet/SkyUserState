@@ -8,6 +8,8 @@ using Cassandra.Data.Linq;
 using Cassandra.Mapping;
 using MessagePack;
 using Microsoft.Extensions.Logging;
+using Cassandra.Mapping.Attributes;
+using PartitionKeyAttribute = Cassandra.Mapping.Attributes.PartitionKeyAttribute;
 
 namespace Coflnet.Sky.PlayerState.Models;
 
@@ -141,9 +143,9 @@ public class PersistenceService : IPersistenceService
 
 public class Inventory
 {
-    [Cassandra.Mapping.Attributes.PartitionKey]
+    [PartitionKey]
     public string PlayerId { get; set; }
-    [Cassandra.Mapping.Attributes.Frozen]
+    [Frozen]
     public byte[] Serialized { get; set; }
     static MessagePackSerializerOptions options =  MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block); 
 
