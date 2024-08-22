@@ -89,6 +89,25 @@ public class TradeDetect : UpdateListener
         {
             logger.LogError(e, "Trying to store uuid to item mapping");
         }
+        try
+        {
+            var tradeService = args.GetService<ITradeService>();
+            var playerName = tradeView.Name.Substring(21).Trim();
+            var trademodel = new TradeModel()
+            {
+                UserId = args.msg.UserId,
+                MinecraftUsername = args.currentState.McInfo.Name,
+                Spent = spent,
+                Received = received,
+                OtherSide = playerName,
+                TimeStamp = timestamp
+            };
+            await tradeService.ProduceTrade(trademodel);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Producing player trade");
+        }
 
     }
 
@@ -97,7 +116,7 @@ public class TradeDetect : UpdateListener
         spent = new List<Item>();
         received = new List<Item>();
         var index = 0;
-        if(tradeView == null)
+        if (tradeView == null)
             return;
         foreach (var item in tradeView.Items)
         {

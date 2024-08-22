@@ -77,6 +77,8 @@ public class Startup
         services.Configure<MongoSettings>(Configuration.GetSection("Mongo"));
         services.AddSingleton<IItemsService, ItemsService>();
         services.AddSingleton<CoinParser>();
+        services.AddSingleton<ITradeService, TradeService>();
+        services.AddSingleton<Kafka.KafkaCreator>();
         services.AddSingleton<IPersistenceService, PersistenceService>();
         services.AddSingleton<ITransactionService, TransactionService>();
         services.AddSingleton<ICassandraService>(di => di.GetRequiredService<ITransactionService>() as ICassandraService 
