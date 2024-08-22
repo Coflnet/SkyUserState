@@ -96,7 +96,7 @@ public class TradeDetect : UpdateListener
             var trademodel = new TradeModel()
             {
                 UserId = args.msg.UserId,
-                MinecraftUsername = args.currentState.McInfo.Name,
+                MinecraftUuid = args.currentState.McInfo.Uuid,
                 Spent = spent,
                 Received = received,
                 OtherSide = playerName,

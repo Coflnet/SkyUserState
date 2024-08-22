@@ -22,7 +22,7 @@ public class TradeModel
     [MessagePack.Key(0)]
     public string UserId { get; set; }
     [MessagePack.Key(1)]
-    public string MinecraftUsername { get; set; }
+    public Guid MinecraftUuid { get; set; }
     [MessagePack.Key(2)]
     public List<Item> Spent { get; set; }
     [MessagePack.Key(3)]

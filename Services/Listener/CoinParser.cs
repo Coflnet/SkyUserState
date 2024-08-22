@@ -13,7 +13,6 @@ public class CoinParser
         if (IsCoins(item))
         {
             var stringAmount = item.ItemName!.Substring(2, item.ItemName.Length - 8);
-            Console.WriteLine("found " + stringAmount);
             return ParseCoinAmount(stringAmount);
         }
         return 0;
