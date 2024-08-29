@@ -106,6 +106,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         };
         await TestCassandraConnection();
 
+        var backOff = false;
         await Kafka.KafkaConsumer.ConsumeBatch<UpdateMessage>(consumerConfig, new string[] { config["TOPICS:STATE_UPDATE"] }, async batch =>
         {
             if (batch.Max(b => b.ReceivedAt) < DateTime.UtcNow - TimeSpan.FromHours(3))
@@ -128,11 +129,16 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
             using var span = activitySource.StartActivity("Batch", ActivityKind.Consumer);
             await Task.WhenAny(Task.WhenAll(batch.Select(async update =>
             {
-                await Update(update);
+                backOff = await Update(update);
                 consumeCount.Inc();
             })), Task.Delay(TimeSpan.FromSeconds(0.4)));
 
-
+            if (backOff)
+            {
+                logger.LogWarning("Backoff cause error");
+                await Task.Delay(8000);
+                backOff = false;
+            }
             KeepStateCountInCheck();
         }, stoppingToken, 10);
         var retrieved = new UpdateMessage();
@@ -186,7 +192,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
 
     }
 
-    private async Task Update(UpdateMessage msg, int attempt = 0)
+    private async Task<bool> Update(UpdateMessage msg, int attempt = 0)
     {
         if (msg.PlayerId == null)
             msg.PlayerId = "!anonym";
@@ -248,6 +254,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         }
         if (error && attempt < 3) // after finally to avoid semaphore lock
             await Update(msg, attempt + 1);
+        return error;
     }
 
     public async Task ExecuteInScope(Func<IServiceProvider, Task> todo)
