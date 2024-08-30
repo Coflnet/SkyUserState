@@ -109,11 +109,16 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
         var backOff = false;
         await Kafka.KafkaConsumer.ConsumeBatch<UpdateMessage>(consumerConfig, new string[] { config["TOPICS:STATE_UPDATE"] }, async batch =>
         {
-            if (batch.Max(b => b.ReceivedAt) < DateTime.UtcNow - TimeSpan.FromHours(3))
+            if (batch.Max(b => b.ReceivedAt) < DateTime.UtcNow - TimeSpan.FromHours(1))
             {
                 logger.LogWarning("Received old batch of {0} messages", batch.Count());
                 _ = Task.WhenAll(batch.Select(async update =>
                 {
+                    if(update.Kind == UpdateMessage.UpdateKind.INVENTORY && !update.Chest.Name.StartsWith("You"))
+                    {
+                        // Only "You ..." (trade) and "Your Bazaar Orders" (bazaar) are relevant for tracking
+                        return;
+                    }
                     try
                     {
                         await Update(update);
