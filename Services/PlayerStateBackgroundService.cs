@@ -114,14 +114,21 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
                 logger.LogWarning("Received old batch of {0} messages", batch.Count());
                 _ = Task.WhenAll(batch.Select(async update =>
                 {
-                    if(update.Kind == UpdateMessage.UpdateKind.INVENTORY && !update.Chest.Name.StartsWith("You"))
+                    if (update.Kind == UpdateMessage.UpdateKind.INVENTORY && !update.Chest.Name.StartsWith("You"))
                     {
                         // Only "You ..." (trade) and "Your Bazaar Orders" (bazaar) are relevant for tracking
+                        return;
+                    }
+                    if (update.Kind == UpdateMessage.UpdateKind.CHAT && !update.ChatBatch.Any(m => m.StartsWith(" + ") && !m.StartsWith(" - ")))
+                    {
+                        // Ignore no chat messages
                         return;
                     }
                     try
                     {
                         await Update(update);
+                        if (Random.Shared.NextDouble() < 0.01)
+                            logger.LogWarning("Processed old update {0}", JsonConvert.SerializeObject(update));
                     }
                     catch (System.Exception e)
                     {
