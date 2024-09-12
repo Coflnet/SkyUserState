@@ -143,7 +143,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
             {
                 backOff = await Update(update);
                 consumeCount.Inc();
-            })), Task.Delay(TimeSpan.FromSeconds(0.4)));
+            })), Task.Delay(TimeSpan.FromSeconds(0.7)));
 
             if (backOff)
             {
@@ -152,7 +152,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
                 backOff = false;
             }
             KeepStateCountInCheck();
-        }, stoppingToken, 10);
+        }, stoppingToken, 25);
         var retrieved = new UpdateMessage();
     }
 
