@@ -22,7 +22,10 @@ public class TradeDetect : UpdateListener
     public override async Task Process(UpdateArgs args)
     {
         if (args.currentState.Settings?.DisableTradeTracking ?? false)
+        {
+            Console.WriteLine("trade tracking blocked for " + args.currentState.PlayerId);
             return;
+        }
         if (args.msg.Kind == UpdateMessage.UpdateKind.CHAT)
         {
             var lastMessage = args.msg.ChatBatch.Last();
