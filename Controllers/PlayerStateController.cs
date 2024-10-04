@@ -42,6 +42,12 @@ namespace Coflnet.Sky.PlayerState.Controllers
             var data = await service.GetStateObject(playerId);
             return data.BazaarOffers;
         }
+        [HttpGet]
+        [Route("{playerId}")]
+        public async Task<StateObject> GetFullState(string playerId)
+        {
+            return await service.GetStateObject(playerId);
+        }
 
         [HttpGet]
         [Route("{playerId}/lastChest")]
