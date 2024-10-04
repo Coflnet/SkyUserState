@@ -21,7 +21,7 @@ public class TradeDetect : UpdateListener
     /// <inheritdoc/>
     public override async Task Process(UpdateArgs args)
     {
-        if (args.currentState.Settings?.DisableTradeTracking ?? false)
+        if (args.msg.PlayerId == "Core" || (args.currentState.Settings?.DisableTradeTracking ?? false))
         {
             Console.WriteLine("trade tracking blocked for " + args.currentState.PlayerId);
             return;
