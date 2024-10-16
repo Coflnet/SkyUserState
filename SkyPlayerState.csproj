@@ -20,15 +20,15 @@
     <PackageReference Include="Coflnet.Sky.Api.Client" Version="0.7.0" />
     <PackageReference Include="Coflnet.Sky.Settings.Client" Version="0.2.2" />
     <PackageReference Include="Coflnet.Sky.Sniper.Client" Version="0.10.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Coflnet.Sky.Bazaar.Client" Version="0.4.1" />
     <PackageReference Include="Coflnet.Sky.EventBroker.Client" Version="0.5.4" />
     <PackageReference Include="EFCore.Cassandra" Version="2.0.5" />
-    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.30.0" />
     <PackageReference Include="Coflnet.Sky.PlayerName.Client" Version="0.2.2" />
     <PackageReference Include="Coflnet.Sky.Proxy.Client" Version="0.1.2" />
   </ItemGroup>
