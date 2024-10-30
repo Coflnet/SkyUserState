@@ -139,7 +139,7 @@ public class TradeDetect : UpdateListener
     private static void StoreUuidtoItemMapping(ITransactionService service, List<Item> spent, List<Item> received)
     {
         var itemUuidAndItemId = spent.Concat(received).Where(i => i.Id > 0).Select(s => (s.ExtraAttributes?.GetValueOrDefault("uuid"), s.Id))
-                    .Where(c => c.Item1 != null).Select(c => (Guid.Parse(c.Item1.ToString()), c.Id)).ToList();
+                    .Where(c => c.Item1 != null).Select(c => (Guid.Parse(c.Item1!.ToString()!), c.Id)).ToList();
         service.StoreUuidToItemMapping(itemUuidAndItemId);
     }
 
