@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,10 +12,35 @@ public class RecipeUpdate : UpdateListener
     /// <inheritdoc/>
     public override async Task Process(UpdateArgs args)
     {
-        if (!(args.msg.Chest?.Name?.Contains("Recipe") ?? false))
+        if (!(args.msg.Chest?.Name?.StartsWith("Museum") ?? false))
             return;
-        Console.WriteLine($"Recipe update {args.msg.Chest?.Name} {JsonConvert.SerializeObject(args.msg.Chest?.Items.Take(36))}");
-        ExtractCarpentryCost(args);
+        Console.WriteLine($"Museum update {args.msg.Chest?.Name} {JsonConvert.SerializeObject(args.msg.Chest?.Items.Take(36))}");
+        ExtractMuseumExp(args);
+    }
+
+    private static void ExtractMuseumExp(UpdateArgs args)
+    {
+        if (!(args.msg.Chest?.Name?.Contains("Museum") ?? false))
+            return;
+        
+        var existing = new Dictionary<string, int>();
+        if (File.Exists("museum.json"))
+        {
+            existing = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText("museum.json"));
+        }
+        foreach (var item in args.msg.Chest.Items.Skip(9).Take(36))
+        {
+            if (item.Description == null || !item.Description.Contains("SkyBlock XP"))
+                continue;
+            var name = item.ItemName;
+            // extract the exp from "§7Click on this item in your inventory to\n§7add it to your §9Museum§7!\n\n§7Reward: §b+5 SkyBlock XP"
+            var exp = Regex.Match(item.Description, @"§7Reward: §b\+(\d+) SkyBlock XP").Groups[1].Value;
+            Console.WriteLine($"Museum update {name} {exp}");
+            if (exp == "")
+                continue;
+            existing[name] = int.Parse(exp);
+        }
+        File.WriteAllText("museum.json", JsonConvert.SerializeObject(existing, Formatting.Indented));
     }
     private static void ExtractCarpentryCost(UpdateArgs args)
     {

@@ -52,6 +52,8 @@ public class StateObject
     public ExtractedInfo ExtractedInfo = new();
     [Key(10)]
     public StateSettings Settings = new();
+    [Key(11)]
+    public LimitsSummary Limits = new();
     [IgnoreMember]
     public SemaphoreSlim Lock = new SemaphoreSlim(1);
     [IgnoreMember]
@@ -89,6 +91,29 @@ public class StateObject
         Settings = other.Settings;
     }
 }
+
+[MessagePackObject]
+public class LimitsSummary
+{
+    [Key(0)]
+    public Queue<Limit> Bazaar = new();
+    [Key(1)]
+    public Queue<Limit> AuctionHouse = new();
+    [Key(2)]
+    public Queue<Limit> Trade = new();
+
+    [MessagePackObject]
+    public class Limit
+    {
+        [Key(0)]
+        public long Amount { get; set; }
+        [Key(1)]
+        public DateTime Time { get; set; }
+        [Key(2)]
+        public string Message { get; set; }
+    }
+}
+
 [MessagePackObject]
 public class McInfo
 {
