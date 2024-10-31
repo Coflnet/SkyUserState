@@ -56,6 +56,13 @@ namespace Coflnet.Sky.PlayerState.Controllers
             var data = await service.GetStateObject(playerId);
             return data?.RecentViews?.LastOrDefault()?.Items ?? throw new CoflnetException("no_inventory", $"No inventory found for {playerId}. Make sure you use the CoflMod and opened your inventory.");
         }
+        [HttpGet]
+        [Route("{playerId}/limits")]
+        public async Task<LimitsSummary> GetLimits(string playerId)
+        {
+            var data = await service.GetStateObject(playerId);
+            return data?.Limits;
+        }
 
         [HttpGet]
         [Route("{playerId}/extracted")]

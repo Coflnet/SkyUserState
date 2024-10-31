@@ -96,11 +96,11 @@ public class StateObject
 public class LimitsSummary
 {
     [Key(0)]
-    public Queue<Limit> Bazaar = new();
+    public Queue<Limit> Bazaar { get; set; } = new();
     [Key(1)]
-    public Queue<Limit> AuctionHouse = new();
+    public Queue<Limit> AuctionHouse { get; set; } = new();
     [Key(2)]
-    public Queue<Limit> Trade = new();
+    public Queue<Limit> Trade { get; set; } = new();
 
     [MessagePackObject]
     public class Limit
