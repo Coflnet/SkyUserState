@@ -69,7 +69,7 @@ public class PersistenceService : IPersistenceService
             return new StateObject() { PlayerId = playerId };
         }
         savedHashList[playerId] = GetHash(result);
-        logger.LogInformation("Loaded state object for player {playerId}", playerId);
+        logger.LogInformation("Loaded state object for player {playerId} size:{size}", playerId, result.Serialized.Length);
         return result.GetStateObject();
     }
 
@@ -78,7 +78,7 @@ public class PersistenceService : IPersistenceService
         await SaveStateObject(stateObject, false);
     }
 
-    public async Task SaveStateObject(StateObject stateObject, bool recursive )
+    public async Task SaveStateObject(StateObject stateObject, bool recursive)
     {
         var table = await GetPlayerTable();
         var inventory = new Inventory(stateObject);
@@ -147,13 +147,13 @@ public class Inventory
     public string PlayerId { get; set; }
     [Frozen]
     public byte[] Serialized { get; set; }
-    static MessagePackSerializerOptions options =  MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block); 
+    static MessagePackSerializerOptions options = MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block);
 
     public Inventory(StateObject stateObject)
     {
         PlayerId = stateObject.PlayerId;
         var copy = new StateObject(stateObject);
-        
+
         Serialized = MessagePackSerializer.Serialize(copy, options);
     }
 
