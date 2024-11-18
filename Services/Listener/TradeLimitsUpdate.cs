@@ -21,7 +21,7 @@ public class TradeLimitsUpdate : UpdateListener
         static void UpdateTradeLimit(UpdateArgs args, string chatMsg)
         {
             var limits = args.currentState.Limits;
-            while (limits.Trade.Peek().Time < args.msg.ReceivedAt.AddHours(-24))
+            while (limits.Trade.Count > 0 && limits.Trade.Peek().Time < args.msg.ReceivedAt.AddHours(-24))
                 limits.Trade.TryDequeue(out _);
             //  + 2k coins
             var amount = Core.CoinParser.ParseCoinAmount(chatMsg.Split(' ')[1]);
