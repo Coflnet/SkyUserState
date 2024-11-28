@@ -70,7 +70,7 @@ public class Startup
         }
         else
             services.AddHostedService<PlayerStateBackgroundService>();
-        services.AddJaeger(Configuration);
+        services.AddJaeger(Configuration, 0.001);
         services.AddResponseCaching();
         services.AddResponseCompression();
 
