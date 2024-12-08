@@ -170,7 +170,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
             }
         }
 
-        if (States.Count < 300)
+        if (States.Count < 500)
             return;
 
         var oldest = States.OrderBy(s => s.Value.LastAccess).First();

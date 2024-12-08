@@ -9,7 +9,7 @@ public class RecentViewsUpdate : UpdateListener
     {
         var recentViews = args.currentState.RecentViews;
         recentViews.Enqueue(args.msg.Chest);
-        if (recentViews.Count > 3)
+        while (recentViews.Count > 3)
             recentViews.TryDequeue(out _);
 
         return Task.CompletedTask;
