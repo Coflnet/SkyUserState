@@ -175,7 +175,7 @@ public class PlayerStateBackgroundService : BackgroundService, IPlayerStateServi
 
         var oldest = States.OrderBy(s => s.Value.LastAccess).First();
         States.TryRemove(oldest.Key, out var removed);
-        logger.LogWarning("States count is {0} removed {1}", States.Count, removed?.PlayerId);
+        logger.LogWarning("States count is {0} removed {1}, last used {used}", States.Count, removed?.PlayerId, removed?.LastAccess);
     }
 
     private async Task TestCassandraConnection()
