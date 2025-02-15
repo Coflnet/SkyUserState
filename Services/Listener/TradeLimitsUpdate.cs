@@ -24,7 +24,7 @@ public class TradeLimitsUpdate : UpdateListener
             while (limits.Trade.Count > 0 && limits.Trade.Peek().Time < args.msg.ReceivedAt.AddHours(-24))
                 limits.Trade.TryDequeue(out _);
             //  + 2k coins
-            var amount = Core.CoinParser.ParseCoinAmount(chatMsg.Split(' ')[1]);
+            var amount = Core.CoinParser.ParseCoinAmount(chatMsg.Split(' ')[2]);
             limits.Trade.Enqueue(new() { Time = args.msg.ReceivedAt, Amount = amount, Message = chatMsg });
             Console.WriteLine($"Trades value done is now {limits.Trade.Sum(t => t.Amount)} for {args.msg.PlayerId}");
         }
