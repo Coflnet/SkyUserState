@@ -17,19 +17,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Coflnet.Sky.Api.Client" Version="0.7.0" />
-    <PackageReference Include="Coflnet.Sky.Settings.Client" Version="0.2.2" />
-    <PackageReference Include="Coflnet.Sky.Sniper.Client" Version="0.10.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+    <PackageReference Include="Coflnet.Sky.Api.Client" Version="0.7.2" />
+    <PackageReference Include="Coflnet.Sky.Settings.Client" Version="0.2.3" />
+    <PackageReference Include="Coflnet.Sky.Sniper.Client" Version="0.12.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Coflnet.Sky.Bazaar.Client" Version="0.4.1" />
-    <PackageReference Include="Coflnet.Sky.EventBroker.Client" Version="0.5.4" />
+    <PackageReference Include="Coflnet.Sky.Bazaar.Client" Version="0.4.2" />
+    <PackageReference Include="Coflnet.Sky.EventBroker.Client" Version="0.5.5" />
     <PackageReference Include="EFCore.Cassandra" Version="2.0.5" />
     <PackageReference Include="MongoDB.Driver" Version="2.30.0" />
-    <PackageReference Include="Coflnet.Sky.PlayerName.Client" Version="0.2.2" />
+    <PackageReference Include="Coflnet.Sky.PlayerName.Client" Version="0.2.3" />
     <PackageReference Include="Coflnet.Sky.Proxy.Client" Version="0.1.2" />
   </ItemGroup>
 
@@ -39,7 +39,7 @@
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
   </ItemGroup>
 
 </Project>
