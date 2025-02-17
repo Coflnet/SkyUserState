@@ -12,7 +12,7 @@ public class RecipeUpdate : UpdateListener
     /// <inheritdoc/>
     public override async Task Process(UpdateArgs args)
     {
-        if (!(args.msg.Chest?.Name?.StartsWith("Museum") ?? false))
+        if (!(args.msg.Chest?.Name?.StartsWith("Museum - disabled") ?? false))
             return;
         Console.WriteLine($"Museum update {args.msg.Chest?.Name} {JsonConvert.SerializeObject(args.msg.Chest?.Items.Take(36))}");
         ExtractMuseumExp(args);
