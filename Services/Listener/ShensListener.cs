@@ -15,7 +15,7 @@ public class ShensListener : UpdateListener
 
     public override async Task Process(UpdateArgs args)
     {
-        if (!args.msg.Chest.Name.StartsWith("Shen's"))
+        if (args.msg.Chest.Name != null && !args.msg.Chest.Name.StartsWith("Shen's"))
             return;
         logger.LogInformation("Shen's auction detected\n{chest}", JsonConvert.SerializeObject(args.msg.Chest));
     }
