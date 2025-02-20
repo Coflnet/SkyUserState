@@ -81,6 +81,7 @@ public class Startup
         services.AddSingleton<Kafka.KafkaCreator>();
         services.AddSingleton<IPersistenceService, PersistenceService>();
         services.AddSingleton<ITransactionService, TransactionService>();
+        services.AddSingleton<IShenStorage, ShenHistoryService>();
         services.AddSingleton<ICassandraService>(di => di.GetRequiredService<ITransactionService>() as ICassandraService 
                     ?? throw new Exception("ITransactionService is not a ICassandraService"));
         services.AddSingleton<IMessageApi>(sp => new MessageApi(Configuration["EVENTS_BASE_URL"]));

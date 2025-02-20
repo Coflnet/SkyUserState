@@ -1,0 +1,607 @@
+{
+    "Items": [
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§6Shen's Auction #178",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§8Requires Museum Milestone 10\n\n§7Every year, Shen is auctioning three\n§7special accessories to those he\n§7deems popular enough to deserve\n§7his items.\n\n§eView below!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§6Shen's Auction #178",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§8Requires Museum Milestone 10\n\n§7Every year, Shen is auctioning three\n§7special accessories to those he\n§7deems popular enough to deserve\n§7his items.\n\n§eView below!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§6Shen's Auction #178",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§8Requires Museum Milestone 10\n\n§7Every year, Shen is auctioning three\n§7special accessories to those he\n§7deems popular enough to deserve\n§7his items.\n\n§eView below!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": 988865828181526,
+            "ItemName": "§6Artifact of Control",
+            "Tag": "ARTIFACT_OF_CONTROL",
+            "ExtraAttributes": {
+                "uid": "4130a356ed3e",
+                "uuid": "c49078bd-7491-4197-9f6e-4130a356ed3e",
+                "timestamp": 1739879305450,
+                "tier": 5
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7§7Holding this artifact will grant you §a2x\n§a§7voting power in Mayor Elections!\n\n§6§lLEGENDARY ACCESSORY\n§8§m-----------------\n§cYou haven't bid!\n§7Auction ends in: §a3d 10h 6m 35s\n§8§m-----------------\n§7The top §a10§7 bidders win this item:\n§8§o(Right-click to collapse list)\n§e§l1. §b[MVP§d+§b] kleinKolibri711 §8- §62,000,000,000 Coins\n§e§l2. §b[MVP§d+§b] StarCatHorse §8- §61,000,000,000 Coins\n§e§l3. §b[MVP§f+§b] Imlosingmybrain §8- §61,000,000,000 Coins\n§e§l4. §b[MVP§2+§b] owenthebozo §8- §6552,802,243 Coins\n§e§l5. §b[MVP§9+§b] VivaVertigo §8- §617,750,002 Coins\n§e§l6. §b[MVP§6+§b] ZEALOTSEVERYWHER §8- §612,000,000 Coins\n§e§l7. §b[MVP§9+§b] RNCGaming §8- §610,000,000 Coins\n§e§l8. §b[MVP§2+§b] MIS000 §8- §610,000,000 Coins\n§e§l9. §a[VIP] VariantSheep §8- §68,500,001 Coins\n§e§l10. §b[MVP§9+§b] SithCriker §8- §65,000,000 Coins\n§8§m-----------------\n§eClick to bid!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": 988865828201526,
+            "ItemName": "§fPandora's Box",
+            "Tag": "PANDORAS_BOX",
+            "ExtraAttributes": {
+                "uid": "8308aa8fbd68",
+                "uuid": "08c555ee-77a1-4b31-8d04-8308aa8fbd68",
+                "timestamp": 1739879305451,
+                "tier": 1
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7Complete challenges to earn stats\n§7and level up the Pandora's Box.\n\n§7Challenges completed: §a0§7/§a20\n§7§7You receive §c+1 ❤§7 and §c+1 ❁§7 per\n§72 challenges you complete.\n\n§7§cNote! §7You must have this item in your inventory\n§7or accessory bag when completing a challenge!\n\n§eRight-click to open.\n\n§f§lCOMMON ACCESSORY\n§8§m-----------------\n§cYou haven't bid!\n§7Auction ends in: §a3d 10h 6m 35s\n§8§m-----------------\n§7The top §a20§7 bidders win this item:\n§8§o(Right-click to collapse list)\n§e§l1. §6[MVP§a++§6] FloralAxis23621 §8- §61,500,000,000 Coins\n§e§l2. §b[MVP§f+§b] Loyal_Is_Afk §8- §6700,000,000 Coins\n§e§l3. §b[MVP§c+§b] trexkiller255 §8- §6500,000,000 Coins\n§e§l4. §b[MVP] Al3xandre §8- §650,000,000 Coins\n§e§l5. §b[MVP§c+§b] devilseye21 §8- §628,000,079 Coins\n§e§l6. §b[MVP§5+§b] CrazyKidXXI §8- §620,000,000 Coins\n§e§l7. §b[MVP§6+§b] ZEALOTSEVERYWHER §8- §69,000,000 Coins\n§e§l8. §b[MVP§9+§b] SithCriker §8- §66,000,000 Coins\n§e§l9. §b[MVP§3+§b] LandwirtLukas §8- §66,000,000 Coins\n§e§l10. §b[MVP§c+§b] MaRiO3414 §8- §65,000,000 Coins\n§e§l11. §a[VIP§6+§a] Pestopiary §8- §63,000,000 Coins\n§e§l12. §b[MVP§c+§b] _KingSpud_ §8- §63,000,000 Coins\n§e§l13. §b[MVP§c+§b] SkyBlock_Reborn §8- §62,250,001 Coins\n§e§l14. §b[MVP§9+§b] VivaVertigo §8- §62,000,000 Coins\n§e§l15. §b[MVP§6+§b] GayMergirlZephyr §8- §62,000,000 Coins\n§e§l16. §b[MVP§9+§b] calpa §8- §62,000,000 Coins\n§8§l... §8and 4 more...\n§8§m-----------------\n§eClick to bid!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": 988865828201527,
+            "ItemName": "§6Shen's Regalia",
+            "Tag": "SHENS_REGALIA",
+            "ExtraAttributes": {
+                "uid": "497d8c1544d5",
+                "uuid": "f795d2f0-6320-4c87-b119-497d8c1544d5",
+                "timestamp": 1739879305452,
+                "tier": 5
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7§7According to the rumors, §6Shen\n§6§7himself is crafting special items. Have\n§7this in your inventory to gain access\n§7to a unique room hidden below the\n§7§6Auction House§7.\n\n§6§lLEGENDARY ACCESSORY\n§8§m-----------------\n§cYou haven't bid!\n§7Auction ends in: §a3d 10h 6m 35s\n§8§m-----------------\n§7The top §a40§7 bidders win this item:\n§8§o(Right-click to collapse list)\n§e§l1. §b[MVP§2+§b] Vern_werg §8- §6715,000,000 Coins\n§e§l2. §6[MVP§4++§6] 2short2hit §8- §6700,000,000 Coins\n§e§l3. §b[MVP§d+§b] XMaxJunior §8- §6700,000,000 Coins\n§e§l4. §6[MVP§a++§6] FloralAxis23621 §8- §6650,000,000 Coins\n§e§l5. §b[MVP§4+§b] xCyban §8- §6650,000,000 Coins\n§e§l6. §b[MVP§c+§b] davethehun §8- §6500,000,000 Coins\n§e§l7. §a[VIP] ZBFlipsYT §8- §6500,000,000 Coins\n§e§l8. §7Big_Business_Boi §8- §6316,000,000 Coins\n§e§l9. §b[MVP§2+§b] FieryGaming19 §8- §6210,000,000 Coins\n§e§l10. §b[MVP] susman1337 §8- §6200,000,000 Coins\n§e§l11. §b[MVP§5+§b] CrazyKidXXI §8- §6125,000,000 Coins\n§e§l12. §b[MVP§c+§b] TrebleT_ §8- §6122,476,388 Coins\n§e§l13. §a[VIP§6+§a] SwiftAU §8- §6100,000,000 Coins\n§e§l14. §b[MVP§c+§b] PlanetsOOSS §8- §6100,000,000 Coins\n§e§l15. §b[MVP§f+§b] real9512 §8- §6100,000,000 Coins\n§e§l16. §a[VIP] ABowlOfChowder §8- §650,000,000 Coins\n§8§l... §8and 24 more...\n§8§m-----------------\n§eClick to bid!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§3Shen's Special",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§8Requires Museum Milestone 20\n\n§7Shen is auctioning two more special\n§7edition items to the richest of the\n§7rich this year!\n\n§eView below!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§3Shen's Special",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§8Requires Museum Milestone 20\n\n§7Shen is auctioning two more special\n§7edition items to the richest of the\n§7rich this year!\n\n§eView below!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": 988865828201528,
+            "ItemName": "§6Giant Fishing Rod",
+            "Tag": "GIANT_FISHING_ROD",
+            "ExtraAttributes": {
+                "uid": "7ca8c07a065a",
+                "uuid": "781f8f2c-8406-4e69-be61-7ca8c07a065a",
+                "timestamp": 1739879305452,
+                "tier": 5
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7Damage: §c+20\n§7Strength: §c+10\n§7Fishing Speed: §a+20\n§7Double Hook Chance: §a+50%\n §8[§8α§8]\n\n§7§8This item has no purchasing data yet!\n\n§7§8This item can be reforged!\n§6§lLEGENDARY FISHING ROD\n§8§m-----------------\n§cYou haven't bid!\n§7Auction ends in: §a3d 10h 6m 35s\n§8§m-----------------\n§7The top §a10§7 bidders win this item:\n§8§o(Right-click to collapse list)\n§e§l1. §b[MVP§c+§b] WallHackLino_088 §8- §67,777,777,777 Coins\n§e§l2. §6[MVP§d++§6] NEMANJAAAAA §8- §63,000,001 Coins\n§e§l3. §b[MVP§2+§b] MagmaSlimeMC §8- §63,000,000 Coins\n§e§l4. §6[MVP§4++§6] real_cole §8- §62,000,001 Coins\n§e§l5. §b[MVP§c+§b] hoilday_fish §8- §62,000,000 Coins\n§e§l6. §b[MVP§d+§b] Banqueting §8- §62,000,000 Coins\n§e§l7. §b[MVP§d+§b] ISGT_Yukiouo §8- §62,000,000 Coins\n§e§l8. §b[MVP§f+§b] lf__mf §8- §62,000,000 Coins\n§e§l9. §a[VIP] AngryPants §8- §62,000,000 Coins\n§e§l10. §b[MVP§9+§b] LeafInAGust §8- §62,000,000 Coins\n§8§m-----------------\n§eClick to bid!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": 988865828202526,
+            "ItemName": "§aDirt Rod",
+            "Tag": "DIRT_ROD",
+            "ExtraAttributes": {
+                "uid": "a2646a51a543",
+                "uuid": "7a249065-4b90-41e1-978a-a2646a51a543",
+                "timestamp": 1739879305453,
+                "tier": 2
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7Fishing Speed: §a+15\n\n§7§7This rod allows you to fish on dirt.\n\n§7§8§oAt least you won't get wet!\n\n§7§8This item has no purchasing data yet!\n\n§7§8This item can be reforged!\n§a§lUNCOMMON FISHING ROD\n§8§m-----------------\n§cYou haven't bid!\n§7Auction ends in: §a3d 10h 6m 35s\n§8§m-----------------\n§7The top §a15§7 bidders win this item:\n§8§o(Right-click to collapse list)\n§e§l1. §b[MVP§0+§b] Meowtinas §8- §6100,000,000 Coins\n§e§l2. §b[MVP§f+§b] malrods §8- §669,420,420 Coins\n§e§l3. §b[MVP§d+§b] Legalice §8- §642,080,085 Coins\n§e§l4. §6[MVP§8++§6] SoupyRaccn §8- §67,000,000 Coins\n§e§l5. §6[MVP§f++§6] KneecapMuncher §8- §65,000,000 Coins\n§e§l6. §6[MVP§4++§6] real_cole §8- §62,000,001 Coins\n§e§l7. §b[MVP§4+§b] Santrado §8- §62,000,000 Coins\n§e§l8. §b[MVP§d+§b] Banqueting §8- §62,000,000 Coins\n§e§l9. §b[MVP§d+§b] ISGT_Yukiouo §8- §62,000,000 Coins\n§e§l10. §b[MVP§f+§b] lf__mf §8- §62,000,000 Coins\n§e§l11. §b[MVP§4+§b] Dawlol §8- §62,000,000 Coins\n§e§l12. §b[MVP§4+§b] Etavol §8- §62,000,000 Coins\n§8§m-----------------\n§eClick to bid!",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§cNo Auctions to Claim",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7§7You currently have no auctions to\n§7claim. Once you have won a Shen\n§7Auction, you can claim your item here.",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§cClose",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§cNo Bids to Claim",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7§7If you place a bid and do not win an\n§7auction, you can claim your\n§7currency here.",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": " ",
+            "Tag": null,
+            "ExtraAttributes": null,
+            "Enchantments": null,
+            "Color": null,
+            "Description": "",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§fGlass Pane",
+            "Tag": "THIN_GLASS",
+            "ExtraAttributes": {
+                "tier": 1
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§f§lCOMMON",
+            "Count": 1
+        },
+        {
+            "Id": 988258249940927,
+            "ItemName": "Shortened inventory cause not needed",
+            "Tag": "RABBIT_HAT",
+            "ExtraAttributes": {
+                "uid": "9298b4bb64a4",
+                "uuid": "ba2ce672-4421-4f02-a5d1-9298b4bb64a4",
+                "timestamp": 1577381700000,
+                "tier": 2
+            },
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7Speed: §a+5\n§7Intelligence: §a+5\n\n§7Grants §bJump Boost IV §7while equipped.\n\n§7§8This item can be reforged!\n§a§lUNCOMMON HELMET",
+            "Count": 1
+        },
+        {
+            "Id": null,
+            "ItemName": "§aSkyBlock Menu §7(Click)",
+            "Tag": "SKYBLOCK_MENU",
+            "ExtraAttributes": {},
+            "Enchantments": null,
+            "Color": null,
+            "Description": "§7View all of your SkyBlock progress,\n§7including your Skills, Collections,\n§7Recipes, and more!\n\n§eClick to open!",
+            "Count": 1
+        }
+    ],
+    "Name": "Shen's Auction"
+}
